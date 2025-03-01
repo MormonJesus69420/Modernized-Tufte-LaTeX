@@ -1,6 +1,8 @@
 <a id="readme-top" aria-label="Anchor to beginning of the document"></a>
 
 # Modernized Tufte-LaTeX
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 This repository contains a modernized fork of the Tufte-LaTeX classes.
 They have been modernized to support modern LaTeX engines, and customized to fit my personal needs and preferences.
 The original classes can be found at [Tufte-LaTeX](https://github.com/Tufte-LaTeX/tufte-latex "Tufte-Latex git repository"),
@@ -567,6 +569,7 @@ Here is a general roadmap of the project:
 - [ ] Document `nohyphens` and `nohyphenation` commands in `tufte-book` and readme
 - [ ] Publish changes in a new release
 - [ ] Publish on CTAN *maybe*
+  - [ ] Add badge with version to the readme
 - [x] Add feature to disable colored sections and paragraphs with option switch
 
 If you have any suggestions or feature requests, please open an issue on the issue tracker.
