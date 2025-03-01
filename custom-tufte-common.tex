@@ -1,0 +1,45 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%  This file contains common configs Tufte-LaTeX sample documents  %%%%%%%
+%%%%%%%%%%%%%%%%%%%%  Written by  Daniel Aaron Salwerowicz  %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%  Configures common, and useful packages  %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% This package changes how the date is displayed in document
+% I prefer the ISO format yyyy-mm-dd, but it can be changed as needed
+\usepackage[style=iso]{datetime2}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Overrides FiraCode from common spec with custom version of Recursive fonts  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Set monospaced font to Recursive font if running on XeLaTeX or LuaLaTeX engine
+% This is a custom font, so it is not included in the main Tufte-LaTeX classes
+\ifthenelse{\boolean{@tufte@xetex} \OR \boolean{@tufte@luatex}}{
+  % Load fontspec package in case it was not loaded
+  \usepackage{fontspec}
+  % Use fontspec to set the mono font to Recursive
+  \setmonofont{Recursive}[
+    % Set the path where font files exits
+    Path = {fonts/recursive-mono/},
+    % Which font file to use for regular, italic, bold, and bold italic font
+    UprightFont = *-regular,
+    ItalicFont = *-regular-italic,
+    BoldFont = *-bold,
+    BoldItalicFont = *-bold-italic,
+    % Set the scale of the font to match the uppercase of the main font
+    Scale = MatchLowercase,
+    % Set the extension type of the font files
+    Extension = .ttf,
+    % Set the font features to use ligatures
+    Ligatures = TeX,
+    Contextuals = Alternate,
+  ]
+}{}
+
