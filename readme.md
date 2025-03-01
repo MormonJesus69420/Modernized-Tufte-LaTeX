@@ -251,9 +251,7 @@ For example you can set handout to use A4 paper, use symmetric layout, and align
 <p align="right">(<a href="#readme-top" aria-label="Link to the top of the document">Back to top</a>)</p>
 
 # Extra Features
-In addition to the original features, this project adds 
-<details>
-  <summary>Minimal tufte-book document setup</summary>a few more.
+In addition to the original features, this project adds a few more.
 As mentioned earlier these mainly apply only to the `tufte-handout` class.
 They are based on changes made by [Matthew Y. He](https://github.com/mattyizhengHe "Matthew Y. He's GitHub page").
 
