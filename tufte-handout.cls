@@ -39,9 +39,6 @@
 \RequirePackage[noabbrev,nameinlink]{cleveref}
 \RequirePackage{thmtools}
 
-% The `sectsty' package is required for section styling
-\RequirePackage{sectsty}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Abstract setup  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -105,6 +102,9 @@
 
 % Only style the sections if the `moderntitles' option is set
 \ifthenelse{\boolean{@tufte@handout@moderntitles}}{%
+  %
+  % The `sectsty' package is required for section styling
+  \RequirePackage{sectsty}
   %
   % Set the section numbering depth to 2 so subsections and above are numbered
   \setcounter{secnumdepth}{2}

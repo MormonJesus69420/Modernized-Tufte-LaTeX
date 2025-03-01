@@ -373,15 +373,14 @@
 \setlength{\parskip}{\baselineskip}
 
 % Print the copyright notice, with copyright symbol, year, and author
-Copyright \textcopyright\ 2007---2015 by Kevin Godby, Bil Kleb, and Bill Wood.\\
+Copyright \textcopyright\ 2007---2019 by Kevin Godby, Bil Kleb, and Bill Wood.\\
 Copyright \textcopyright\ 2025---\the\year\ by Daniel Aaron Salwerowicz.
 
 % Print who published the book
 \par\smallcaps{Published by \thanklesspublisher}
 
 % Print the URL to the book's website
-\TODO{Update this URL}
-\par\smallcaps{tufte-latex.github.io/tufte-latex/} % TODO: Update this URL
+\par\smallcaps{\url{https://github.com/MormonJesus69420/Modernized-Tufte-LaTeX}}
 
 % Print license information and add it to the index
 \par
@@ -1250,7 +1249,7 @@ On that website, you'll find links to the \smallcaps{git} repository, mailing li
 However as the project seems to be abandoned as of time of writing, the website may not be available in the future.
 Additionally some of the links there seem to have already been victim of link rot.
 You can find more help and information on the current development of the \TL classes at the my GitHub repository.
-\TODO{Link to the new git repository}
+\url{https://github.com/MormonJesus69420/Modernized-Tufte-LaTeX}
 
 
 \section{\TL Mailing Lists}\label{sec:mailing-lists}
@@ -1268,7 +1267,7 @@ This list was available at \url{http://groups.google.com/group/tufte-latex-commi
 
 A more modern way to keep up with the development of the \TL classes is to follow the GitHub repository.
 You can also open issues there if you encounter any problems or have suggestions for improvements.
-\TODO{Link to the new git repository}
+\url{https://github.com/MormonJesus69420/Modernized-Tufte-LaTeX}
 
 
 \section{Getting Help}\label{sec:getting-help}
@@ -1318,33 +1317,46 @@ See page~\pageref{clsopt:symmetric} for more information on the \docclsopt{symme
 The following is a list of packages that the \TL document classes rely upon. 
 Packages marked with an asterisk are optional.
 \begin{multicols}{2}
-\begin{itemize}
-  \item xifthen
-  \item iftex*
-  \item hyperref
-  \item geometry
-  \item ragged2e
-  \item chngpage \emph{or} changepage
-  \item paralist
-  \item textcase
-  \item soul*
-  \item letterspace*
-  \item setspace
-  \item biblatex \emph{and} biber
-  \item optparams
-  \item placeins
-  \item mathpazo*
-  \item helvet*
-  \item fontenc
-  \item beramono*
-  \item fancyhdr
-  \item xcolor
-  \item textcomp
-  \item titlesec
-  \item titletoc
-  \item fontspec*
-  \item etbb*
-\end{itemize}
+  \begin{itemize}
+    \item amsmath * \textit{for \texttt{Note} environments}
+    \item amssymb * \textit{for \texttt{Note} environments}
+    \item amsthm * \textit{for \texttt{Note} environments}
+    \item amsxtra * \textit{for \texttt{Note} environments}
+    \item biblatex * \textit{only if \texttt{nobib} is off, requires \texttt{biber} backend}
+    \item bidi * \textit{only if using \texttt{bidi} option}
+    \item changepage
+    \item chngpage * \textit{only if \texttt{changepage} is not available}
+    \item cleveref * \textit{for \texttt{Note} environments}
+    \item ETbb * \textit{if available, and \texttt{nofonts} is off}
+    \item fancyhdr
+    \item FiraMono * \textit{if available, and \texttt{nofonts} is off}
+    \item fontenc * \textit{only with pdf\LaTeX, and \texttt{nofonts} is off}
+    \item fontspec * \textit{only with \tXeLaTeX or \tLuaLaTeX, and \texttt{nofonts} is off}
+    \item geometry
+    \item gillius2 * \textit{if available, and \texttt{nofonts} is off}
+    \item hardwrap
+    \item hyperref * \textit{only if \texttt{nohyper} is off}
+    \item iftex * \textit{if not it assumes pdf\LaTeX}
+    \item letterspace * \textit{only if \texttt{nols} is off}
+    \item mathpazo * \textit{if available, and \texttt{nofonts} is off}
+    \item multicol
+    \item optparams
+    \item paralist
+    \item placeins
+    \item ragged2e
+    \item sectsty
+    \item setspace
+    \item soul * \textit{only with pdf\LaTeX}
+    \item textcase
+    \item textcomp * \textit{only with pdf\LaTeX, and \texttt{nofonts} is off}
+    \item thmtools * \textit{for \texttt{Note} environments}
+    \item titlesec
+    \item titletoc
+    \item transparent
+    \item xcolor
+    \item xifthen
+    \item xkeyval
+  \end{itemize}
 \end{multicols}
 
 % The back matter contains appendices, bibliographies, indices, glossaries, etc.
