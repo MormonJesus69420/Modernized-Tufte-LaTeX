@@ -1,6 +1,6 @@
 <a id="readme-top" aria-label="Anchor to beginning of the document"></a>
 
-# Customized Tufte-LaTeX Classes
+# Modernized Tufte-LaTeX
 This repository contains a fork of the Tufte-LaTeX classes.
 They have been customized to fit my personal preferences.
 The original classes can be found at [Tufte-LaTeX](https://github.com/Tufte-LaTeX/tufte-latex "Tufte-Latex git repository"),
@@ -32,7 +32,7 @@ The main changes are:
 <details>
   <summary>Table of Contents</summary>
 
-1. [Customized Tufte-LaTeX Classes](#customized-tufte-latex-classes)
+1. [Modernized Tufte-LaTeX](#modernized-tufte-latex)
 1. [Background](#background)
 1. [Usage](#usage)
    1. [Base TeX File](#base-tex-file)
@@ -135,38 +135,37 @@ In case you are not interested in the sample files you can use minimal example b
 ## Class Options
 The classes provide a number of options to customize the document.
 The options are:
-- General options:
-  - `debug` -- provides more information in the .log file for use in troubleshooting problems
-  - `nofonts` -- doesn't load any fonts
-  - `fonts` -- tries to load fonts
-  - `nols` -- doesn't configure letterspacing
-  - `ls` -- configures letterspacing
-  - `notoc` -- suppresses the Tufte-Style table of contents
-  - `nobib` -- doesn't load Biblatex or adjust the \cite command
-  - `nohyper` -- suppresses loading of the hyperref package
-  - `sfmarginals` -- typesets all marginals in sans serif typeface
-  - `bidi` -- loads the bidi package for bi-directional text
-- Page size options:
-  - `letter` -- sets the paper size to US letter (*default*)
-  - `a4paper` -- sets the paper size to A4
-  - `b5paper` -- sets the paper size to B5
-- Titlepage options:
-  - `titlepage` -- creates a full title page with \maketitle (*default in book*)
-  - `notitlepage` -- creates a title block with \maketitle (*default in handout*)
-- Text alignment and layout options:
-  - `symmetric` -- puts marginpar space to the outside edge of the page
-    - Note: this option forces the `twoside` option
+- Paper Size and Layout Options:
+  - `a4paper` -- sets the paper size to A4, instead of default letter size
+  - `b5paper` -- sets the paper size to B5, instead of default letter size
   - `twoside` -- alternates page heads position on recto/verso pages
-  - `justified` -- justifies text layout on the page, ragged right otherwise
-
-Additionally there are options for setting alignemnt of: `sidenote`, `marginnote`,
-`caption`, `citation`, and `marginals` which applies to all of the above.
-They can can use either one of those layout options:
-- `justified` -- justifies text layout
-- `raggedleft` -- aligns text to the right
-- `raggedright` -- aligns text to the left
-- `raggedouter` -- aligns text to the outer edge of the page (useful in `symmetric` layout)
-- `auto` -- justifies if document class if justified, otherwise aligns to the right (default)
+  - `symmetric` -- put marginal material on the outside edge of the page, instead of the default right side
+- Font and Text Options:
+  - `sftitle` -- sets title page or block, as well as abstract, in sans serif typeface (*default in book*)
+  - `nosftitle` -- sets title page or block, as well as abstract, in serif typeface (*default in handout*)
+  - `sfmarginals` -- typesets all marginals in sans serif typeface
+  - `justified` -- sets main content to fully justified layout, flush left and right, instead of the default ragged right
+  - `nofonts` -- doesn't load any fonts
+  - `nols` -- doesn't configure letterspacing
+  - `bidi` -- loads the `bidi` package for bi-directional text
+- Title Page Options:
+  - `notitlepage` -- creates only a title block with \maketitle (*default in handout*)
+  - `titlepage` -- creates a full title page with \maketitle (*default in book*)
+- Toggle Options:
+  - `nobib` -- doesn't load Biblatex or adjust the \cite command
+  - `notoc` -- suppresses the Tufte-Style table of contents
+  - `nohyper` -- suppresses loading of the hyperref package
+  - `nomoderntitles` -- keeps old style of section and paragraph titles instead of the modern style
+- Following options set text layout for marginal materials.
+  These materials are:, `sidenote`, `marginnote`, `caption`, and `citation`.
+  The `marginals` option is a shortcut to apply layout settings to all marginal material.
+  - `justified` -- fully justified text, flush left and right
+  - `raggedleft` -- sets the text ragged left, regardless of which page it's on
+  - `raggedright` -- sets the text ragged right, regardless of which page it's on
+  - `raggedouter` -- sets the text ragged left on verso pages and ragged right on recto pages, useful for `symmetric` layout
+  - `auto` -- justifies text if document class is justified, otherwise it's set to the ragged right
+- Debugging Options:
+  - `debug` -- provides more information in the .log file for use in troubleshooting problems
 
 For more information about options refer to the [sample book](out/sample-book-lualatex.pdf "Sample Book render")
 and corresponding source file: [sample-book.tex](sample-book.tex "Sample Book source file").

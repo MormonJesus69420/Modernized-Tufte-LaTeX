@@ -2176,23 +2176,28 @@
   \typeout{Class: \@tufte@pkgname}
   \typeout{}
   \typeout{Class options:}
-  \typeoutbool{debug}{@tufte@debug}
-  \typeoutbool{load fonts (fonts / nofonts)}{@tufte@loadfonts}
-  \typeoutbool{letterspacing (ls / nols)}{@tufte@letterspace}
-  \typeoutbool{bibliography (disable with nobib)}{@tufte@loadbiblatex}
+  \typeout{Paper size and layout options:}
   \typeoutbool{a4paper}{@tufte@afourpaper}
   \typeoutbool{b5paper}{@tufte@bfivepaper}
-  \typeoutbool{titlepage (titlepage / notitlepage)}{@tufte@titlepage}
+  \typeoutbool{alternates heads with page numbers (twoside)}{@tufte@twoside}
+  \typeoutbool{alternates margins left and right (symmetric)}{@tufte@symmetric}
+  \typeout{}
+  \typeout{Font and text options:}
   \typeoutbool{sans-serif title (sftitle / nosftitle)}{@tufte@sftitle}
   \typeoutbool{sans-serif marginals (sfmarginals)}{@tufte@sfmarginals}
-  \typeoutbool{alternates margins left-right (symmetric)}{@tufte@symmetric}
-  \typeoutbool{alternating heads (twoside)}{@tufte@twoside}
   \typeoutbool{fully-justified text (justified)}{@tufte@justified}
-  \typeoutbool{use table of contents (disable with notoc)}{@tufte@toc}
+  \typeoutbool{load fonts (fonts / nofonts)}{@tufte@loadfonts}
+  \typeoutbool{letterspacing (ls / nols)}{@tufte@letterspace}
   \typeoutbool{bi-directional text (bidi)}{@tufte@loadbidi}
-  \typeoutbool{use hyperref (disable with nohyper)}{@tufte@loadhyper}
-  \typeoutbool{use modern titles (disable with nomoderntitles)}
-  {@tufte@handout@moderntitles}
+  \typeout{}
+  \typeout{Titlepage options:}
+  \typeoutbool{titlepage (titlepage / notitlepage)}{@tufte@titlepage}
+  \typeout{}
+  \typeout{Toggle options:}
+  \typeoutbool{bibliography (nobib)}{@tufte@loadbiblatex}
+  \typeoutbool{use Tufte style table of contents (notoc)}{@tufte@toc}
+  \typeoutbool{use hyperref (nohyper)}{@tufte@loadhyper}
+  \typeoutbool{use modern titles (nomoderntitles)}{@tufte@handout@moderntitles}
   \typeout{}
   \typeout{Marginal justification settings:}
   \typeoutstr{sidenote}{\expandafter\string\@tufte@sidenote@justification}
