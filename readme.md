@@ -415,7 +415,7 @@ Refer to your distribution's documentation for more information.
 
 Rendering has been tested on a GNU/Linux system with a TeX Live distribution.
 It should work on other systems as well, but I have not tested it.
-Mainly because I don't have a Mac, and refuse to use Windows.
+Mainly because I don't have a Mac, and refuse to use Windows even on pain of death.
 
 <!--
 I'd just like to interject for a moment. What you're refering to as Linux, is in fact, GNU/Linux, or as I've recently taken to calling it, GNU plus Linux. Linux is not an operating system unto itself, but rather another free component of a fully functioning GNU system made useful by the GNU corelibs, shell utilities and vital system components comprising a full OS as defined by POSIX.
@@ -553,6 +553,7 @@ Here is a general roadmap of the project:
 
 - [x] Move features from other repos to class files
 - [x] Document new features
+- [ ] Point people to use discussions on GitHub
 - [ ] Improve documentation in:
   - [x] Readme
   - [ ] Sample documents
