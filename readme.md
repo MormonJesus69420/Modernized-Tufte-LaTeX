@@ -251,7 +251,9 @@ For example you can set handout to use A4 paper, use symmetric layout, and align
 <p align="right">(<a href="#readme-top" aria-label="Link to the top of the document">Back to top</a>)</p>
 
 # Extra Features
-In addition to the original features, this project adds a few more.
+In addition to the original features, this project adds 
+<details>
+  <summary>Minimal tufte-book document setup</summary>a few more.
 As mentioned earlier these mainly apply only to the `tufte-handout` class.
 They are based on changes made by [Matthew Y. He](https://github.com/mattyizhengHe "Matthew Y. He's GitHub page").
 
@@ -370,44 +372,44 @@ Just make sure that your system has the following terminal utilities:
 
 Additionally the Tufte-LaTeX classes require the following packages:
 
-- amsmath *for `Note` environments*
-- amssymb *for `Note` environments*
-- amsthm *for `Note` environments*
-- amsxtra *for `Note` environments*
-- biblatex *only if `nobib` is off, requires `biber` backend*
-- bidi *only if using `bidi` option*
-- changepage
-- chngpage *only if `changepage` is not available*
-- cleveref *for `Note` environments*
-- ETbb *if available, and `nofonts` is off*
-- fancyhdr
-- FiraMono *if available, and `nofonts` is off*
-- fontenc *only with pdf\LaTeX, and `nofonts` is off*
-- fontspec *only with \tXeLaTeX or \tLuaLaTeX, and `nofonts` is off*
-- geometry
-- gillius2 *if available, and `nofonts` is off*
-- hardwrap
-- hyperref *only if `nohyper` is off*
-- iftex *if not it assumes pdfLaTeX*
-- letterspace *only if `nols` is off*
-- mathpazo *if available, and `nofonts` is off*
-- multicol
-- optparams
-- paralist
-- placeins
-- ragged2e
-- sectsty
-- setspace
-- soul *only with pdfLaTeX*
-- textcase
-- textcomp *only with pdfLaTeX, and `nofonts` is off*
-- thmtools *for `Note` environments*
-- titlesec
-- titletoc
-- transparent
-- xcolor
-- xifthen
-- xkeyval
+- `amsmath` * *for `Note` environments*
+- `amssymb` * *for `Note` environments*
+- `amsthm` * *for `Note` environments*
+- `amsxtra` * *for `Note` environments*
+- `biblatex` * *only if `nobib` is off, requires `biber` backend*
+- `bidi` * *only if using `bidi` option*
+- `changepage`
+- `chngpage` * *only if `changepage` is not available*
+- `cleveref` * *for `Note` environments*
+- `ETbb` * *if available, and `nofonts` is off*
+- `fancyhdr`
+- `FiraMono` * *if available, and `nofonts` is off*
+- `fontenc` * *only with pdf\LaTeX, and `nofonts` is off*
+- `fontspec` * *only with \tXeLaTeX or \tLuaLaTeX, and `nofonts` is off*
+- `geometry`
+- `gillius2` * *if available, and `nofonts` is off*
+- `hardwrap`
+- `hyperref` * *only if `nohyper` is off*
+- `iftex` * *if not it assumes pdfLaTeX*
+- `letterspace` * *only if `nols` is off*
+- `mathpazo` * *if available, and `nofonts` is off*
+- `multicol`
+- `optparams`
+- `paralist`
+- `placeins`
+- `ragged2e`
+- `sectsty`
+- `setspace`
+- `soul` * *only with pdfLaTeX*
+- `textcase`
+- `textcomp` * *only with pdfLaTeX, and `nofonts` is off*
+- `thmtools` * *for `Note` environments*
+- `titlesec`
+- `titletoc`
+- `transparent`
+- `xcolor`
+- `xifthen`
+- `xkeyval`
 
 Depending on what LaTeX distribution, you may need to install these packages.
 Some distributions support automatic download.
@@ -480,6 +482,9 @@ For simplicity here is the minimal makefile without install related commands, us
 You can use it in your projects to compile the documents, even if they use different classes.
 If needed you can change the engine to `XeLaTeX` or `pdfLaTeX` by changing the `-lualatex` option to `-xelatex` or `-pdflatex`.
 
+<details>
+  <summary>Simplified makefile for general use</summary>
+
 ```make
 LMKFLAGS = -outdir=out -auxdir=aux -bibtex
 
@@ -503,6 +508,8 @@ clean-all:
 	# Remove folders with auxiliary and output files
 	rm -rfv aux out
 ```
+
+</details>
 
 You can also compile the documents with `latexmk`.
 To use `latexmk`, substituting `ENGINE` with preferred engine, and `SOURCE.tex` with the name of your source file.
