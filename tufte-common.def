@@ -193,7 +193,7 @@
 }
 
 % `nobib' option
-%   doesn't load Biblatex or adjust the \cite command
+%   doesn't load BibLaTeX or adjust the \cite command
 \newboolean{@tufte@loadbiblatex}
 \setboolean{@tufte@loadbiblatex}{true}
 \DeclareOptionX[tufte]<common>{nobib}{
@@ -1406,9 +1406,9 @@
 \def\@tufte@trim@c#1Q#2{\afterassignment\endgroup \vfuzz\the\vfuzz#1}
 \catcode`\Q=11
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Configure biblatex  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Configure BibLaTeX  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% If loadbiblatex option is on, import and set up biblatex package
+% If loadbiblatex option is on, import and set up BibLaTeX package
 % Citations should go in the margin as sidenotes
 \ifthenelse{\boolean{@tufte@loadbiblatex}}{%
   \RequirePackage[
@@ -1431,7 +1431,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%  Define and configure cite commands  %%%%%%%%%%%%%%%%%%%%%
 
-% `addperiod' from biblatex, aims to prevent double periods in citations
+% `addperiod' from BibLaTeX, aims to prevent double periods in citations
 % It will only add a period if it's not preceded by another period or another
 % type of a punctuation mark
 \newcommand{\@tufte@cite@sidenote}[1]{%

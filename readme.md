@@ -214,8 +214,8 @@ These options are:
   - `twoside` -- alternates page heads position on recto/verso pages
   - `symmetric` -- put marginal material on the outside edge of the page, instead of the default right side, forces `twoside` on
 - Font and Text Options:
-  - `sftitle` -- sets title page or block, as well as abstract, in sans serif typeface (*default in book*)
-  - `nosftitle` -- sets title page or block, as well as abstract, in serif typeface (*default in handout*)
+  - `sftitle` -- sets title page or block, as well as abstract and epigraphs, in sans serif typeface (*default in book*)
+  - `nosftitle` -- sets title page or block, as well as abstract and epigraphs, in serif typeface (*default in handout*)
   - `sfmarginals` -- typesets all marginals in sans serif typeface
   - `justified` -- sets main content to fully justified layout, flush left and right, instead of the default ragged right
   - `nofonts` -- doesn't load any fonts
