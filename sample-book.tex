@@ -577,7 +577,7 @@ Some of the differences are outlined in the following table:
 His other three books only contain chapters---they're not broken into parts.
 
 The following pages show examples of all four books' title pages and tables of contents.
-As you can see this sample document does its best to emulate the design of \BE, but it's not perfect.
+As you can see this sample document does its best to mimic the design of \BE, but it's not perfect.
 The main difference is caused by the fact that the fonts used in it are not freely available, and \TL\ uses substitutes.
 
 \begin{figure*}[p]
@@ -702,7 +702,7 @@ This document aims to be at once a demonstration of the features of the \TL\ doc
 
 \section{Page Layout}\label{sec:page-layout}
 \subsection{Headings}\label{ssec:headings}\index{headings}
-This style provides \textsc{a}- and \textsc{b}-heads (that is, \doccmddef{section} and \doccmddef{subsection}, demonstrated above.
+This style provides \textsc{a}- and \textsc{b}-heads (that is, \doccmddef{section} and \doccmddef{subsection}, demonstrated above).
 
 If you need more than two levels of section headings, you'll have to define them yourself.
 This class does not provide pre-defined styles for \doccmddef{subsubsection} or \doccmddef{subparagraph}. 
@@ -815,9 +815,9 @@ To place figures or tables in the margin, use the \docenvdef{marginfigure} or \d
 \noindent
 \begin{Verbatim}
   \begin{marginfigure}
-    \includegraphics{helix}
-    \caption{This is a margin figure.}
-    \label{fig:marginfig}
+    \includegraphics{margin-figure}
+    \caption{Margin figure caption}%
+    \label{fig:margin-figure-label}
   \end{marginfigure}
 \end{Verbatim}
 
@@ -825,12 +825,12 @@ The \docenv{marginfigure} and \docenv{margintable} environments accept an option
 See the ``\nameref{sec:sidenotes}'' section above for examples.
 The specifications are:
 \noindent
-\begin{Verbatim}[commandchars=+\(\)]
-  \begin{marginfigure}[+docopt(offset)]
+\begin{Verbatim}[commandchars=+/|]
+  \begin{marginfigure}[+docopt/offset|]
     +ldots
   \end{marginfigure}
-  +mbox()
-  \begin{margintable}[+docopt(offset)]
+  +mbox/|
+  \begin{margintable}[+docopt/offset|]
     +ldots
   \end{margintable}
 \end{Verbatim}
