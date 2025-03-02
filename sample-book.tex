@@ -449,7 +449,6 @@ under the License.\index{license}
 % Set the page style to fancy to enable page number on this page
 % Emulates Tufte's style from /Beautiful Evidence/ for introduction page
 \thispagestyle{fancy}
-
 This sample book discusses the design of Edward Tufte's books%
 \cite{Tufte2001,Tufte1990,Tufte1997,Tufte2006}
 and the use of the \doccls{tufte-book} and \doccls{tufte-handout} document classes.
@@ -484,7 +483,7 @@ Page numbers that appear in parentheses refer to folios that do not have a print
     \begin{center}
       \begin{tabular}{lcccc}
         \toprule
-                                    & \multicolumn{4}{c}{Books} \\
+                                    & \multicolumn{4}{c}{Books} \\ % header spanning 4 columns
         \cmidrule(l){2-5} % Rule spanning columns 2--5 
         Page content                & \vdqi\    & \ei\      & \ve\      & \be{} \\
         \midrule
@@ -532,7 +531,7 @@ If that's not desired, use the ``\doccmd{thispagestyle}\{\docarg{empty}\}'' comm
 
 \newthought{The full title page} of each of the books varies slightly in design. 
 In all the books, the author's name appears at the top of the page, the title it set just above the center line, and the publisher is printed along the bottom margin.
-Some of the differences are outlined in the following table.
+Some of the differences are outlined in the following table:
 
 \bigskip
 \begin{table}[h]
@@ -578,6 +577,8 @@ Some of the differences are outlined in the following table.
 His other three books only contain chapters---they're not broken into parts.
 
 The following pages show examples of all four books' title pages and tables of contents.
+As you can see this sample document does its best to emulate the design of \BE, but it's not perfect.
+The main difference is caused by the fact that the fonts used in it are not freely available, and \TL\ uses substitutes.
 
 \begin{figure*}[p]
 \fbox{\includegraphics[width=0.45\linewidth]{graphics/vdqi-title.pdf}}
@@ -695,35 +696,33 @@ The following table lists characteristics defined for the various environments:
 % Optional argument changes how the chapter title appears in the TOC
 \chapter[On the Use of the tufte-book Document Class]
 {On the Use of the \texttt{tufte-book} Document Class}\label{ch:tufte-book}
-
 The \TL\ document classes define a style similar to the style Edward Tufte uses in his books and handouts.
 Tufte's style is known for its extensive use of sidenotes, tight integration of graphics with text, and well-set typography.
-This document aims to be at once a demonstration of the features of the \TL\ document classes and a style guide to their use.
+This document aims to be at once a demonstration of the features of the \TL\ document classes, and a style guide to their use.
 
 \section{Page Layout}\label{sec:page-layout}
 \subsection{Headings}\label{ssec:headings}\index{headings}
-
-This style provides \textsc{a}- and \textsc{b}-heads (that is, \Verb|\section| and \Verb|\subsection|), demonstrated above.
+This style provides \textsc{a}- and \textsc{b}-heads (that is, \doccmddef{section} and \doccmddef{subsection}, demonstrated above.
 
 If you need more than two levels of section headings, you'll have to define them yourself.
-This class does not provide pre-defined styles for \Verb|\subsubsection| or \Verb|subparagraph|. 
+This class does not provide pre-defined styles for \doccmddef{subsubsection} or \doccmddef{subparagraph}. 
 As Bringhurst points out in \textit{``The Elements of Typographic Style''},\cite{Bringhurst2005} you should ``use as many levels of headings as you need: no more, and no fewer''.
 
 The \TL\ classes will emit an error if you try to use \linebreak\Verb|\subsubsection| or \Verb|\subparagraph|.
 
 
-\newthought{In his later books},\cite{Tufte2006} Tufte starts each section with a bit of vertical space, a non-indented paragraph,and sets the first few words of the sentence in \textsc{small caps}.
-To accomplish this using this style, use the \doccmddef{newthought} command:doccmd
+\newthought{In his later books},\cite{Tufte2006} Tufte starts each section with a bit of vertical space, a non-indented paragraph, and sets the first few words of the sentence in \textsc{small caps}.
+To accomplish this style, use the \doccmddef{newthought} command
 \begin{docspec}
-  \doccmd{newthought}\{In his later books\}, Tufte starts\ldots
+  \doccmd{newthought}\{\docarg{In his later books}\}, Tufte starts\ldots
 \end{docspec}
 
 
 \section{Sidenotes}\label{sec:sidenotes}
 One of the most prominent and distinctive features of this style is the extensive use of sidenotes.
-There is a wide margin to provide ample room for sidenotes and small figures.
-Any \doccmd{footnote}s will automatically be converted to sidenotes.%
-\footnote{This is a sidenote that was entered using the \Verb|footnote| command.}
+The wide margin on the right side provides ample room for sidenotes and small figures.
+Any \doccmddef{footnote} will automatically be converted into a \doccmd{sidenote}.%
+\footnote{This is a sidenote that was entered using the \doccmd{footnote} command.}
 If you'd like to place ancillary information in the margin without the sidenote mark (the superscript
 number), you can use the \doccmd{marginnote} command.
 \marginnote{%
@@ -731,6 +730,15 @@ number), you can use the \doccmd{marginnote} command.
   Notice that there isn't a number preceding the note, and there is no number in the main text where this note was written.
 }
 
+In his books Tufte places margin on the right side of the page, regardless whether it's an even or odd page.
+If you prefer to alternate the placement of margins, so they fall on outer edge you can use the \docclsopt{symmetric} class option.
+
+On a personal note, placing of sidenotes should follow the following rules:
+\begin{itemize}
+  \item If the sidenote applies to the whole sentence, it should be placed after the period or other punctuation mark.
+  \item If the sidenote applies to a specific word, it should be placed immediately after that word, even if the word is in the middle of the sentence, or followed by a punctuation mark.
+  \item If a sidenote is a complete sentence, or a citation, it should end with a period.
+\end{itemize}
 The specification of the \doccmddef{sidenote} command is:
 \begin{docspec}
   \doccmd{sidenote}[\docopt{number}][\docopt{offset}]\{\docarg{Sidenote text.}\}
@@ -738,7 +746,7 @@ The specification of the \doccmddef{sidenote} command is:
 
 Both the \docopt{number} and \docopt{offset} arguments are optional.
 If you provide a \docopt{number} argument, then that number will be used as the sidenote number.
-It will change the number of the current sidenote only and will not affect the numbering sequence of subsequent sidenotes.
+It will only change the number of the current sidenote, and will not affect the numbering sequence of subsequent sidenotes.
 
 Sometimes a sidenote may run over the top of other text or graphics in the margin space.
 If this happens, you can adjust the vertical position of the sidenote by providing a dimension in the \docopt{offset} argument.
@@ -746,8 +754,7 @@ Some examples of valid dimensions are:
 \begin{docspec}
   \ttfamily 1.0in \qquad 2.54cm \qquad 254mm \qquad 6\Verb|\baselineskip|
 \end{docspec}
-If the dimension is positive, it will push the sidenote down the page;
-if the dimension is negative, it will pull the sidenote up the page.
+If the dimension is positive, it will push the sidenote down the page; if the dimension is negative, it will pull the sidenote up the page.
 
 While both the \docopt{number} and \docopt{offset} arguments are optional, they must be provided in order.
 To adjust the vertical position of the sidenote while leaving the sidenote number alone, use the following syntax:
@@ -770,25 +777,27 @@ The \doccmddef{marginnote} command has a similar \docarg{offset} argument:
 References are placed alongside their citations as sidenotes, as well.
 This can be accomplished using the normal \doccmddef{cite} command or the \doccmddef{autocite} command, which functions similarly.%
 \sidenote{%
-  If you use the \Verb|cite| command within a sidenote, it will render as an in-line parenthetical citation, as demonstrated here \autocite{Tufte2001}.
+  If you use the \doccmd{cite} command within a sidenote, it will render as an in-line parenthetical citation, as demonstrated here \autocite{Tufte2001}.
 }
 
-You will need to specify a bibliography resource file in the preamble of your document using \doccmddef{addbibresource}.
-The complete list of references may also be printed automatically by using the \doccmddef{printbibliography} command.
+You will need to specify a bibliography resource file in the preamble of your document using \doccmddef{addbibresource}\{\docarg{bibliography-file.bib}\} command.
+The complete list of references may be printed automatically by using the \doccmddef{printbibliography} command.
 See the end of this document for an example, and the \iBibLaTeX\ documentation for more information.
-Bibliography can be turned off with the help of \doccmddef{nobibliography} command.
+Bibliography can be turned off with the help of \docclsopt{nobib} class option.
 
-To enter multiple citations at one location,\autocite{Tufte2006,Tufte1990} you can provide a list of keys separated by commas: \Verb|\cite{Tufte2006,Tufte1990}|. 
+To enter multiple citations at one location,\autocite{Tufte2006,Tufte1990} you can provide a list of keys separated by commas: 
 \begin{docspec}
-  \doccmd{cite\{\docarg{bibkey1,bibkey2,\ldots}\}}
+  \doccmd{cite}\{\docarg{bibkey1,bibkey2,\ldots}\}
 \end{docspec}
 
-In the new version of \TL, it's impossible to offset citations the same way sidenotes can be offset.
-This is caused by change from \docpkgdef{natbib} and \docpkgdef{bibtex} to \docpkgdef{biblatex} and \docpkgdef{biber} packages.
-This switch is motivated by the fact that \docpkg{natbib} is mostly kept on life support, and \docpkg{biblatex} is more powerful and flexible.
-However it has its own optional arguments for \doccmd{cite} commands, which are kept unchanged to avoid confusion.
+In the new version of \TL, it's impossible to offset citation's position the same way sidenotes can be moved up or down the margin.
+This is caused by the change from \docpkgdef{natbib} package and \hologo{BibTeX} tool to \docpkgdef{biblatex} package and \hologo{biber} tool.
+The \docpkg{biblatex} provides it own optional arguments for the \doccmd{cite} commands, which are kept unchanged to avoid confusion.
+I see the possible breakage of old \TL\ documents as a fair tradeoff for the new features and flexibility that \docpkg{biblatex} provides.
+It is worth noting that the \docpkg{natbib} is mostly kept on life support, so it's better to switch now and make \TL\ more maintainable in the future.
+This is one of the reasons why this version of \TL\ classes has a new major version number.
 
-
+%%% TODO: Continue rewrite from here...
 \section{Figures and Tables}\label{sec:figures-and-tables}
 Images and graphics play an integral role in Tufte's work.
 In addition to the standard \docenvdef{figure} and \docenvdef{tabular} environments, this style provides special figure and table environments for full-width floats.
