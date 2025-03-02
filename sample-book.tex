@@ -114,21 +114,21 @@
 % Therefore it needs a different command to print the month and year
 % If you're not using XeLaTeX, you can remove this block
 \makeatletter
-  \ifxetex
+  \ifxetex%
     \renewcommand{\monthAndYear}{%
       \ifcase\month%
-        \or January%
-        \or February%
-        \or March%
-        \or April%
-        \or May%
-        \or June%
-        \or July%
-        \or August%
-        \or September%
-        \or October%
-        \or November%
-        \or December%
+        \or\ January%
+        \or\ February%
+        \or\ March%
+        \or\ April%
+        \or\ May%
+        \or\ June%
+        \or\ July%
+        \or\ August%
+        \or\ September%
+        \or\ October%
+        \or\ November%
+        \or\ December%
       \fi\space\number\year%
     }
   \fi
@@ -470,12 +470,12 @@ These changes were motivated by my personal needs to make it more accessible to 
 
 \chapter{The Design of Tufte's Books}\label{ch:tufte-design}
 \newthought{The pages} of a book are usually divided into three major sections:
-the front matter (also called preliminary matter or prelim),
+the front matter (also called preliminary matter, or prelim),
 the main matter (the core text of the book),
 and the back matter (or end matter).
 
 \newthought{The front matter} of a book refers to all of the material that comes before the main text.
-The following table from shows a list of material that appears in the front matter of: \VDQI, \EI, \VE, and \BE~along with its page number.
+The following table from shows a list of material that appears in the front matter of: \VDQI, \EI, \VE, and \BE\ along with its corresponding page number.
 Page numbers that appear in parentheses refer to folios that do not have a printed page number (but they are still counted in the page number sequence).
 
 \bigskip
@@ -484,9 +484,9 @@ Page numbers that appear in parentheses refer to folios that do not have a print
     \begin{center}
       \begin{tabular}{lcccc}
         \toprule
-        & \multicolumn{4}{c}{Books} \\
-        \cmidrule(l){2-5} 
-        Page content & \vdqi & \ei & \ve & \be \\
+                                    & \multicolumn{4}{c}{Books} \\
+        \cmidrule(l){2-5} % Rule spanning columns 2--5 
+        Page content                & \vdqi\    & \ei\      & \ve\      & \be{} \\
         \midrule
         Blank half title page       & \hangp{1} & \hangp{1} & \hangp{1} & \hangp{1} \\
         Frontispiece\footnotemark{} & \hangp{2} & \hangp{2} & \hangp{2} & \hangp{2} \\
@@ -503,32 +503,32 @@ Page numbers that appear in parentheses refer to folios that do not have a print
     \end{center}
   \end{minipage}
   \caption[Overview of pages in front matter of Tufte's books.]{%
-    Overview of pages in front matter of Tufte's books.%
+    Overview of pages in front matter of Tufte's books.
     Page numbers in parentheses refer to folios without printed page numbers.%
   }\label{tab:front-matter}
 \end{table}
 \vspace{-7\baselineskip}
 \footnotetext{The contents of this page vary from book to book. 
-  In \vdqi this page is blank; in \ei and \ve this page holds a frontispiece;
-  and in \be this page contains three epigraphs.}
+  In \vdqi\ this page is blank; in \ei\ and \ve\ this page holds a frontispiece;
+  and in \be\ this page contains three epigraphs.}
 \vspace{7\baselineskip}
 
 \bigskip
 The design of the front matter in Tufte's books varies slightly from the traditional design of front matter.
-First, the pages in front matter are traditionally numbered with lowercase roman numerals (e.g., i, iv, ix,~\ldots). Second, the front matter page numbering sequence is usually separate from the main matter page numbering.
+First, the pages in front matter are traditionally numbered with lowercase roman numerals (e.g., i, iv, ix, xiv,~\ldots). Second, the front matter page numbering sequence is usually separate from the main matter page numbering.
 That is, the page numbers restart at 1 when the main matter begins.
 In contrast, Tufte has enumerated his pages with arabic numerals, and share the count sequence with the main matter. 
 
 There are also some variations in design across Tufte's four books. 
 The page opposite the full title page (labeled ``frontispiece'' in \cref{tab:front-matter}) has different content in every book. 
-In \VDQI, this page is blank;
-in \EI and \VE, this page holds a frontispiece;
-and in \BE, this page contains three epigraphs.
+In \VDQI, this page is blank; in \EI, and \VE, this page holds a frontispiece; and in \BE, this page contains three epigraphs.
 
-The dedication appears on page~6 in \vdqi (opposite the introduction), and is placed on its own spread in the other books.
+The dedication appears on page~6 in \vdqi\ (opposite the introduction), and is placed on its own spread in the other books.
 In \ve, an epigraph shares the spread with the opening page of the introduction.
 
 None of the page numbers (folios) of the front matter are expressed except in \be, where the folios start to appear on the dedication page.
+This book follows the style of \be, with folios on dedication and introduction pages.
+If that's not desired, use the ``\doccmd{thispagestyle}\{\docarg{empty}\}'' command on the dedication and introduction pages.
 
 \newthought{The full title page} of each of the books varies slightly in design. 
 In all the books, the author's name appears at the top of the page, the title it set just above the center line, and the publisher is printed along the bottom margin.
@@ -540,38 +540,44 @@ Some of the differences are outlined in the following table.
   \begin{center}
     \begin{tabular}{lllll}
       \toprule
-      Feature & \vdqi & \ei & \ve & \be \\
-      \midrule
-      Author & & & & \\
-      \quad Typeface & serif   & serif   & serif   & sans serif \\
-      \quad Style    & italics & italics & italics & upright, caps \\
-      \quad Size     & 24 pt   & 20 pt   & 20 pt   & 20 pt \\
+      Feature        & \vdqi\        & \ei\    & \ve\    & \be{} \\
+      \midrule      
+      Author         &               &         &         & \\
+      \quad Typeface & serif         & serif   & serif   & sans serif \\
+      \quad Style    & italics       & italics & italics & upright, caps \\
+      \quad Size     & 24 pt         & 20 pt   & 20 pt   & 20 pt \\
+      \addlinespace      
+      Title          &               &         &         & \\
+      \quad Typeface & serif         & serif   & serif   & sans serif \\
+      \quad Style    & upright       & italics & upright & upright, caps \\
+      \quad Size     & 36 pt         & 48 pt   & 48 pt   & 36 pt \\
+      \addlinespace      
+      Subtitle       &               &         &         & \\
+      \quad Typeface & \na\          & \na\    & serif   & \na{} \\
+      \quad Style    & \na\          & \na\    & upright & \na{} \\
+      \quad Size     & \na\          & \na\    & 20 pt   & \na{} \\
       \addlinespace
-      Title & & & & \\
-      \quad Typeface & serif   & serif   & serif   & sans serif \\
-      \quad Style    & upright & italics & upright & upright, caps \\
-      \quad Size     & 36 pt   & 48 pt   & 48 pt   & 36 pt \\
+      Edition        &               &         &         & \\
+      \quad Typeface & sans serif    & \na\    & \na\    & \na{} \\
+      \quad Style    & upright, caps & \na\    & \na\    & \na{} \\
+      \quad Size     & 14 pt         & \na\    & \na\    & \na{} \\
       \addlinespace
-      Subtitle & & & & \\
-      \quad Typeface & \na     & \na     & serif   & \na \\
-      \quad Style    & \na     & \na     & upright & \na \\
-      \quad Size     & \na     & \na     & 20 pt   & \na \\
-      \addlinespace
-      Edition & & & & \\
-      \quad Typeface & sans serif    & \na  & \na  & \na \\
-      \quad Style    & upright, caps & \na  & \na  & \na \\
-      \quad Size     & 14 pt         & \na  & \na  & \na \\
-      \addlinespace
-      Publisher & & & & \\
-      \quad Typeface & serif   & serif   & serif   & sans serif \\
-      \quad Style    & italics & italics & italics & upright, caps \\
-      \quad Size     & 14 pt   & 14 pt   & 14 pt   & 14 pt \\
+      Publisher      &               &         &         & \\
+      \quad Typeface & serif         & serif   & serif   & sans serif \\
+      \quad Style    & italics       & italics & italics & upright, caps \\
+      \quad Size     & 14 pt         & 14 pt   & 14 pt   & 14 pt \\
       \bottomrule
       \end{tabular}
       \caption{Comparison of full title page design features in Tufte's books.}%
       \label{tab:title-page}
   \end{center}
 \end{table}
+
+\newthought{The tables of contents} in Tufte's books give first glimpse of the structure of the main matter.
+\VDQI\ is split into two parts, each containing some number of chapters.
+His other three books only contain chapters---they're not broken into parts.
+
+The following pages show examples of all four books' title pages and tables of contents.
 
 \begin{figure*}[p]
 \fbox{\includegraphics[width=0.45\linewidth]{graphics/vdqi-title.pdf}}
@@ -582,9 +588,6 @@ Some of the differences are outlined in the following table.
 \hfill
 \fbox{\includegraphics[width=0.45\linewidth]{graphics/be-title.pdf}}
 \end{figure*}
-
-\newthought{The tables of contents} in Tufte's books give us our first glimpse of the structure of the main matter. \VDQI is split into two parts, each containing some number of chapters.
-His other three books only contain chapters---they're not broken into parts.
 
 \begin{figure*}[p]\index{table of contents}
 \fbox{\includegraphics[width=0.45\linewidth]{graphics/vdqi-contents.pdf}}
@@ -599,19 +602,22 @@ His other three books only contain chapters---they're not broken into parts.
 
 % Index typefaces and fonts, refer from fonts to typefaces
 \section{Typefaces}\label{sec:typefaces}\index{typefaces}\index{fonts|see{typefaces}}
-
-Tufte's books primarily use two typefaces: Bembo and Gill Sans.
+\newthought{Tufte's books primarily use two typefaces:} Bembo and Gill Sans.
 Bembo is used for the headings and body text, while Gill Sans is used for the title page and opening epigraphs in \BE.
 
 Older versions of \TL\ used Palatino, Helvetica, and Bera Mono fonts.
-That's because neither Bembo, Gill Sans nor any substitutes were freely available.
-Nowadays most \hologo{LaTeX} distributions have them available.
-Hence this version of \TL\ uses \docpkgdef{ETbb} for a Bembo-like serif font, and \docpkgdef{gillius} for a Gill-like sans serif font.
-By default it uses \docpkgdef{FiraMono} for monospaced fonts, however provided \docfilehook{custom-tufte-common.tex}{common} overrides it with \texttt{RecursiveMono} font.
-This shows how to use filehooks, override fonts, and shows off my favorite monospaced font.
+That's probably because neither Bembo, Gill Sans, nor any substitutes were freely available.
+Nowadays there are good substitutes are available on CTAN\@.
+Hence this version of \TL\ uses \docpkgdef{ETbb} for a Bembo-like roman font, \docpkgdef{gillius} for a \textsf{Gill-like sans serif font}, and \docpkgdef{FiraMono} as a \texttt{monospaced font}.
 
-It also attempts to make files compiled with \iXeLaTeX, \iLuaLaTeX, and \iPdfLaTeX\ to look as similar as possible.
-However, there seems to be small differences, which are probably caused by the differences between \docpkgdef{fontspec} and \docpkgdef{fontenc} packages, and how they handle font encoding/formatting.
+However this sample book overrides the default \docpkg{FiraMono} it with \texttt{RecursiveMono} font.
+It uses the provided \docfilehook{custom-tufte-common.tex}{common} file hook to override fonts, showcasing how to use file hooks.
+I have done that because I like the Recursive Mono font better than the Fira Mono font, but this version of Recursive font is not available on CTAN\@.
+If you wish to use it, you can use the font files that come with this package in the \texttt{fonts} directory.
+
+This \TL\ class tries to make documents compiled with \iXeLaTeX, \iLuaLaTeX, and \iPdfLaTeX\ look as close to each other as possible.
+However, there's no easy way to make the Recursive font work with \hologo{pdfLaTeX}, so that's the main difference between documents.
+Additionally, there seem to be small differences between how the engines typeset text, font encoding, and that some use \docpkgdef{fontspec} while other use \docpkgdef{fontenc} packages.
 
 \begin{table}[h]\index{typefaces!sizes}
   \footnotesize%
@@ -620,16 +626,16 @@ However, there seems to be small differences, which are probably caused by the d
       \toprule
       \hologo{LaTeX} size & Font size & Leading & Used for \\
       \midrule
-      \Verb|\tiny|         &  5 &  6 & sidenote numbers \\
-      \Verb|\scriptsize|   &  7 &  8 & \na \\
-      \Verb|\footnotesize| &  8 & 10 & sidenotes, captions \\
-      \Verb|\small|        &  9 & 12 & quote, quotation, and verse environments \\
-      \Verb|\normalsize|   & 10 & 14 & body text \\
-      \Verb|\large|        & 11 & 15 & \textsc{b}-heads \\
-      \Verb|\Large|        & 12 & 16 & \textsc{a}-heads, \textsc{toc} entries, author, date \\
-      \Verb|\LARGE|        & 14 & 18 & handout title \\
-      \Verb|\huge|         & 20 & 30 & chapter heads \\
-      \Verb|\Huge|         & 24 & 36 & part titles \\
+      \Verb|\tiny|         &  5       &  6      & sidenote numbers \\
+      \Verb|\scriptsize|   &  7       &  8      & \na{} \\
+      \Verb|\footnotesize| &  8       & 10      & sidenotes, captions \\
+      \Verb|\small|        &  9       & 12      & quote, quotation, and verse environments \\
+      \Verb|\normalsize|   & 10       & 14      & body text \\
+      \Verb|\large|        & 11       & 15      & \textsc{b}-heads \\
+      \Verb|\Large|        & 12       & 16      & \textsc{a}-heads, \textsc{toc} entries, author, date \\
+      \Verb|\LARGE|        & 14       & 18      & handout title \\
+      \Verb|\huge|         & 20       & 30      & chapter heads \\
+      \Verb|\Huge|         & 24       & 36      & part titles \\
       \bottomrule
     \end{tabular}
   \end{center}
@@ -638,14 +644,11 @@ However, there seems to be small differences, which are probably caused by the d
 
 
 \section{Headings}\label{sec:headings}\index{headings}
-
 Tufte's books include the following heading levels: parts, chapters,%
-\sidenote{Parts and chapters are defined for the \texttt{tufte-book} class only.}
+\sidenote[][-1em]{Parts and chapters are defined for the \texttt{tufte-book} class only.}
 sections, subsections, and paragraphs. 
-By default subsubsection and subparagraph headings are not defined in the \TL\ classes.%
-\sidenote{For more information on this topic, see~\cite{Bringhurst2005}, section 4.2.2}
-
-\paragraph{Paragraph} Paragraph headings (as shown here) are introduced by italicized text and separated from the main paragraph by a bit of space.
+By default subsubsection and subparagraph headings are not defined in the \TL\ classes.
+\sidenote[][-0.5em]{For more information on this topic, see~\cite{Bringhurst2005}, section 4.2.2}
 
 \begin{table}[h]
   \begin{center}
@@ -665,9 +668,10 @@ By default subsubsection and subparagraph headings are not defined in the \TL\ c
   \caption{Heading styles used in \BE.}\label{tab:heading-styles}
 \end{table}
 
+\paragraph{Paragraph} Paragraph headings (as shown here) are introduced by italicized text and separated from the main paragraph by a bit of space.
+
 
 \section{Environments}
-
 The following table lists characteristics defined for the various environments:
 
 \begin{table}[h]
@@ -680,7 +684,7 @@ The following table lists characteristics defined for the various environments:
       Body text   & \measure{10}{14}{26} & \\
       Block quote & \measure{9}{12}{24}  & Block indent (left and right) by \unit[1]{pc} \\
       Sidenotes   & \measure{8}{10}{12}  & Sidenote number is set inline, followed by word space \\
-      captions    & \measure{8}{10}{12}  & \\
+      Captions    & \measure{8}{10}{12}  & \\
       \bottomrule
     \end{tabular}
   \end{center}
@@ -709,7 +713,7 @@ The \TL\ classes will emit an error if you try to use \linebreak\Verb|\subsubsec
 
 
 \newthought{In his later books},\cite{Tufte2006} Tufte starts each section with a bit of vertical space, a non-indented paragraph,and sets the first few words of the sentence in \textsc{small caps}.
-To accomplish this using this style, use the \doccmddef{newthought} command:
+To accomplish this using this style, use the \doccmddef{newthought} command:doccmd
 \begin{docspec}
   \doccmd{newthought}\{In his later books\}, Tufte starts\ldots
 \end{docspec}
