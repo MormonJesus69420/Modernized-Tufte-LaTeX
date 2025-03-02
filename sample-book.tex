@@ -303,7 +303,7 @@
 }
 
 % Print error message followed by an explanatory text
-% Error gets printed in mono font and inside a fullwidth environment
+% Error gets printed in mono font and inside a full-width environment
 % Explanatory text is printed in normal font
 \newcommand{\docmsg}[2]{%
   \bigskip%
@@ -1014,8 +1014,8 @@ For sans serif text the \textsf{Gillius No. 2} font from the \docpkg{gillius} pa
 If this one is unavailable, the \TeX\ Gyre Heros font from the \docpkg{tex-gyre-heros} package will be used.
 In case of monospaced text the \texttt{Fira Mono} font from the \docpkg{FiraMono} package will be used.
 If it's not present, the \TeX\ Gyre Cursor font from the \docpkg{tex-gyre-cursor} package will be used.
-However the provided \docfilehook{custom-tufte-common.tex}{common} filehook overrides the default monospaced font with \texttt{RecursiveMono} font.
-This file shows how you can override the default fonts, and how the filehooks can be used.
+However the provided \docfilehook{custom-tufte-common.tex}{common} file hook overrides the default monospaced font with \texttt{RecursiveMono} font.
+This file shows how you can override the default fonts, and how the file hooks can be used.
 
 The \TeX\ Gyre faces are usually included with \TeX\ Live distributions, hence why they are used as fallback fonts.
 If any of the selected fonts don't suit you, you can easily change them using the \docpkg{fontspec} package.
@@ -1133,8 +1133,7 @@ See the \nameref{sec:customizing-marginal-material} section for more information
 The \docclsoptdef{debug} option causes the \TL\ classes to output debug information to the log file which is useful in troubleshooting bugs.
 It prints list of options and their values under the \texttt{Tufte-LaTeX settings} section.
 It will also cause the graphics to be replaced by outlines.
-When combined with \doccmd[geometry]{geometry}\docopt{showframe} command it will show margins for debugging page layout issues.
-
+When combined with \doccmd[geometry]{geometry}\docopt{showframe} command it will show margins for debugging page layout issues.%
 % This command ends the class options index span which started at the beginning of the section
 \index{class options|)}
 
@@ -1200,7 +1199,7 @@ You can also pass the \docclsopt{nomoderntitles} option to the \doccls{tufte-han
 \end{table}
 
 
-\section{Changing the Paper Size}
+\section{Changing the Paper Size}%
 \label{sec:paper-size}
 
 The \TL\ classes currently only provide three paper sizes: \textsc{A4}, \textsc{B5}, and \textsc{US} letter.
@@ -1392,10 +1391,10 @@ Packages marked with an asterisk are optional.
 
 % The back matter contains appendices, bibliographies, indices, glossaries, etc.
 
-\backmatter\
+\backmatter{}
 
-\printbibliography\
+\printbibliography{}
 
-\printindex
+\printindex{}
 
 \end{document}
