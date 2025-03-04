@@ -566,7 +566,7 @@ Here is a general roadmap of the project:
 - [x] Rename `tufte-X-local.tex` files to `custom-tufte-X.tex`, making their intent clearer
 - [x] Document new `sftitle` option in `tufte-book` and readme
 - [x] Document `blankpagetext` option in `tufte-book` and readme
-- [ ] Document `nohyphens` and `nohyphenation` commands in `tufte-book` and readme
+- [ ] Inform of problem with cref and (sub)section numbers in `tufte-book`
 - [ ] Publish changes in a new release
 - [ ] Publish on CTAN *maybe*
   - [ ] Add badge with version to the readme

@@ -691,7 +691,7 @@
   \hypersetup{%
     % Set border for links (none in this case)
     pdfborder = {0 0 0},% 
-    % Include sections and subsectiong in the PDF bookmarks
+    % Include sections and subsections in the PDF bookmarks
     bookmarksdepth = subsection,%
     % True for colored links
     colorlinks=true,breaklinks,%
