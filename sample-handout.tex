@@ -48,8 +48,12 @@
 % This package allows for easy insertion of dummy text
 \usepackage[language=english]{lipsum}
 
+% Tries to intuit whether or not to add a space after a command
+% Used in some documentation commands here, but can be used in other places as well
+\usepackage{xspace}
+
 % This package lets writer include fancy TeX logos in text
-\usepackage{metalogo}
+\usepackage{hologo}
 
 % Used to print LaTeX commands with normalized font styles and environments
 % command name, adds backslash automatically
@@ -70,7 +74,7 @@
 \newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}
 
 % Shortcut for printing Tufte LaTeX class name
-\newcommand{\TL}{Tufte-\LaTeX\xspace}
+\newcommand{\TL}{Tufte-\hologo{LaTeX}\xspace}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%  Define document metadata, and other useful things like bibliography file  %%
@@ -162,17 +166,17 @@ counter as they are similar and it doesn't make sense to separate them.
 
 \begin{FramedNote}[
   name={Note Title},
-  label={ex:label}
+  label={fn:label}
   ]
   This is an example of the \Verb|FramedNote| environment. It provides a
   framed box to the left of the note text. The note text can be long or short.
 \end{FramedNote}
 
 If you label an note, you can reference it using the \doccmd{cref} command.
-For example, \cref{ex:label} showcases the \docenv{FramedNote} environment.
+For example, \cref{fn:label} showcases the \docenv{FramedNote} environment.
 You can also use the \docopt{continues} option to continue an note:
 
-\begin{FramedNote}[continues={ex:label}]
+\begin{FramedNote}[continues={fn:label}]
   This is a continuation of the previous note. It will be displayed in a new
   frame, but will have the same label, title, and number.
 \end{FramedNote}
@@ -194,7 +198,7 @@ To use them in your own documents, you need to define the environments using:
 \subsection{Subsection Example}
 \paragraph{Paragraph Example}
 
-\section{\TL~Design}
+\section{\TL\ Design}
 The Tufte-\LaTeX\ document classes define a style similar to the
 style Edward Tufte uses in his books and handouts. Tufte's style is known
 for its extensive use of sidenotes, tight integration of graphics with
@@ -393,7 +397,7 @@ Lorem ipsum dolor sit amet...
 \section{Typography}\label{sec:typography}
 
 \subsection{Typefaces}\label{sec:typefaces}
-If you're using \XeLaTeX\ or \LuaLaTeX, the class will use ETbb as the main
+If you're using \hologo{XeLaTeX}\ or \hologo{LuaLaTeX}, the class will use ETbb as the main
 typeface if the \texttt{etbb} package is installed and \TeX\ Gyre Pagella
 otherwise; \textsf{\TeX\ Gyre Heros}, and \texttt{\TeX\ Gyre
 Cursor} are the default for sans-serif and monospace text, respectively.

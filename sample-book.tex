@@ -611,7 +611,7 @@ The main difference is caused by the fact that the fonts used in it are not free
 Bembo is used for the headings and body text, while Gill Sans is used for the title page and opening epigraphs in \BE.
 
 Older versions of \TL\ used Palatino, Helvetica, and Bera Mono fonts.
-This version of \TL\ uses \docpkgdef{ETbb} for a Bembo-like font, \docpkgdef{gillius} for a \textsf{Gill Sans-like font}, and \docpkgdef{FiraMono} as a \texttt{monospaced font}.
+This version of \TL\ uses \docpkgdef{ETbb} for a Bembo-like font, \docpkgdef{mathpazo} for Palatino math font, \docpkgdef{gillius} for a \textsf{Gill Sans-like font}, and \docpkgdef{FiraMono} as a \texttt{monospaced font}.
 
 However this sample book overrides the default \docpkg{FiraMono} it with \texttt{RecursiveMono} font.
 It uses the provided \docfilehook{custom-tufte-common.tex}{common} file hook to override the default font.
@@ -735,7 +735,7 @@ number), you can use the \doccmd{marginnote} command.
 In his books Tufte places margin on the right side of the page, regardless whether it's an even or odd page.
 If you prefer to alternate the placement of margins, so they fall on outer edge you can use the \docclsopt{symmetric} class option.
 
-\newthought{On a personal note}, placing of sidenotes --- be it footnote, citation, or other --- should follow the following rules:
+\newthought{On a personal note}, placing of sidenotes---be it footnote, citation, or other---should follow the following rules:
 \begin{itemize}
   \item If the sidenote applies to the whole sentence, it should be placed after the period or other punctuation mark.
   \item If the sidenote applies to a specific word, it should be placed immediately after that word, even if the word is in the middle of the sentence, or followed by a punctuation mark.
@@ -866,10 +866,8 @@ You may specify the caption in any one of the following forms:
   \doccmd{caption}[\docarg{short caption}][\docopt{offset}]\{\docarg{long caption}\}
 \end{docspec}
 A positive \docopt{offset} will push the caption down the page.
-The short caption, if provided, is what appears in the list of figures/tables, otherwise
-the ``long'' caption appears there.
-Note that although the arguments \docopt{short caption} and \docopt{offset} are both optional, they must be
-provided in order. 
+The short caption, if provided, is what appears in the list of figures/tables, otherwise the ``long'' caption appears there.
+Note that although the arguments \docopt{short caption} and \docopt{offset} are both optional, they must be provided in order. 
 Thus, to specify an \docopt{offset} without specifying a \docopt{short caption}, you must include the first set of empty brackets \Verb|[]|, which tell \doccmd{caption} to use the default ``long'' caption. 
 As an example, the caption to \cref{fig:textfig} above was given in the form:
 \begin{docspec}
@@ -906,7 +904,7 @@ Colors can be used to group related rows, highlight important data, or make one 
   }\label{tab:normaltab}
 \end{table}
 
-%%% TODO: Continue with the rest of the document
+
 \subsection{Too Many Floats}\label{ssec:too-many-floats}
 \newthought{Occasionally} \hologo{LaTeX} will generate an error message:
 \begin{docspec}
@@ -924,10 +922,14 @@ The first time \doccmd{morefloats} is called, it allocates an additional 34 slot
 The second time \doccmd{morefloats} is called, it allocates another 26 slots.
 
 The \doccmd{morefloats} command may only be used two times.
-Calling it a third time will generate an error message.
-(This is because allocating more floats may lead to \hologo{LaTeX} running out of memory.)
+Calling it a third time will generate an error message:
+\begin{docspec}
+  You may only call \string\morefloats\space twice\\
+  See the Tufte-LaTeX documentation for alternatives
+\end{docspec}
+This is because allocating more floats may lead \hologo{LaTeX} to run out of memory.
 
-If, after using the \doccmd{morefloats} command twice, you continue to get the \texttt{Too many unprocessed floats} error, there are a couple things you can do.
+If, after using the \doccmd{morefloats} command twice, you continue to get the \texttt{Too many unprocessed floats} error, there are a couple things you can do:
 
 The \doccmddef{FloatBarrier} command will immediately process all the floats before typesetting more material.
 Since \doccmd{FloatBarrier} will start a new paragraph, you should place this command at the beginning or end of a
@@ -935,8 +937,8 @@ paragraph.
 
 The \doccmddef{clearpage} command will also process the floats before continuing, but instead of starting a new paragraph, it will start a new page.
 
-You can also try moving your floats around a bit: move a figure or table to the next page or reduce the number of sidenotes.
-(Each sidenote actually uses \emph{two} slots.)
+You can also try moving your floats around a bit: move a figure or table to the next page, or reduce the number of sidenotes.
+Keep in mind that each sidenote actually uses \emph{two} float slots.
 
 After placing the floats, \hologo{LaTeX} will mark those slots as unused so they are available for the next page to be composed.
 
@@ -946,16 +948,17 @@ You may notice that the captions are sometimes misaligned.
 Due to the way \hologo{LaTeX}'s floats works, it's hard to know for sure where it decided to put the float.
 Therefore, the \TL\ document classes provide commands to override the caption position.
 
-\paragraph{Vertical alignment} To override the vertical alignment, use the \doccmd{setfloatalignment} command inside the float environment.
+\paragraph{Vertical alignment}\label{par:vertical-alignment}
+To override the vertical alignment, use the provided \doccmd{setfloatalignment} command inside the float environment.
 For example:
 
 \begin{fullwidth}
-\begin{Verbatim}[commandchars=+\(\)]
-  \begin{figure}[btp]
-    \includegraphics{sine.pdf}
-    \caption{This is an example of a sine wave.}%
-    \label{fig:sinewave}
-    +hlorange(\setfloatalignment{b} % forces caption to be bottom-aligned)
+  \begin{Verbatim}[commandchars=+/|]
+  \begin{figure}
+    \includegraphics{vertical-figure}
+    \caption{vertical-figure-caption}%
+    \label{fig:vertical-figure-label}
+    +hlorange/\setfloatalignment{b}| % forces caption to be bottom-aligned
   \end{figure}
 \end{Verbatim}
 \end{fullwidth}
@@ -968,18 +971,18 @@ For example:
 
 \noindent where \docopt{pos} can be either \texttt{b} for bottom-aligned captions, or \texttt{t} for top-aligned captions.
 
-\paragraph{Horizontal alignment}\label{par:overriding-horizontal}
+\paragraph{Horizontal alignment}\label{par:horizontal-alignment}
 To override the horizontal alignment, use either the \doccmd{forceversofloat} or the \doccmd{forcerectofloat} command inside of the float environment.
 Note that these commands only work when the \docclsopt{symmetric} option is enabled.
 For example:
 
 \begin{fullwidth}
-\begin{Verbatim}[commandchars=+\(\)]
-  \begin{figure}[btp]
-    \includegraphics{sine.pdf}
-    \caption{This is an example of a sine wave.}%
-    \label{fig:sinewave}
-    +hlorange(\forceversofloat % forces caption to be set to the left of the float)
+\begin{Verbatim}[commandchars=+/|]
+  \begin{figure}
+    \includegraphics{horizontal-figure}
+    \caption{horizontal-figure-caption}%
+    \label{fig:horizontal-figure-label}
+    +hlorange/\forceversofloat| % forces caption to be set to the left of the float
   \end{figure}
 \end{Verbatim}
 \end{fullwidth}
@@ -989,7 +992,6 @@ Conversely, the \doccmddef{forcerectofloat} command causes the algorithm to assu
 
 
 \section{Full-width text blocks}
-
 In addition to the new float types, there is a \docenvdef{fullwidth} environment.
 This environment stretches across the main text block and the sidenotes area.
 
@@ -1025,12 +1027,16 @@ This file shows how you can override the default fonts, and how the file hooks c
 The \TeX\ Gyre faces are usually included with \TeX\ Live distributions, hence why they are used as fallback fonts.
 If any of the selected fonts don't suit you, you can easily change them using the \docpkg{fontspec} package.
 
-Under \iPdfLaTeX, the \TL\ classes will try to use the same default fonts, but will fall back to the default Computer Modern fonts if they are not available.
+\newthought{When using the} \iPdfLaTeX engine, the \TL\ classes will try to use the same default fonts, but will fall back to the default Computer Modern fonts if they are unavailable.
 The \docpkg{fontspec} package is not available under \hologo{pdfLaTeX}, so it uses the \docpkg{fontenc} package to set the font encoding.
+This package doesn't make it easy to use non-standard fonts, so it's recommended to use \iXeLaTeX\ or \iLuaLaTeX\ for the best results.
+Alternatively install and use font packages that are compatible with \hologo{pdfLaTeX}.
 
-In cases where \docclsopt{nofonts} option is used, the \TL\ classes will not load any fonts.
-It will not load \docpkg{fontspec} or \docpkg{fontenc} packages either.
-However if the \docclsopt{nols} was \textbf{not} used, \docpkg{fontspec} will be loaded in \hologo{LuaLaTeX} or \hologo{XeLaTeX} engines, as they require it to set letterspacing.
+\newthought{In cases where} \docclsopt{nofonts} option is used, the \TL\ classes will not load any fonts.
+It will not load \docpkg{fontspec} or \docpkg{fontenc} packages either.%
+In \hologo{LuaLaTeX} or \hologo{XeLaTeX} both \docclsopt{nofonts} \textbf{and} \docclsopt{nols} must be used to disable loading \docpkg{fontspec}. More info in \cref{ssec:letterspacing}.
+
+%%% TODO: Left off here
 
 \subsection{Letterspacing}\label{ssec:letterspacing}
 This document class includes two new commands and some improvements on existing commands for letterspacing.

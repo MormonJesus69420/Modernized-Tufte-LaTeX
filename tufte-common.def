@@ -2713,8 +2713,8 @@
                       \@elt\bx@WW\@elt\bx@XX\@elt\bx@YY\@elt\bx@ZZ}%
     }{%
       \@tufte@error{%
-        You may only call \string\morefloats\space twice
-        See the Tufte-LaTeX documentation for other workarounds
+        You may only call \string\morefloats\space twice\\
+        See the Tufte-LaTeX documentation for alternatives
       }{%
         There are already 78 float slots allocated
         Try using \string\FloatBarrier\space or \string\clearpage\space to place
