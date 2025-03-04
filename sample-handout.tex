@@ -6,31 +6,38 @@
 % Define the document class
 \documentclass[a4paper]{tufte-handout}
 
-% Set up the images/graphics package
+% Used for adding images/graphics to the document
 \usepackage{graphicx}
   % Set default scaling for included graphics
   \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
-  % Define base paths for graphics
+  % Define base path for graphics, change this as needed
   \graphicspath{{graphics/}}
 
-% This package improves the quality of tables in LaTeX
+% Improves the quality of tables in LaTeX
 % It provides useful commands, and ads some behind the scenes optimizations
+% Tables created by this package are similar to the tables in Tufte's books
 \usepackage{booktabs}
 
-% This package provides a way to set units in typographically correct way
+% Provides a way to set units in typographically correct way
 % It includes the `nicefrac' package to provide nicer looking fractions
-% Common commands include \unit[<value>]{<unit>}, \nicefrac{<num>}{<den>} and
-% \unitfrac[<value>]{<num>}{<den>}
-% The \nicefrac can take optional argument to set the font command
+% Common commands include \unit[<value>]{<unit>}, \nicefrac{<num>}{<den>},
+% and \unitfrac[<value>]{<num>}{<den>}
+% The \nicefrac can take a font command as an optional argument
 \usepackage{units}
 
-% This package tries to intuit whether to add a space after a command or not
-\usepackage{xspace}
-
-% This package extends verbatim with new environments, and more features
+% Extends verbatim with new environments, and more features
 \usepackage{fancyvrb}
-  % Set default verbatim font, smaller than default
+  % Sets default verbatim font, smaller than default
   \fvset{fontsize=\small}
+
+% Changes how the date is displayed in the document,
+% and provides extra date related commands
+% I prefer the ISO format yyyy-mm-dd, but it can be changed as needed
+% Also used to print <month> <year> in the copyright page
+\usepackage[style=iso,en-US]{datetime2}
+
+% Can enable or disable hyphenation of words, even in TT font environments
+\usepackage[htt]{hyphenat}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

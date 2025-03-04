@@ -6,11 +6,12 @@
 % For a current list of options, see:
 % `Define options for every class' and `Justification options for margin notes' sections in the `tufte-common.def' file
 % This should provide you with the most accurate and up-to-date list of options as that's where they are defined
-% Alternatively compile this document with the `debug' and search log output for `Tufte-LaTeX settings'
+% Alternatively compile this document with the `debug' and search log output for: `Tufte-LaTeX settings'
 % This sample book should also contain current list of options with explanation in the `Document Class Options' section
 \documentclass[a4paper]{tufte-book}
 
-% If you wish to add text to blank pages from \cleardoublepage command, uncomment this block and add your text
+% If you wish to add text to blank pages from \cleardoublepage command, uncomment this block and add your text:
+%
 % \renewcommand*{\blankpagetext}{
 %   This page intentionally contains only this sentence.
 % }
@@ -36,7 +37,7 @@
 
 % Provides a way to set units in typographically correct way
 % It includes the `nicefrac' package to provide nicer looking fractions
-% Common commands include \unit[<value>]{<unit>}, \nicefrac{<num>}{<den>} and \unitfrac[<value>]{<num>}{<den>}
+% Common commands include \unit[<value>]{<unit>}, \nicefrac{<num>}{<den>}, and \unitfrac[<value>]{<num>}{<den>}
 % The \nicefrac can take a font command as an optional argument
 \usepackage{units}
 
@@ -50,6 +51,9 @@
 % Also used to print <month> <year> in the copyright page
 \usepackage[style=iso,en-US]{datetime2}
 
+% Can enable or disable hyphenation of words, even in TT font environments
+\usepackage[htt]{hyphenat}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%  Define document metadata, and other useful things like bibliography file  %%
@@ -58,7 +62,7 @@
 \title{A Tufte-Style Book\thanks{Thanks to Edward R.~Tufte for his inspiration.}}
 \author[The Tufte-LaTeX Developers]{The Tufte-LaTeX\ Developers}
 \publisher{MJ Publishing House}
-%\date{2025-01-28} % If the \date command is omitted, current date will be used
+%\date{2025-01-28} % If the \date command is omitted, current date will be used instead
 
 % Debugging
 %\geometry{showframe} % display margins for debugging page layout
