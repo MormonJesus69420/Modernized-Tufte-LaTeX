@@ -101,6 +101,7 @@
 %   Note: do not use with `b5paper'
 \newboolean{@tufte@afourpaper}
 \DeclareOptionX[tufte]<common>{a4paper}{
+  \@tufte@info@noline{Setting page size to A4 paper}
   \setboolean{@tufte@afourpaper}{true}
 }
 
@@ -109,6 +110,7 @@
 %   Note: do not use with `a4paper'
 \newboolean{@tufte@bfivepaper}
 \DeclareOptionX[tufte]<common>{b5paper}{
+  \@tufte@info@noline{Setting page size to B5 paper}
   \setboolean{@tufte@bfivepaper}{true}
 }
 
@@ -127,6 +129,7 @@
 \newboolean{@tufte@symmetric}
 \DeclareOptionX[tufte]<common>{symmetric}{
   \setboolean{@tufte@symmetric}{true}
+  \@tufte@info@noline{Passing the `symmetric' option to the `\@tufte@class' class}
   \@tufte@info@noline{The `symmetric' option implies `twoside'}
   \ExecuteOptionsX[tufte]<common>{twoside}
 }
@@ -137,9 +140,11 @@
 %   print titlepage in serif typeface
 \newboolean{@tufte@sftitle}
 \DeclareOptionX[tufte]<common>{sftitle}{
+  \@tufte@info@noline{Setting titlepage to sans serif typeface}
   \setboolean{@tufte@sftitle}{true}
 }
 \DeclareOptionX[tufte]<common>{nosftitle}{
+  \@tufte@info@noline{Setting titlepage to serif typeface}
   \setboolean{@tufte@sftitle}{false}
 }
 
@@ -147,6 +152,7 @@
 %   typesets sidenotes in sans serif typeface
 \newboolean{@tufte@sfmarginals}
 \DeclareOptionX[tufte]<common>{sfmarginals}{
+  \@tufte@info@noline{Setting marginals to sans serif typeface}
   \setboolean{@tufte@sfmarginals}{true}
 }
 
@@ -154,6 +160,7 @@
 %   uses fully justified text (flush left and right) instead of ragged right
 \newboolean{@tufte@justified}
 \DeclareOptionX[tufte]<common>{justified}{
+  \@tufte@info@noline{Passing the `justified' option to the `\@tufte@class' class}
   \setboolean{@tufte@justified}{true}
 }
 
@@ -162,6 +169,7 @@
 \newboolean{@tufte@loadfonts}
 \setboolean{@tufte@loadfonts}{true}
 \DeclareOptionX[tufte]<common>{nofonts}{
+  \@tufte@info@noline{Not loading any class specific fonts}
   \setboolean{@tufte@loadfonts}{false}
 }
 
@@ -170,6 +178,7 @@
 \newboolean{@tufte@letterspace}
 \setboolean{@tufte@letterspace}{true}
 \DeclareOptionX[tufte]<common>{nols}{
+  \@tufte@info@noline{Not configuring letterspacing}
   \setboolean{@tufte@letterspace}{false}
 }
 
@@ -177,6 +186,7 @@
 %   loads the bidi package for bi-directional text
 \newboolean{@tufte@loadbidi}
 \DeclareOptionX[tufte]<common>{bidi}{
+  \@tufte@info@noline{Loading the `bidi' package for bi-directional text}
   \setboolean{@tufte@loadbidi}{true}
 }
 
@@ -186,9 +196,11 @@
 %   doesn't create a full title page with \maketitle
 \newboolean{@tufte@titlepage}
 \DeclareOptionX[tufte]<common>{titlepage}{
+  \@tufte@info@noline{Calling \string\maketitle will create a full title page}
   \setboolean{@tufte@titlepage}{true}
 }
 \DeclareOptionX[tufte]<common>{notitlepage}{
+  \@tufte@info@noline{Calling \string\maketitle will create a title block}
   \setboolean{@tufte@titlepage}{false}
 }
 
@@ -197,6 +209,7 @@
 \newboolean{@tufte@loadbiblatex}
 \setboolean{@tufte@loadbiblatex}{true}
 \DeclareOptionX[tufte]<common>{nobib}{
+  \@tufte@info@noline{Disabling bibliography features}
   \setboolean{@tufte@loadbiblatex}{false}
 }
 
@@ -205,6 +218,7 @@
 \newboolean{@tufte@toc}
 \setboolean{@tufte@toc}{true}
 \DeclareOptionX[tufte]<common>{notoc}{
+  \@tufte@info@noline{Disabling Tufte-style table of contents}
   \setboolean{@tufte@toc}{false}
 }
 
@@ -213,15 +227,8 @@
 \newboolean{@tufte@loadhyper}
 \setboolean{@tufte@loadhyper}{true}
 \DeclareOptionX[tufte]<common>{nohyper}{
+  \@tufte@info@noline{Disabling the hyperref package}
   \setboolean{@tufte@loadhyper}{false}
-}
-
-% `nomoderntitles' option
-%   suppresses the modern title formatting in handouts
-\newboolean{@tufte@handout@moderntitles}
-\setboolean{@tufte@handout@moderntitles}{true}
-\DeclareOptionX[tufte]<common>{nomoderntitles}{
-  \setboolean{@tufte@handout@moderntitles}{false}
 }
 
 % `debug' option 
@@ -497,11 +504,10 @@
 
 % Inform what options are being passed to the class
 \DeclareOptionX*{%
-  \@tufte@info@noline{%
-    Passing \CurrentOption\space to the `\@tufte@class' class.
-  }%
   \PassOptionsToClass{\CurrentOption}{\@tufte@class}%
 }
+
+% Process the options for the common class definitions
 \ProcessOptionsX*[tufte]<common>\relax
 
 % Load the appropriate base class and inform about it
@@ -2172,7 +2178,7 @@
 
 % Command for printing out all Tufte class settings and their values
 \newcommand{\PrintTufteSettings}{%
-  \typeout{-------------------- Tufte-LaTeX settings ----------}
+  \typeout{-------------------- Tufte-LaTeX settings --------------------}
   \typeout{Class: \@tufte@pkgname}
   \typeout{}
   \typeout{Class options:}
@@ -2197,7 +2203,6 @@
   \typeoutbool{bibliography (nobib)}{@tufte@loadbiblatex}
   \typeoutbool{use Tufte style table of contents (notoc)}{@tufte@toc}
   \typeoutbool{use hyperref (nohyper)}{@tufte@loadhyper}
-  \typeoutbool{use modern titles (nomoderntitles)}{@tufte@handout@moderntitles}
   \typeout{}
   \typeout{Marginal justification settings:}
   \typeoutstr{sidenote}{\expandafter\string\@tufte@sidenote@justification}
@@ -2211,7 +2216,7 @@
   \typeoutbool{xelatex}{@tufte@xetex}
   \typeoutbool{luatex}{@tufte@luatex}
   \typeoutbool{changepage loaded}{@tufte@changepage}
-  \typeout{----------------------------------------------------}
+  \typeout{--------------------------------------------------------------}
 }
 
 

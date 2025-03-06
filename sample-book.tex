@@ -838,6 +838,7 @@ The specifications are:
   \end{margintable}
 \end{Verbatim}
 
+\pagebreak
 \Cref{fig:fullfig} is an example of the \docenv{figure*} environment and \cref{fig:textfig} is an example of the normal
 \docenv{figure} environment.
 
@@ -886,6 +887,7 @@ Hence Tufte style tables use only horizontal rules.
 In cases where a table has many rows, \docpkgdef{colortbl} can be used to make rows stand out visually from each other.
 Colors can be used to group related rows, highlight important data, or make one row stand out from the others.
 
+\pagebreak
 \begin{table}[ht]
   \centering
   \fontfamily{ppl}\selectfont
@@ -1048,14 +1050,14 @@ This allows one to use both uppercase and lowercase letters:
 \textsc{The Initial Letters Of The Words In This Sentence Are Capitalized.}
 
 
-%%% TODO: Continue from here
 \section{Document Class Options}\label{sec:options}%
 % Second index command opens the class options index span
 \index{options|see{class options}}\index{class options|(}
 The \doccls{tufte-book} class is based on the \hologo{LaTeX} \doccls{book} document class.
 Conversely the \doccls{tufte-handout} class is based on the \doccls{article} document class.
 Therefore, you can pass any of the typical book or article options to them.
-There are a few options that are specific to the \doccls{tufte-book} and \doccls{tufte-handout} document classes, however.
+\TL\ offers a few additional options that are specific to the \doccls{tufte-book} and \doccls{tufte-handout} document classes.
+Besides the \docclsopt{nomoderntitles} options, which is only applicable to the \doccls{tufte-handout} class, all other options are available for both classes.
 
 \subsection{Paper Size and Layout Options}\label{ssec:paper-size-layout-options}
 The \docclsoptdef{a4paper} option will set the paper size to \smallcaps{A4} instead of the default \smallcaps{US} letter size.
@@ -1064,10 +1066,12 @@ The \docclsoptdef{b5paper} option will set the paper size to \smallcaps{B5} inst
 
 The \docclsopt{a5paper}, \docclsopt{executivepaper}, and \docclsopt{legalpaper} options are unavailable in the \TL\ classes.
 
-The \docclsoptdef{twoside} option will modify the running heads so that the page number is printed on the outside edge. By default \TL\ classes always print the page number on the right-side edge.
+The \docclsoptdef{twoside} option will modify the running heads so that the page number is printed on the outside edge.In other words it will be placed on the right side of the odd pages, and on the left side of the even pages.
+By default the \doccls{tufte-book} class uses the \docclsopt{twoside} option, as it is based on the \doccls{book} class.
+If you wish to disable it you can use the \docclsopt{oneside} option.
 
-The \docclsoptdef{symmetric} option typesets the sidenotes on the outside edge of the page.
-This is how books are traditionally printed, but is contrary to Tufte's book design which sets the sidenotes on the right side of the page.
+The \docclsoptdef{symmetric} option typesets the sidenotes on the outside edge of the page, same way the \docclsopt{twoside} option does for the heads.
+This is the way how books are traditionally printed, but Tufte's book design places the sidenotes on the right side of every page.
 This option implicitly sets the \docclsopt{twoside} option.
 
 The \docclsopt{landscape}, \docclsopt{onecolumn}, and \docclsopt{twocolumn} options are not available in the \TL\ classes.

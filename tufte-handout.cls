@@ -100,6 +100,31 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+
+% `nomoderntitles' option
+%   suppresses the modern title formatting in handouts
+\newboolean{@tufte@handout@moderntitles}
+\setboolean{@tufte@handout@moderntitles}{true}
+\DeclareOptionX[tufte]<handout>{nomoderntitles}{
+  \@tufte@info@noline{Disabling modern title formatting in handouts}
+  \setboolean{@tufte@handout@moderntitles}{false}
+}
+
+% Process the options for the handout class definitions
+\ProcessOptionsX*[tufte]<handout>\relax
+
+% Prints the settings for the tufte-handout class
+\newcommand{\PrintTufteHandoutSettings}{%
+  \typeout{---------------- Tufte-LaTeX Handout settings ----------------}
+  \typeoutbool{use modern titles (nomoderntitles)}{@tufte@handout@moderntitles}
+  \typeout{--------------------------------------------------------------}
+}%
+
+% Print the settings if the debug option is set
+\ifthenelse{\boolean{@tufte@debug}}{%
+  \PrintTufteHandoutSettings
+}{}
+
 % Only style the sections if the `moderntitles' option is set
 \ifthenelse{\boolean{@tufte@handout@moderntitles}}{%
   %
