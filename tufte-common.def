@@ -117,10 +117,19 @@
 % `twoside' option
 %   alternates running heads
 \newboolean{@tufte@twoside}
+\setboolean{@tufte@twoside}{true}
 \DeclareOptionX[tufte]<common>{twoside}{
   \setboolean{@tufte@twoside}{true}
   \@tufte@info@noline{Passing the `twoside' option to the `\@tufte@class' class}
   \PassOptionsToClass{twoside}{\@tufte@class}
+}
+
+% `oneside' option
+%   keeps running heads on the right
+\DeclareOptionX[tufte]<common>{oneside}{
+  \setboolean{@tufte@twoside}{false}
+  \@tufte@info@noline{Passing the `oneside' option to the `\@tufte@class' class}
+  \PassOptionsToClass{oneside}{\@tufte@class}
 }
 
 % `symmetric' option
@@ -502,7 +511,7 @@
   \ExecuteOptionsX[tufte]<common>{nosftitle}
 }
 
-% Inform what options are being passed to the class
+% Pass the options to the specific Tufte class
 \DeclareOptionX*{%
   \PassOptionsToClass{\CurrentOption}{\@tufte@class}%
 }
@@ -2185,8 +2194,8 @@
   \typeout{Paper size and layout options:}
   \typeoutbool{a4paper}{@tufte@afourpaper}
   \typeoutbool{b5paper}{@tufte@bfivepaper}
-  \typeoutbool{alternates heads with page numbers (twoside)}{@tufte@twoside}
-  \typeoutbool{alternates margins left and right (symmetric)}{@tufte@symmetric}
+  \typeoutbool{alternate head left \& right (twoside / oneside)}{@tufte@twoside}
+  \typeoutbool{alternate margin left \& right (symmetric)}{@tufte@symmetric}
   \typeout{}
   \typeout{Font and text options:}
   \typeoutbool{sans-serif title (sftitle / nosftitle)}{@tufte@sftitle}

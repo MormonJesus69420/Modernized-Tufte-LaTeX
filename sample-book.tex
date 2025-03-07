@@ -8,7 +8,7 @@
 % This should provide you with the most accurate and up-to-date list of options as that's where they are defined
 % Alternatively compile this document with the `debug' and search log output for: `Tufte-LaTeX settings'
 % This sample book should also contain current list of options with explanation in the `Document Class Options' section
-\documentclass[a4paper]{tufte-book}
+\documentclass[a4paper,debug]{tufte-book}
 
 % If you wish to add text to blank pages from \cleardoublepage command, uncomment this block and add your text:
 %
@@ -1067,43 +1067,44 @@ The \docclsoptdef{b5paper} option will set the paper size to \smallcaps{B5} inst
 The \docclsopt{a5paper}, \docclsopt{executivepaper}, and \docclsopt{legalpaper} options are unavailable in the \TL\ classes.
 
 The \docclsoptdef{twoside} option will modify the running heads so that the page number is printed on the outside edge.In other words it will be placed on the right side of the odd pages, and on the left side of the even pages.
-By default the \doccls{tufte-book} class uses the \docclsopt{twoside} option, as it is based on the \doccls{book} class.
-If you wish to disable it you can use the \docclsopt{oneside} option.
+When it comes to books, the head on the left side will also contain book title, and right side will contain chapter title.
+While in case of the handouts the left side head will use the author name, and right side will use the handout title.
+By default the \TL classes use the \docclsopt{twoside} option, as Tufte's \be\ book has done.\cite{Tufte2006}
+If you wish to disable it you can use the \docclsopt{oneside} option on a case by case basis.
 
 The \docclsoptdef{symmetric} option typesets the sidenotes on the outside edge of the page, same way the \docclsopt{twoside} option does for the heads.
-This is the way how books are traditionally printed, but Tufte's book design places the sidenotes on the right side of every page.
+This is the way books are traditionally printed, but Tufte's book design places the sidenotes on the right side of every page.
 This option implicitly sets the \docclsopt{twoside} option.
 
 The \docclsopt{landscape}, \docclsopt{onecolumn}, and \docclsopt{twocolumn} options are not available in the \TL\ classes.
 
 \subsection{Font and Text Options}\label{ssec:font-options}
-The \docclsoptdef{sftitle} option will set the title page and title block in a \textsf{sans serif} typeface.
-The \docclsoptdef{nosftitle} option will set the title page and title block in a serif typeface.
-In case of \doccls{tufte-handout} these options also have an effect on the abstract.
-While in \doccls{tufte-book} they affect the epigraphs.
+The \docclsoptdef{sftitle} option will set the title page or block in a \textsf{sans serif} typeface.
+The \docclsoptdef{nosftitle} option will set the title page or block in a serif typeface.
+In case of \doccls{tufte-handout} these options also affect the abstract while in \doccls{tufte-book} they affect the epigraphs.
 By default the \doccls{tufte-book} class uses \docclsopt{sftitle} and the \doccls{tufte-handout} class uses \docclsopt{nosftitle}.
 
-The \docclsoptdef{sfmarginals} option makes all marginals use \textsf{sans serif} typeface instead of the default roman typeface.
+The \docclsoptdef{sfmarginals} option makes all marginal material use \textsf{sans serif} typeface instead of the default serif typeface.
 
-The \docclsoptdef{justified} option sets all the text fully justified (flush left and right). 
-The default is to set the text ragged right.
-The body text of Tufte's books are set ragged right. 
+The \docclsoptdef{justified} option fully justifies the main text (flush left and right). 
+By default the text is ragged right, just as the body text of Tufte's books is ragged right. 
 This prevents needless hyphenation and makes it easier to read the text in the slightly narrower column.
 
 The \docclsopt{10pt}, \docclsopt{11pt}, and \docclsopt{12pt} options are unavailable in the \TL\ classes.
 
-The \docclsoptdef{nofonts} option prevents the \TL\ classes from automatically loading the Tufte typefaces
+The \docclsoptdef{nofonts} option prevents the \TL\ classes from automatically loading the Tufte typefaces.
 You should use this option if you wish to load your own fonts in \iPdfLaTeX. 
-If you're using \iXeLaTeX\ or \iLuaLaTeX, the will not be loaded, and you can use \docpkg{fontspec} to set your own.
-If you aren't using the \docclsopt{nols} option, the \docpkg{fontspec} package will be loaded as it is required for letterspacing. 
+If you're using \iXeLaTeX\ or \iLuaLaTeX, you can use \docpkg{fontspec} to set fonts, so this option is not necessary, but is available if you wish to use it.
+If you aren't using the \docclsopt{nols} option, the \docpkg{fontspec} package will still be loaded as it is required for letterspacing. 
 
-The \docclsoptdef{nols} option inhibits the letterspacing code. 
-The \TL\ classes try to load the appropriate letterspacing package to adjust spacing of letters.
+The \docclsoptdef{nols} option inhibits loading the code that modifies the letterspacing. 
+The \TL\ classes try to load the appropriate letterspacing package to adjust spacing of letters in all-caps environments.
 It uses \docpkg{letterspace} or the \docpkg{soul} under \hologo{pdfLaTeX}.
 In case of \hologo{XeLaTeX} and \hologo{LuaLaTeX} it uses \docpkg{fontspec}.
 
 The \docclsoptdef{bidi} option loads the \docpkg{bidi} package which is used with \hologo{XeLaTeX} to typeset bi-directional text. 
 Since the \docpkg{bidi} package needs to be loaded before the sidenotes and cite commands are defined, it can't be loaded in the document preamble.
+Hence this option exists to load it in the class file.
 
 \subsection{Title Page Options}\label{ssec:title-page-options}
 The \docclsoptdef{notitlepage} option causes \doccmd{maketitle} to generate a title block instead of a title page. 
