@@ -566,7 +566,8 @@ Here is a general roadmap of the project:
 - [x] Rename `tufte-X-local.tex` files to `custom-tufte-X.tex`, making their intent clearer
 - [x] Document new `sftitle` option in `tufte-book` and readme
 - [x] Document `blankpagetext` option in `tufte-book` and readme
-- [ ] Inform of problem with cref and (sub)section numbers in `tufte-book`
+- [x] Inform of problem with cref and (sub)section numbers in `tufte-book`
+  - [x] This issue was fixed so it is no longer relevant
 - [ ] Publish changes in a new release
 - [ ] Publish on CTAN *maybe*
   - [ ] Add badge with version to the readme
@@ -581,10 +582,9 @@ However, I can't promise anything, as this is a side project, my knowledge of La
 # Bugs/Features/Support
 There are some bugs or quirks that I am aware of:
 
-- In `tufte-handout` the `\cref` command with sections number is invisible.
-  - This is due to the color of the (sub)section numbers being white.
-  - That's done to make the numbers in (sub)section boxes stand out, but with `\cref` they blend with background.
-  - I am not sure how to fix this, as I couldn't find any help online, and I haven't had time to study the `cleveref` package closely.
+- The `\cite` command no longer supports vertical offset.
+  - This is because `biblatex` uses its own arguments in `\cite` command.
+  - I will not fix this, as `biblatex` arguments are more useful, and you can offset other overlaping elements.
 - In `tufte-handout` sections must be numbered or the title overlaps with colored box.
   - This is most visible in case of Reference/Bibliography section, as by default it is unnumbered.
   - My simple fix is to make every section numbered, but this might not be ideal for everyone.

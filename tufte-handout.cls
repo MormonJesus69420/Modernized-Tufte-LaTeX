@@ -85,7 +85,7 @@
   % NOTE: This causes issue with `\cref' command from `cleveref' package
   %       as referred section numbers will be white and not visible in pdf
   %       If you use `cleveref' package, use `\nameref' instead of `\cref'
-  \renewcommand\thesection{\color{tufte-white}\arabic{section}}
+  \renewcommand\@seccntformat[1]{\color{tufte-white} {\csname the#1\endcsname}\hspace{1.5em}}
   %
   % Style the paragraphs, make text tufte-purple and bold
   \renewcommand{\paragraph}{\@startsection{paragraph}% Name of the section
