@@ -1191,7 +1191,7 @@ For example, if you want parts and chapters numbered, but don't want numbering f
 \end{docspec}
 
 The default value of \doccounter{secnumdepth} for the \doccls{tufte-book} class is \(-1\).
-Note that this makes it impossible to use the \docpkg{cleveref} package's \doccmd{cref} command with sections and subsections.
+Note that this makes it impossible to use the \docpkg{cleveref} package's \doccmd[cleveref]{cref} command with sections and subsections.
 This version of \doccls{tufte-handout} class sets the counter to \(2\) so sections and subsections are numbered.
 This change was made to make the sections stand out more as I found it hard to distinguish them from the body text.
 If you wish to revert to no numbering, set the counter to \(-1\).
@@ -1276,15 +1276,16 @@ If, for example, you wanted the captions to be set in italic sans serif, you cou
 \end{docspec}
 
 
-\chapter{New Features}\label{ch:new-features}
+\chapter[New Features in Tufte-LaTeX Classes]{New Features in \TL\ Classes}\label{ch:new-features}
 \section{Custom Colors}\label{sec:custom-colors}
 \begin{multicols}{2} [
   \subsection{Color Showcase}
-    The Tufte-\LaTeX\ document classes defines a number of colors.
-    It uses these colors for links, citations, sections, and other elements.
-    The \docpkg{xcolor} package defines the colors.
-    Users can use these colors in their own documents, or redefine them.
-    Here are the colors available in the Tufte-\LaTeX\ document classes:
+    The new \TL\ document classes define a number of custom colors.
+    They use these colors for things like links, citations, links, etc.
+    In case of \doccls{tufte-handout} class it also uses them for the section titles.
+    The common class uses the \docpkg{xcolor} package to define the colors.
+    You can choose to use these colors in your own documents as you see fit, redefine them, override them, or not use them at all.
+    Here are the colors available in the \TL\ document classes:
 ]
 \noindent
 \fcolorbox{tufte-black}{tufte-black}{\parbox[c][1.0ex][b]{4em}{\phantom{space}}}
@@ -1319,45 +1320,51 @@ If, for example, you wanted the captions to be set in italic sans serif, you cou
 
 
 \section{Note Environments}\label{sec:note-environments}
+Another feature common to the new \TL\ classes are two environments for notes.
+These notes can be used to highlight important information, provide references, or to simply make a note.
+It's useful for making important informations stand out, without risk of being lost in the margins.
 
-Tufte-\LaTeX\ provides two environments for notes. The \docenv{ShadedNote}
-environment provides a shaded background. The \docenv{FramedNote} environment
-places a frame to the left of the note. Both environments use the same 
-counter as they are similar and it doesn't make sense to separate them.
+Both note environments provide a title, a label, and a continuation option.
+The title and label are optional, the label is used for referencing the note or for continuing a note later in the text.
+The \docenv{ShadedNote} environment creates a note with a shaded background. 
+While the \docenv{FramedNote} environment places a frame to the left of the note. 
+Both environments use the same counter as they are similar enough so it doesn't make sense to separate them.
 
 \begin{ShadedNote}
-  This is an example of the \Verb|ShadedNote| environment. It provides a
-  shaded background for the note text. The note text can be long or short.
+  This is an example of the \texttt{ShadedNote} environment.
+  It provides a shaded background for the note text. 
+  The note text can be long or short, although they should be short and to the point.
+  Notes should be used to crucial information, not be a substitute for a paragraph
 \end{ShadedNote}
 
 \begin{FramedNote}[
   name={Note Title},
   label={fn:label}
   ]
-  This is an example of the \Verb|FramedNote| environment. It provides a
-  framed box to the left of the note text. The note text can be long or short.
+  This is an example of the \texttt{FramedNote} environment.
+  Frames the note text with to the left of note and is more muted than the \texttt{ShadedNote}.
+  In both cases the note text is \textit{italicized}.
 \end{FramedNote}
 
-If you label an note, you can reference it using the \doccmd{cref} command.
+If you label an note, you can reference it using the \doccmd[cleveref]{cref} command.
 For example, \cref{fn:label} showcases the \docenv{FramedNote} environment.
 You can also use the \docopt{continues} option to continue an note:
 
 \begin{FramedNote}[continues={fn:label}]
-  This is a continuation of the previous note. It will be displayed in a new
-  frame, but will have the same label, title, and number.
+  This is a continuation of the previous note. 
+  It will be displayed in a new frame, but will have the same label, title, and number.
+  Useful if you want to refer to or expand on previous note without having to repeat the information.
 \end{FramedNote}
 
-
-To use them in your own documents, you need to define the environments using:
-
+\noindent The way to use the note environments is as follows:
 \begin{Verbatim}
-  \begin{ShadedNote}[
-    title={Optional title}, 
-    label={Optional label},
-    continues={Optional label}
-    ]
-    Note text here
-  \end{ShadedNote}  
+\begin{ShadedNote}[
+  title={Optional title}, 
+  label={Optional label},
+  continues={Optional label}
+  ]
+  Note text here
+\end{ShadedNote}  
 \end{Verbatim}
 
 
@@ -1397,6 +1404,7 @@ The following \doccls{book} class options are unsupported: \docclsopt{10pt}, \do
 The following headings are not supported: \doccmd{subsubsection} and \doccmd{subparagraph}.
 
 
+%%% TODO: Continue from here
 \chapter{Troubleshooting and Support}\label{ch:troubleshooting}
 \section{\TL\ Website}\label{sec:website}
 The website for the \TL\ packages is located at \url{https://github.com/Tufte-LaTeX/tufte-latex}.
