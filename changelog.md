@@ -3,6 +3,7 @@
 ## 4.0.0 - RELEASE PENDING
 - Consolidate changes by [Chris K. Grant](https://github.com/chriskgrant) and
   [Matthew Y. He](https://github.com/mattyizhengHe).
+- Added custom colors to `tufte-common.def`.
 - Added some styling to section and paragraph titles in the handout class only.
   - Section and subsection titles have now a colored box with section number.
   - All titles are now colored.
@@ -10,14 +11,16 @@
   - Section styling can be disabled with the `nomoderntitles` option.
 - Added `ShadedNote` and `FramedNote` environments to the handout class only.
   - Used to emphasize notes in the documents
-  - Note environments are defined and styled in `tufte-handout.cls`.
+  - Note environments are defined and styled in `tufte-common.def`.
+  - Note environments can be disabled with the `nonotes` option.
+    - This will also prevent loading `cleveref`, `amsthm`, and `thmtools` pkgs.
 - `sfsidenotes` option now **only** sets marginals to use sans serif font,
   previously it also set abstract and titles in handouts to sans serif font.
   - Renamed `sfsidenotes` to `sfmarginals` for better clarity.
 - Added `sftitle` and `nosftitle` to set titles in sans or serif font.
   - For compatibility `sftitle` is false in handouts & true in books.
-  - `sftitle` also defines the abstract font in handouts as sans or serif.
-  - `sftitle` also defines the epigraph font in books as sans or serif.
+  - These options also defines the abstract font in handouts as sans or serif.
+  - These options also defines the epigraph font in books as sans or serif.
 - Added `blankpagetext` command to set the text on blank pages.
   - By default it is empty, but can be redefined to any text.
   - Example in the sample book sets it as such:
@@ -36,10 +39,8 @@
   - `make uninstall` to remove the installed classes from the local texmf tree.
   - `make update` to update the installed classes.
 - Changed monospaced font to `Fira Code` in the sample documents.
-  - Added setting to `custom-tufte-common.tex` to use `Recursive` fonst instead.
+  - Added setting to `custom-tufte-common.tex` to use `Recursive` fonts instead.
   - This setting mostly showcases the capability to change the monospaced font.
-  - `make install` will copy the font files along with the classes.
-- Added custom colors to tufte-common.def.
 - Cleaned up code formatting/style and standardized filenames/structure.
 - Expanded the documentation.
 
