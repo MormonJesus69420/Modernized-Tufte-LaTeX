@@ -23,24 +23,6 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Require packages  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-% Require needed packages for the tufte-handout class
-% The `thmtools' package is required for the Note environments
-%   This package requires the `amsthm' as a backend for theorems
-%   It optionally requires the `hyperref' and `cleveref' packages for references
-%   The `hyperref' package is in common class, the `cleveref' package is not
-%   Additionally, `cleveref' cannot be loaded before `amsthm' package
-%   Therefore these are all loaded here
-%   If you don't need `cleveref' or `amsmath' you can remove them from here
-\RequirePackage{amsmath,amssymb,amsxtra,amsthm}
-\RequirePackage[noabbrev,nameinlink]{cleveref}
-\RequirePackage{thmtools}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Abstract setup  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -57,42 +39,6 @@
     \fi
   \end{quotation}
 }
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%  Define and style note environments  %%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-% Declare Note environments using the `thmtools' package
-% General style for the Note environments
-\declaretheoremstyle[%
-  % Set reference names for the Note environments
-  refname={Note,Notes},%
-  Refname={Notes,Notes},%
-  % Force body text to be italicized
-  bodyfont=\itshape,%
-  % Set name/title so it's not using environment name
-  title={Note}%
-]{Note}
-
-% Declare the ShadedNote environment
-\declaretheorem[%
-  % Add a shaded background to the Note
-  shaded={bgcolor=tufte-pastel-purple,textwidth=30em},%
-  % Set the style to the Note style defined above
-  style={Note}%
-]{ShadedNote}
-
-% Declare the FramedNote environment
-\declaretheorem[%
-  % Add a framing box to the left of Note
-  thmbox={M},%
-  % Share the numbering counter with the ShadedNote environment
-  sibling={ShadedNote},%
-  % Set the style to the Note style defined above
-  style={Note}%
-]{FramedNote}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -8,7 +8,7 @@
 % This should provide you with the most accurate and up-to-date list of options as that's where they are defined
 % Alternatively compile this document with the `debug' and search log output for: `Tufte-LaTeX settings'
 % This sample book should also contain current list of options with explanation in the `Document Class Options' section
-\documentclass[a4paper,debug]{tufte-book}
+\documentclass[a4paper]{tufte-book}
 
 % If you wish to add text to blank pages from \cleardoublepage command, uncomment this block and add your text:
 %
@@ -1108,11 +1108,11 @@ Hence this option exists to load it in the class file.
 
 \subsection{Title Page Options}\label{ssec:title-page-options}
 The \docclsoptdef{notitlepage} option causes \doccmd{maketitle} to generate a title block instead of a title page. 
-By default the \doccls{tufte-book} class uses \docclsopt{titlepage} and the \doccls{tufte-handout} class uses \docclsopt{notitlepage}.
-There is an analogous \docclsoptdef{titlepage} option that forces \doccmd{maketitle} to generate a full title page instead of the title block.
+While the analogous \docclsopt{titlepage} option causes \doccmd{maketitle} to generate a full title page.
+By default the \doccls{tufte-book} class uses \docclsopt{titlepage} option and the \doccls{tufte-handout} class uses the \docclsopt{notitlepage}.
 
 \subsection{Toggle Options}\label{ssec:toggle-options}
-The \docclsoptdef{nobib} option inhibits loading of the \docpkg{natbib} and \docpkg{bibtex} packages and modification of the \doccmd{cite} command.
+The \docclsoptdef{nobib} option inhibits loading of the \docpkg{natbib} and \docpkg{bibtex} packages and modifying the \doccmd{cite} command.
 
 The \docclsoptdef{notoc} option suppresses \TL's custom table of contents (\textsc{toc}) design.
 The current \textsc{toc} design only shows unnumbered chapter titles in books; it doesn't show sections or subsections. 
@@ -1123,29 +1123,30 @@ The default is to load the \docpkg{hyperref} package and use the \doccmd{title} 
 
 The \docclsoptdef{nomoderntitles} is a new option added in the latest version of \TL.
 It only works in the \doccls{tufte-handout} class.
-It disables coloring and styling of the section and paragraph titles.
-The default is to color the titles and add a colored box to the left with section numbers.
+It disables coloring and styling of the section, subsection, and paragraph titles.
+The default is to color the titles and add a colored box to the left with section numbers inside it.
 
 \subsection{Marginal Options}\label{ssec:marginal-options}
 In the \TL\ classes there are four types of marginal materials, which are:
 \docclsoptdef{sidenote}, \docclsoptdef{marginnote}, \docclsoptdef{caption}, and \docclsoptdef{citation}.
 Each of those can have their justification set to one of the following options:
 \begin{description}
-  \item[\docclsopt{justified}] Fully justifies the text (sets it flush left and right).
-  \item[\docclsopt{raggedleft}] Sets the text ragged left.
-  \item[\docclsopt{raggedright}] Sets the text ragged right.
-  \item[\docclsopt{raggedouter}] Sets the text ragged left if on the left-hand (verso) page, otherwise ragged right.
+  \item[\docclsopt{justified}] Sets the text to be justified (sets it flush left and right).
+  \item[\docclsopt{raggedleft}] Sets the text to be ragged left.
+  \item[\docclsopt{raggedright}] Sets the text to be ragged right.
+  \item[\docclsopt{raggedouter}] Sets the text to be ragged left on the left (verso) page, and ragged right on the right (recto) page.
   This is useful in conjunction with the \docclsopt{symmetric} document class option.
-  \item[\docclsopt{auto}] Fully justifies the text if \docclsopt{justified} class option was specified, otherwise the text is set ragged right.
+  \item[\docclsopt{auto}] Justified the text if \docclsopt{justified} class option is on, otherwise used default ragged right text.
   This is the default justification option for marginal material.
 \end{description}
 
-Additionally, the \docclsoptdef{marginals} option can be used to set the justification settings for all marginal texts.
+Additionally, the \docclsoptdef{marginals} option can be used to set the justification settings for all marginal materials.
 See the \nameref{sec:customizing-marginal-material} section for more information on marginal material.
 
 \subsection{Debugging Options}\label{ssec:debugging-options}
 The \docclsoptdef{debug} option causes the \TL\ classes to output debug information to the log file which is useful in troubleshooting bugs.
 It prints list of options and their values under the \texttt{Tufte-LaTeX settings} section.
+Additionally the \doccls{tufte-handout} will print out a dedicated \texttt{Tufte-LaTeX Handout settings} section.
 It will also cause the graphics to be replaced by outlines.
 When combined with \doccmd[geometry]{geometry}\docopt{showframe} command it will show margins for debugging page layout issues.%
 % This command ends the class options index span which started at the beginning of the section
@@ -1159,7 +1160,7 @@ This chapter explores many of the ways you can adjust the \TL\ document classes 
 
 \section{File Hooks}\label{sec:filehooks}%
 \index{file hooks|(}
-When creating many documents using the \TL\ classes, it's easier to store customizations in one file.
+When creating many documents using the \TL\ classes, it's easier to store common customizations in one file.
 Otherwise they would need to be copied into the preamble of each document.
 The \TL\ classes provide three file hooks: \docfilehook{custom-tufte-common.tex}{common}, \docfilehook{custom-tufte-book.tex}{book}, and \docfilehook{custom-tufte-handout.tex}{handout}.\sloppy
 
@@ -1175,6 +1176,10 @@ The \TL\ classes provide three file hooks: \docfilehook{custom-tufte-common.tex}
 \end{description}%
 \index{file hooks|)}
 
+This project comes with a \docfilehook{custom-tufte-common.tex}{common} file hook that demonstrates how to use the file hooks.
+It shows how to change the monospaced font to \texttt{RecursiveMono}.
+You can use it as a starting point for your own customizations.
+
 
 \section{Numbered Section Headings}\label{sec:numbered-sections}%
 \index{headings!numbered}
@@ -1186,6 +1191,7 @@ For example, if you want parts and chapters numbered, but don't want numbering f
 \end{docspec}
 
 The default value of \doccounter{secnumdepth} for the \doccls{tufte-book} class is \(-1\).
+Note that this makes it impossible to use the \docpkg{cleveref} package's \doccmd{cref} command with sections and subsections.
 This version of \doccls{tufte-handout} class sets the counter to \(2\) so sections and subsections are numbered.
 This change was made to make the sections stand out more as I found it hard to distinguish them from the body text.
 If you wish to revert to no numbering, set the counter to \(-1\).
@@ -1209,7 +1215,8 @@ You can also pass the \docclsopt{nomoderntitles} option to the \doccls{tufte-han
       \bottomrule
     \end{tabular}
   \end{center}
-  \caption{Heading levels used with the \texttt{secnumdepth} counter.}
+  \caption{Heading levels used with the \texttt{secnumdepth} counter.}%
+  \label{tab:secnumdepth-values}
 \end{table}
 
 
@@ -1235,12 +1242,12 @@ The \docclsopt{marginals} option simultaneously sets the justification on all fo
 
 Each of the document class options takes one of five justification types:
 \begin{description}
-  \item[\docclsopt{justified}] Fully justifies the text (sets it flush left and right).
-  \item[\docclsopt{raggedleft}] Sets the text ragged left, regardless of which page it falls on.
-  \item[\docclsopt{raggedright}] Sets the text ragged right, regardless of which page it falls on.
-  \item[\docclsopt{raggedouter}] Sets the text ragged left if it falls on the left-hand (verso) page of the spread and otherwise sets it ragged right.
-  This is useful in conjunction with the \docclsopt{symmetric} document class option.
-  \item[\docclsopt{auto}] If the \docclsopt{justified} document class option was specified, then set the text fully justified; otherwise the text is set ragged right. 
+  \item[\docclsopt{justified}] Sets the text to be justified (sets it flush left and right).
+  \item[\docclsopt{raggedleft}] Sets the text to be ragged left, regardless of which page it falls on.
+  \item[\docclsopt{raggedright}] Sets the text to be ragged right, regardless of which page it falls on.
+  \item[\docclsopt{raggedouter}] Sets the text to be ragged left if it falls on the left-hand (verso) page of the spread and otherwise sets it ragged right.
+  This is especially useful when combined with the \docclsopt{symmetric} document class option.
+  \item[\docclsopt{auto}] If the \docclsopt{justified} document class option was specified, then the marginal text will also be justified; otherwise the text is set ragged right. 
   This is the default justification option if one is not explicitly specified.
 \end{description}
 
@@ -1267,6 +1274,111 @@ If, for example, you wanted the captions to be set in italic sans serif, you cou
 \begin{docspec}
   \doccmd{setcaptionfont}\{\doccmdnoindex{itshape}\doccmdnoindex{sffamily}\}
 \end{docspec}
+
+
+\chapter{New Features}\label{ch:new-features}
+\section{Custom Colors}\label{sec:custom-colors}
+\begin{multicols}{2} [
+  \subsection{Color Showcase}
+    The Tufte-\LaTeX\ document classes defines a number of colors.
+    It uses these colors for links, citations, sections, and other elements.
+    The \docpkg{xcolor} package defines the colors.
+    Users can use these colors in their own documents, or redefine them.
+    Here are the colors available in the Tufte-\LaTeX\ document classes:
+]
+\noindent
+\fcolorbox{tufte-black}{tufte-black}{\parbox[c][1.0ex][b]{4em}{\phantom{space}}}
+\Verb|tufte-black| \\
+\fcolorbox{tufte-red}{tufte-red}{\parbox[c][1.0ex][b]{4em}{\phantom{space}}}
+\Verb|tufte-red| \\
+\fcolorbox{tufte-orange}{tufte-orange}{\parbox[c][1.0ex][b]{4em}{\phantom{space}}}
+\Verb|tufte-orange| \\
+\fcolorbox{tufte-yellow}{tufte-yellow}{\parbox[c][1.0ex][b]{4em}{\phantom{space}}}
+\Verb|tufte-yellow| \\
+\fcolorbox{tufte-green}{tufte-green}{\parbox[c][1.0ex][b]{4em}{\phantom{space}}}
+\Verb|tufte-green| \\
+\fcolorbox{tufte-blue}{tufte-blue}{\parbox[c][1.0ex][b]{4em}{\phantom{space}}}
+\Verb|tufte-blue| \\
+\fcolorbox{tufte-purple}{tufte-purple}{\parbox[c][1.0ex][b]{4em}{\phantom{space}}}
+\Verb|tufte-purple| \\
+\fcolorbox{tufte-grey}{tufte-grey}{\parbox[c][1.0ex][b]{4em}{\phantom{space}}}
+\Verb|tufte-grey| \\
+\fcolorbox{tufte-pastel-red}{tufte-pastel-red}{\parbox[c][1.0ex][b]{4em}{\phantom{space}}}
+\Verb|tufte-pastel-red| \\
+\fcolorbox{tufte-pastel-orange}{tufte-pastel-orange}{\parbox[c][1.0ex][b]{4em}{\phantom{space}}}
+\Verb|tufte-pastel-orange| \\
+\fcolorbox{tufte-pastel-yellow}{tufte-pastel-yellow}{\parbox[c][1.0ex][b]{4em}{\phantom{space}}}
+\Verb|tufte-pastel-yellow| \\
+\fcolorbox{tufte-pastel-green}{tufte-pastel-green}{\parbox[c][1.0ex][b]{4em}{\phantom{space}}}
+\Verb|tufte-pastel-green| \\
+\fcolorbox{tufte-pastel-blue}{tufte-pastel-blue}{\parbox[c][1.0ex][b]{4em}{\phantom{space}}}
+\Verb|tufte-pastel-blue| \\
+\fcolorbox{tufte-pastel-purple}{tufte-pastel-purple}{\parbox[c][1.0ex][b]{4em}{\phantom{space}}}
+\Verb|tufte-pastel-purple|
+\end{multicols}
+
+
+\section{Note Environments}\label{sec:note-environments}
+
+Tufte-\LaTeX\ provides two environments for notes. The \docenv{ShadedNote}
+environment provides a shaded background. The \docenv{FramedNote} environment
+places a frame to the left of the note. Both environments use the same 
+counter as they are similar and it doesn't make sense to separate them.
+
+\begin{ShadedNote}
+  This is an example of the \Verb|ShadedNote| environment. It provides a
+  shaded background for the note text. The note text can be long or short.
+\end{ShadedNote}
+
+\begin{FramedNote}[
+  name={Note Title},
+  label={fn:label}
+  ]
+  This is an example of the \Verb|FramedNote| environment. It provides a
+  framed box to the left of the note text. The note text can be long or short.
+\end{FramedNote}
+
+If you label an note, you can reference it using the \doccmd{cref} command.
+For example, \cref{fn:label} showcases the \docenv{FramedNote} environment.
+You can also use the \docopt{continues} option to continue an note:
+
+\begin{FramedNote}[continues={fn:label}]
+  This is a continuation of the previous note. It will be displayed in a new
+  frame, but will have the same label, title, and number.
+\end{FramedNote}
+
+
+To use them in your own documents, you need to define the environments using:
+
+\begin{Verbatim}
+  \begin{ShadedNote}[
+    title={Optional title}, 
+    label={Optional label},
+    continues={Optional label}
+    ]
+    Note text here
+  \end{ShadedNote}  
+\end{Verbatim}
+
+
+\section{Modified Section Headings}\label{sec:changed-section-headings}
+The \doccls{tufte-handout} class provides a new section heading style.
+Every section, subsection and paragraph will have their names colored, in addition the the usual styling.
+Additionally section and subsection titles will have a colored box placed to the left of the title.
+Section number will be placed inside the box.
+This is done to make the sections stand out more, as I found it hard to distinguish them from the body text.
+If you wish to revert to the default styling, you can pass the \docclsopt{nomoderntitles} option to the \doccls{tufte-handout} class.
+
+The following figures shows the difference between the default and the new section heading style.
+
+\begin{figure*}
+  \includegraphics{section-comparison.png}
+  \caption[Comparison between modern and old section styles]{%
+    Comparison between modern and old style section headings.
+    \emph{Notice that the spacing between the sections is a little bit different.}
+    \emph{This was motivated by wanting to equalize the spacing between colored boxes.}
+  }\label{fig:section-headings}
+\end{figure*}
 
 
 \chapter{Compatibility Issues}\label{ch:compatibility}
