@@ -51,9 +51,6 @@
 % Can enable or disable hyphenation of words, even in TT font environments
 \usepackage[htt]{hyphenat}
 
-% Used for extra cross-referencing commands
-\usepackage[noabbrev,nameinlink]{cleveref}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%  Define document metadata, and other useful things like bibliography file  %%
@@ -289,7 +286,7 @@
 \newcommand{\doccls}[1]{\texttt{#1}}
 % Print document class option, in mono font, in hlorange color, add it to the index
 % Label the class option with `clsopt:' prefix
-\newcommand{\docclsoptdef}[1]{
+\newcommand{\docclsoptdef}[1]{%
   \hlorange{\texttt{#1}}\label{clsopt:#1}%
   % Index the class option
   % Syntax: Sort key for class option `@' Styled class option name
@@ -298,7 +295,7 @@
   \index{class options!#1@\texttt{#1}}%
 }
 % Print document class option, in mono font, add it to the index
-\newcommand{\docclsopt}[1]{
+\newcommand{\docclsopt}[1]{%
   {\texttt{#1}}%
   % Index the class option
   % Syntax: Sort key for class option `@' Styled class option name
@@ -1069,7 +1066,7 @@ The \docclsopt{a5paper}, \docclsopt{executivepaper}, and \docclsopt{legalpaper} 
 The \docclsoptdef{twoside} option will modify the running heads so that the page number is printed on the outside edge.In other words it will be placed on the right side of the odd pages, and on the left side of the even pages.
 When it comes to books, the head on the left side will also contain book title, and right side will contain chapter title.
 While in case of the handouts the left side head will use the author name, and right side will use the handout title.
-By default the \TL classes use the \docclsopt{twoside} option, as Tufte's \be\ book has done.\cite{Tufte2006}
+By default the \TL\ classes use the \docclsopt{twoside} option, as Tufte's \be\ book has done.\cite{Tufte2006}
 If you wish to disable it you can use the \docclsopt{oneside} option on a case by case basis.
 
 The \docclsoptdef{symmetric} option typesets the sidenotes on the outside edge of the page, same way the \docclsopt{twoside} option does for the heads.
@@ -1120,6 +1117,10 @@ The \docclsopt{notoc} option will revert to \hologo{LaTeX}'s \textsc{toc} design
 
 The \docclsoptdef{nohyper} option prevents the \docpkg{hyperref} package from being loaded.
 The default is to load the \docpkg{hyperref} package and use the \doccmd{title} and \doccmd{author} contents as metadata for the generated \textsc{pdf}.
+
+The \docclsoptdef{nonotes} option inhibits loading packagaes used for \docenv{ShadedNote} and \docenv{FramedNote} environments.
+By default it loads the \docpkg{amsthm}, \docpkg{cleveref}, and \docpkg{thmtools} packages.
+Using those it defines environments for notes that are either shaded or framed.
 
 The \docclsoptdef{nomoderntitles} is a new option added in the latest version of \TL.
 It only works in the \doccls{tufte-handout} class.
@@ -1187,7 +1188,7 @@ While Tufte dispenses with numbered headings in his books, if you require them, 
 From the table below, select the heading level at which numbering should stop and set the \doccounter{secnumdepth} counter to that value.
 For example, if you want parts and chapters numbered, but don't want numbering for sections or subsections, use the command:
 \begin{docspec}
-  \doccmd{setcounter}\{secnumdepth\}\{0\}
+  \doccmd{setcounter}\{secnumdepth\} \{0\}
 \end{docspec}
 
 The default value of \doccounter{secnumdepth} for the \doccls{tufte-book} class is \(-1\).
@@ -1326,8 +1327,8 @@ It's useful for making important informations stand out, without risk of being l
 
 Both note environments provide a title, a label, and a continuation option.
 The title and label are optional, the label is used for referencing the note or for continuing a note later in the text.
-The \docenv{ShadedNote} environment creates a note with a shaded background. 
-While the \docenv{FramedNote} environment places a frame to the left of the note. 
+The \docenvdef{ShadedNote} environment creates a note with a shaded background. 
+While the \docenvdef{FramedNote} environment places a frame to the left of the note. 
 Both environments use the same counter as they are similar enough so it doesn't make sense to separate them.
 
 \begin{ShadedNote}
@@ -1404,16 +1405,17 @@ The following \doccls{book} class options are unsupported: \docclsopt{10pt}, \do
 The following headings are not supported: \doccmd{subsubsection} and \doccmd{subparagraph}.
 
 
-%%% TODO: Continue from here
 \chapter{Troubleshooting and Support}\label{ch:troubleshooting}
 \section{\TL\ Website}\label{sec:website}
-The website for the \TL\ packages is located at \url{https://github.com/Tufte-LaTeX/tufte-latex}.
+The original website for the \TL\ packages is located at \url{https://tufte-latex.github.io/tufte-latex/}.
 On that website, you'll find links to the \smallcaps{git} repository, mailing lists, bug tracker, and documentation.
 
 However as the project seems to be abandoned as of time of writing, the website may not be available in the future.
 Additionally some of the links there seem to have already been victim of link rot.
-You can find more help and information on the current development of the \TL\ classes at the my GitHub repository.
+You can find more help and information on the current development of the \TL\ classes at my GitHub repository.
 \url{https://github.com/MormonJesus69420/Modernized-Tufte-LaTeX}
+
+\TODO{Create a new website for the project and link it here}
 
 
 \section{\TL\ Mailing Lists}\label{sec:mailing-lists}
@@ -1421,27 +1423,35 @@ There is only one surviving mailing list for the \TL\ project:
 
 \paragraph{Discussion list}
 The \texttt{tufte-latex} discussion list is for asking questions, getting assistance with problems, and help with troubleshooting. 
-Release announcements were also posted to this list. 
-You can subscribe to the \texttt{tufte-latex} discussion list at \url{http://groups.google.com/group/tufte-latex}.
+Release announcements were also posted to this list.%
+\marginnote{You can subscribe to the \texttt{tufte-latex} discussion list at \url{http://groups.google.com/group/tufte-latex}}
 
 \paragraph{Commits list}
 The \texttt{tufte-latex-commits} list used to exist as well as a read-only mailing list. 
-Messages were sent to the list any time the \TL\ code had been updated.
-This list was available at \url{http://groups.google.com/group/tufte-latex-commits}.
+Messages were sent to the list any time the \TL\ code had been updated.%
+\marginnote{This list was available at \url{http://groups.google.com/group/tufte-latex-commits}}
 
 A more modern way to keep up with the development of the \TL\ classes is to follow the GitHub repository.
-You can also open issues there if you encounter any problems or have suggestions for improvements.
-\url{https://github.com/MormonJesus69420/Modernized-Tufte-LaTeX}
+You can use the \textit{Discussions} feature to ask questions, suggest improvements, and interact with other users.%
+\marginnote{\url{https://github.com/MormonJesus69420/Modernized-Tufte-LaTeX/discussions}}
+In case you notice and bugs with the classes, or notice any issues with the documentation, you can open an issue on the GitHub repository.%
+\marginnote{\url{https://github.com/MormonJesus69420/Modernized-Tufte-LaTeX/issues}}
+In case you want to contribute to the project, you can open a pull request on the GitHub repository.%
+\marginnote{\url{https://github.com/MormonJesus69420/Modernized-Tufte-LaTeX/pulls}}
+
+\newthought{I don't plan on using mailing lists} in my project, as I never got used to them, and feel that GitHub provides a more user friendly way to interact with the project.
 
 
 \section{Getting Help}\label{sec:getting-help}
-If you've encountered a problem with one of the \TL\ document classes, have a question, or would like to report a bug, please create an issue on the GitHub repository.
+If you've encountered a problem with one of the \TL\ document classes, have a question, or would like to report a bug, please create an issue or start a discussion on the GitHub repository.
 
-To help with troubleshooting the problem more quickly, please try to compile your document using the \docclsopt{debug} class option and include the generated \texttt{.log} file in the issue, along with a brief description of the problem.
+To help with troubleshooting the problem more quickly, please try to compile your document using the \docclsopt{debug} class option.
+When asking for help include the generated \texttt{.log} file in the issue, along with a brief description of the problem, and if possible a minimal working example that reproduces the issue.
+You can also upload your whole document if you're not sure what's causing the issue, and you are comfortable with sharing the document.
 
 
 \section{Errors, Warnings, and Informational Messages}\label{sec:tl-messages}
-The following is a list of all of the errors, warnings, and other messages generated by the \TL\ classes and a brief description of their meanings.%
+The following is a list of all of the known errors, warnings, and other messages generated by the \TL\ classes and a brief description of their meanings.%
 \index{error messages}\index{warning messages}\index{debug messages}
 
 % Errors
@@ -1455,8 +1465,8 @@ The \doccmd{subsubsection} command is not defined in the \TL\ document classes.
 If you'd like to use the \doccmd{subsubsection} command, you'll need to redefine it yourself.
 See the \nameref{sec:headings} section on page~\pageref{sec:headings} for a description of the heading styles available in the \TL\ document classes.}
 
-\docmsg{Error: You may only call \doccmd{morefloats} twice.
-See the\par\noindent\ \ \ \ \ \ \ \ Tufte-LaTeX documentation for other workarounds.}{%
+\docmsg{Error: You may only call \doccmd{morefloats} twice
+\par\noindent\ \ \ \ \ \ \ See the Tufte-LaTeX documentation for alternatives}{%
 \hologo{LaTeX} allocates 18 slots for storing floats.
 The first time \doccmd{morefloats} is called, it allocates an additional 34 slots.
 The second time \doccmd{morefloats} is called, it allocates another 26 slots.
@@ -1471,7 +1481,7 @@ This warning appears when you've tried to use \docopt{class option} with a \TL\ 
 In this situation, \docopt{class option} is ignored.}
 
 % Info / Debug messages
-\docmsg{Info: The `\docclsopt{symmetric}' option implies `\docclsopt{twoside}'}{%
+\docmsg{Info: The \docclsopt{`symmetric'} option implies \docclsopt{`twoside'}}{%
 You specified the \docclsopt{symmetric} document class option.
 This option automatically forces the \docclsopt{twoside} option as well.
 See page~\pageref{clsopt:symmetric} for more information on the \docclsopt{symmetric} class option.}
@@ -1479,13 +1489,10 @@ See page~\pageref{clsopt:symmetric} for more information on the \docclsopt{symme
 
 \section{Package Dependencies}\label{sec:dependencies}
 The following is a list of packages that the \TL\ document classes rely upon. 
-Packages marked with an asterisk are optional.
+Packages marked with an asterisk are either optional or only loaded for some class options.
 \begin{multicols}{2}
   \begin{itemize}
-    \item amsmath * \textit{for \texttt{Note} environments}
-    \item amssymb * \textit{for \texttt{Note} environments}
-    \item amsthm * \textit{for \texttt{Note} environments}
-    \item amsxtra * \textit{for \texttt{Note} environments}
+    \item ams\{math,symb,thm,xtra\} * \textit{for \texttt{Note} environments}
     \item biblatex * \textit{only if \texttt{nobib} is off, requires \texttt{biber} backend}
     \item bidi * \textit{only if using \texttt{bidi} option}
     \item changepage

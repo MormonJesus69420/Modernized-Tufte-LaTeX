@@ -98,7 +98,7 @@
     % Afterskip, vertical space after the heading
     {-1em \@plus .2ex}%
     % Style for the section
-    {\normalfont\normalsize\bfseries\color{tufte-purple}}%
+    {\normalfont\normalsize\bfseries\itshape\color{tufte-purple}}%
   }%
   %
   % Style the subsections, add blue-colored box with matching italic text 

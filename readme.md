@@ -220,6 +220,7 @@ These options are:
   - `justified` -- sets main content to fully justified layout, flush left and right, instead of the default ragged right
   - `nofonts` -- doesn't load any fonts
   - `nols` -- doesn't configure letterspacing
+  - `nonotes` -- doesn't configure ShadedNote and FramedNote environments
   - `bidi` -- loads the `bidi` package for bi-directional text
 - Title Page Options:
   - `notitlepage` -- creates only a title block with \maketitle (*default in handout*)
@@ -548,6 +549,9 @@ You need to install the missing package.
 Either use your distribution to get them, or download them from [CTAN](http://ctan.org "The CTAN Homepage")
 and install them manually.
 
+More info on common issues can be found in the [sample book](out/sample-book-lualatex.pdf "Sample Book render")
+and corresponding source file: [sample-book.tex](sample-book.tex "Sample Book source file").
+
 <p align="right">(<a href="#readme-top" aria-label="Link to the top of the document">Back to top</a>)</p>
 
 # Roadmap
@@ -555,11 +559,12 @@ Here is a general roadmap of the project:
 
 - [x] Move features from other repos to class files
 - [x] Document new features
-- [ ] Point people to use discussions on GitHub
+- [x] Point people to use discussions on GitHub
+- [ ] Create a github.io page for the project
 - [ ] Improve documentation in:
   - [x] Readme
   - [ ] Sample documents
-    - [ ] Book
+    - [x] Book
     - [ ] Handout
   - [x] Class files
   - [x] Common file
