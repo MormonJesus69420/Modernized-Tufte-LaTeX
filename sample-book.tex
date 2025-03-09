@@ -233,7 +233,7 @@
 \newcommand{\doccmdnoindex}[2][]{\texttt{\tuftebs#2}}
 % Print an optional command argument, italicised, serif font, in angle brackets
 \newcommand{\docopt}[1]{\( \langle \)\textrm{\textit{#1}}\( \rangle \)}
-% Print a required command argument, italicised, serif font, in curly braces
+% Print a required command argument, italicised, serif font
 \newcommand{\docarg}[1]{\textrm{\textit{#1}}}
 
 % Environment for command specification, uses mono font, no skips or indents
@@ -315,7 +315,7 @@
   \medskip\par\noindent#2%
 }
 
-% Print out a file hook (customization files), in mono font, add it to the index
+% Print file hook (customization file), in mono font, add it to the index
 \newcommand{\docfilehook}[2]{%
   \texttt{#1}%
   % Index the file hook
@@ -645,10 +645,10 @@ There seem to be small differences between how the engines typeset text, encode 
 
 
 \section{Headings}\label{sec:headings}\index{headings}
-\newthought{Tufte's books include the following heading levels:} parts, chapters,%
+\newthought{Tufte's books include the following heading levels:} \doccmd{parts}, \doccmd{chapters},%
 \sidenote[][-1em]{Parts and chapters are defined for the \texttt{tufte-book} class only.}
-sections, subsections, and paragraphs. 
-By default subsubsection and subparagraph headings are not defined in the \TL\ classes.
+\doccmd{sections}, \doccmd{subsections}, and \doccmd{paragraphs}. 
+By default \doccmd{subsubsection} and \doccmd{subparagraph} headings are not defined in the \TL\ classes.
 \sidenote[][-0.5em]{For more information on this topic, see~\cite{Bringhurst2005}, section 4.2.2}
 
 \begin{table}[h]
@@ -669,7 +669,7 @@ By default subsubsection and subparagraph headings are not defined in the \TL\ c
   \caption{Heading styles used in \BE.}\label{tab:heading-styles}
 \end{table}
 
-\paragraph{Paragraph} Paragraph headings (as shown here) are introduced by italicized text and separated from the main paragraph by a bit of space.
+\paragraph{Paragraph} The \doccmd{paragraph} headings (as shown here) are introduced by italicized text and separated from the main paragraph by a bit of space.
 
 
 \section{Environments}
@@ -1406,6 +1406,110 @@ The following figures shows the difference between the default and the new secti
   }\label{fig:section-headings}
 \end{figure*}
 
+
+\chapter[Installing and Compiling Tufte-LaTeX]{Installing and Compiling \TL}\label{ch:installing}
+\section{Local Installation}\label{sec:local-installation}
+To install the \TL\ classes locally, download the source files from the GitHub repository%
+\sidenote{Repository can be found at \url{https://github.com/MormonJesus69420/Modernized-Tufte-LaTeX}}.
+Then you can place the following class files in the same directory as your \TeX\ document:
+\begin{itemize}
+  \item \texttt{tufte-common.def}
+  \item \texttt{tufte-handout.cls}
+  \item \texttt{tufte-book.cls}
+  \item \texttt{custom-tufte-common.tex} \textit{(optional)}
+\end{itemize}
+
+You can then either compile the document using \texttt{latexmk} or use the provided \texttt{makefile} to compile the document.
+See the \nameref{sec:compiling-your-document} section for more information on compiling the document.
+
+
+\section{Global Installation}\label{sec:global-installation}
+To install the \TL\ classes globally, you can place the class files in your \TeX\ distribution's \texttt{tex/latex/tufte-latex} directory.
+If doing it by hand use the \texttt{kpsewhich -var-value TEXMFHOME} to find the correct directory, and copy the files there.
+After copying the files, you will need to update the \TeX\ distribution's file database.
+To do that run the \texttt{texhash} command in the terminal.
+
+You can also use the \texttt{install} target from provided \texttt{makefile}.
+This will do all these steps for you, installing additional documentation files and more.
+
+
+\section{Installing from CTAN}\label{sec:installing-from-ctan}
+\TODO{Provide installation guide from CTAN when package is published there}
+
+
+\section{Compiling Your Document}\label{sec:compiling-your-document}
+The \TL\ classes can be compiled using \iPdfLaTeX, \iXeLaTeX, or \iLuaLaTeX.
+I personally recommend using \iLuaLaTeX, as it provides the best support for \TL\ functionality without and quirks that \iXeLaTeX\ has.
+
+The \TL\ classes are designed to work with the \docpkg{biblatex} package for bibliographies.
+As such you will need to have \texttt{biber} installed on your system to compile the bibliography files.
+
+% As mentioned before you can use the provided [makefile](makefile "The makefile")
+% to compile the sample documents with `make compile-lua`, `make compile-xe`, or `make compile-pdf`.
+% In case of single files use the `make compile-only FILE="<file>.tex"` target.
+% This will use the `LuaLaTeX` engine, however you can change the target to use any engine you like.
+% I would recommend changing the `-outdir=samples` to a directory of your choice, for example: `-outdir=out`.
+
+% Cleaning up the auxiliary files can be done with `make clean`.
+% If you want to get rid of both auxiliary files and compiled PDFs use `make clean-all`.
+
+% For simplicity here is the minimal makefile without install related commands, using only `LuaLaTeX` engine.
+% You can use it in your projects to compile the documents, even if they use different classes.
+% If needed you can change the engine to `XeLaTeX` or `pdfLaTeX` by changing the `-lualatex` option to `-xelatex` or `-pdflatex`.
+
+% <details>
+%   <summary>Simplified makefile for general use</summary>
+
+% ```make
+% LMKFLAGS = -outdir=out -auxdir=aux -bibtex
+
+% compile-all:
+% 	latexmk $(LMKFLAGS) -lualatex -jobname=%A-lualatex \
+% 	$(shell find . -maxdepth 1 -name '*.tex' -not -path '*/custom-tufte-*')
+
+% compile-only:
+% 	if [ -z "$(FILE)" ]; then \
+% 		echo "You need to provide a FILE parameter when using this target"; \
+% 		echo "make compile-only FILE=\"<file>.tex\""; \
+% 	else \
+% 		latexmk $(LMKFLAGS) -lualatex -jobname=%A "$(FILE)"; \
+% 	fi
+
+% clean:
+% 	# Remove folder with auxiliary files
+% 	rm -rfv aux
+
+% clean-all:
+% 	# Remove folders with auxiliary and output files
+% 	rm -rfv aux out
+% ```
+
+% </details>
+
+% You can also compile the documents with `latexmk`.
+% To use `latexmk`, substituting `ENGINE` with preferred engine, and `SOURCE.tex` with the name of your source file.
+% ```shell
+% latexmk -outdir=out -auxdir=aux -bibtex -ENGINE -jobname=%A-lualatex SOURCE.tex
+% ```
+
+% You could also do things manually.
+% For files using the `tufte-handout` class, you should do something like this:
+% ```shell
+% lualatex  SOURCE.tex
+% biber     SOURCE
+% lualatex  SOURCE.tex
+% lualatex  SOURCE.tex
+% ```
+
+% For files using the `tufte-book` class, you might do something like:
+% ```shell
+% lualatex  SOURCE.tex
+% biber     SOURCE
+% makeindex SOURCE.idx
+% lualatex  SOURCE.tex
+% lualatex  SOURCE.tex
+% lualatex  SOURCE.tex
+% ```
 
 \chapter{Compatibility Issues}\label{ch:compatibility}
 When switching an existing document from one document class to a \TL\ document class, a few changes to the document may have to be made.
