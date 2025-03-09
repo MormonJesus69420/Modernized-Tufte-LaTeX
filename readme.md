@@ -131,7 +131,6 @@ which shows how you can override font settings.
 If you don't want to use it, you can remove it or replace it with your own packages, commands, and settings.
 
 In case you are not interested in the sample files you can use minimal example below:
-
 <details>
   <summary>Minimal tufte-handout document setup</summary>
 
@@ -140,11 +139,12 @@ In case you are not interested in the sample files you can use minimal example b
 
 \title{Your Title}
 \author{Your Name}
-\date{2025-03-01} % /optional/, sets document date, can use \today or omit it
+\date{2025-03-01} % /optional/, sets document date, uses \today if omitted
 
 \addbibresource{your-bibliography.bib} % /optional/, used for bibliography
 
 \begin{document}
+
 \maketitle
 
 \begin{abstract} % /optional/, creates an abstract
@@ -153,15 +153,14 @@ In case you are not interested in the sample files you can use minimal example b
 
 % Your content goes here
 
-\printbibliography[heading=bibnumbered] % /optional/,prints bibliography if used
+\printbibliography[heading=bibnumbered] % /optional/, prints bibliography if used
 
 \end{document}
 ```
-
 </details>
+ㅤㅤ  
 
 For books you can use this minimal example:
-
 <details>
   <summary>Minimal tufte-book document setup</summary>
 
@@ -173,7 +172,7 @@ For books you can use this minimal example:
 \title{Your title}
 \author{Your name}
 \publisher{Your publisher} % /optional/, sets publisher name
-\date{2025-03-01} % /optional/, sets document date, can use \today or omit it
+\date{2025-03-01} % /optional/, sets document date, uses \today if omitted
 
 \usepackage{makeidx} % /optional/, used for index
 \makeindex
@@ -182,7 +181,7 @@ For books you can use this minimal example:
 
 \begin{document}
 
-\frontmatter % See `sample-book.tex` for more things to include in frontmatter
+\frontmatter % See `sample-book.tex` for example of things to include in frontmatter
 
 \tableofcontents
 
@@ -202,7 +201,6 @@ For books you can use this minimal example:
 
 \end{document}
 ```
-
 </details>
 
 ## Class Options
@@ -385,13 +383,13 @@ Additionally the Tufte-LaTeX classes require the following packages:
 - `ETbb` * *if available, and `nofonts` is off*
 - `fancyhdr`
 - `FiraMono` * *if available, and `nofonts` is off*
-- `fontenc` * *only with pdf\LaTeX, and `nofonts` is off*
-- `fontspec` * *only with \tXeLaTeX or \tLuaLaTeX, and `nofonts` is off*
+- `fontenc` * *only with pdfLaTeX, and `nofonts` is off*
+- `fontspec` * *only with XeLaTeX or LuaLaTeX, and `nofonts` is off*
 - `geometry`
 - `gillius2` * *if available, and `nofonts` is off*
 - `hardwrap`
 - `hyperref` * *only if `nohyper` is off*
-- `iftex` * *if not it assumes pdfLaTeX*
+- `iftex` * *if not available it will assume document is compiled with pdfLaTeX*
 - `letterspace` * *only if `nols` is off*
 - `mathpazo` * *if available, and `nofonts` is off*
 - `multicol`
@@ -421,11 +419,18 @@ It should work on other systems as well, but I have not tested it.
 Mainly because I don't have a Mac, and refuse to use Windows even on pain of death.
 
 <!--
-I'd just like to interject for a moment. What you're refering to as Linux, is in fact, GNU/Linux, or as I've recently taken to calling it, GNU plus Linux. Linux is not an operating system unto itself, but rather another free component of a fully functioning GNU system made useful by the GNU corelibs, shell utilities and vital system components comprising a full OS as defined by POSIX.
+I'd just like to interject for a moment.
+What you're refering to as Linux, is in fact, GNU/Linux, or as I've recently taken to calling it, GNU plus Linux.
+Linux is not an operating system unto itself, but rather another free component of a fully functioning GNU system made useful by the GNU corelibs, shell utilities and vital system components comprising a full OS as defined by POSIX.
 
-Many computer users run a modified version of the GNU system every day, without realizing it. Through a peculiar turn of events, the version of GNU which is widely used today is often called Linux, and many of its users are not aware that it is basically the GNU system, developed by the GNU Project.
+Many computer users run a modified version of the GNU system every day, without realizing it.
+Through a peculiar turn of events, the version of GNU which is widely used today is often called Linux, and many of its users are not aware that it is basically the GNU system, developed by the GNU Project.
 
-There really is a Linux, and these people are using it, but it is just a part of the system they use. Linux is the kernel: the program in the system that allocates the machine's resources to the other programs that you run. The kernel is an essential part of an operating system, but useless by itself; it can only function in the context of a complete operating system. Linux is normally used in combination with the GNU operating system: the whole system is basically GNU with Linux added, or GNU/Linux. All the so-called Linux distributions are really distributions of GNU/Linux!
+There really is a Linux, and these people are using it, but it is just a part of the system they use.
+Linux is the kernel: the program in the system that allocates the machine's resources to the other programs that you run.
+The kernel is an essential part of an operating system, but useless by itself; it can only function in the context of a complete operating system.
+Linux is normally used in combination with the GNU operating system: the whole system is basically GNU with Linux added, or GNU/Linux.
+All the so-called Linux distributions are really distributions of GNU/Linux!
 -->
 
 <p align="right">(<a href="#readme-top" aria-label="Link to the top of the document">Back to top</a>)</p>
@@ -575,6 +580,7 @@ Here is a general roadmap of the project:
   - [x] This issue was fixed so it is no longer relevant
 - [ ] Publish changes in a new release
 - [ ] Publish on CTAN *maybe*
+  - [ ] Pipeline to make realease and prep package for CTAN
   - [ ] Add badge with version to the readme
 - [x] Add feature to disable colored sections and paragraphs with option switch
 
@@ -612,14 +618,15 @@ I greatly appreciate any help, and feedback you can provide.
 
 # Contact
 The project is maintained by [Daniel Aaron Salwerowicz](https://github.com/MormonJesus69420 "My GitHub page").
-You can reach out to me by opening an issue, or by sending me an email at: [daniel@salwerowi.cz](mailto:daniel@salwerowi.cz).
+You can reach out to me by opening an issue, or starting a discussion on this GitHub page.
+If you want a more private alternative you can send me an email at: [daniel@salwerowi.cz](mailto:daniel@salwerowi.cz).
 
 <p align="right">(<a href="#readme-top" aria-label="Link to the top of the document">Back to top</a>)</p>
 
 # Acknowledgements
 I would like to thank the original authors of the Tufte-LaTeX classes:
 [Kevin Godby](https://github.com/godbyk "Kevin Godby's GitHub page"),
-[Bil Kleb](https://github.com/kleb "Bil Kleb's GitHub page"), and Bill Wood
+[Bil Kleb](https://github.com/kleb "Bil Kleb's GitHub page"), and Bill Wood.
 
 As well as [Chris K. Grant](https://github.com/chriskgrant "Chris K. Grant's GitHub page")
 and [Matthew Y. He](https://github.com/mattyizhengHe "Matthew Y. He's GitHub page")
@@ -628,19 +635,19 @@ who have made changes to the classes that I found useful and have incorporated i
 <p align="right">(<a href="#readme-top" aria-label="Link to the top of the document">Back to top</a>)</p>
 
 # License
-Copyright 2007–2019 by Kevin Godby, Bil Kleb, and Bill Wood.
-Copyright 2025-... by Daniel Aaron Salwerowicz.
+Copyright 2007–2019 by Kevin Godby, Bil Kleb, and Bill Wood.  
+Copyright 2025-... by Daniel Aaron Salwerowicz (only to the changes made by me).
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
+Licensed under the Apache License, Version 2.0 (the "License");  
+you may not use this file except in compliance with the License.  
 You may obtain a copy of the License at
 
     http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
+Unless required by applicable law or agreed to in writing, software  
+distributed under the License is distributed on an "AS IS" BASIS,  
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  
+See the License for the specific language governing permissions and  
 limitations under the License.
 
 <p align="right">(<a href="#readme-top" aria-label="Link to the top of the document">Back to top</a>)</p>
