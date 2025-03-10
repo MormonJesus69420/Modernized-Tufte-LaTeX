@@ -1444,72 +1444,77 @@ I personally recommend using \iLuaLaTeX, as it provides the best support for \TL
 The \TL\ classes are designed to work with the \docpkg{biblatex} package for bibliographies.
 As such you will need to have \texttt{biber} installed on your system to compile the bibliography files.
 
-% As mentioned before you can use the provided [makefile](makefile "The makefile")
-% to compile the sample documents with `make compile-lua`, `make compile-xe`, or `make compile-pdf`.
-% In case of single files use the `make compile-only FILE="<file>.tex"` target.
-% This will use the `LuaLaTeX` engine, however you can change the target to use any engine you like.
-% I would recommend changing the `-outdir=samples` to a directory of your choice, for example: `-outdir=out`.
+\subsection{Compiling with \texttt{makefile}}\label{ssec:compiling-with-makefile}
+As mentioned before you can use the provided \texttt{makefile} to compile the sample documents with either \texttt{make compile-lua}, \texttt{make compile-xe}, or \texttt{make compile-pdf}.
+It is up to you which engine you prefer to use, but from my experience \iLuaLaTeX\ provides the best results and is the most reliable of them all.
+In case of single files use the \texttt{make compile-only FILE="<file>.tex"} target.
+It is set up to use \iLuaLaTeX\ by default, but you can change it to use \iXeLaTeX\ or \iPdfLaTeX\ by changing the \texttt{-lualatex} option to \texttt{-xelatex} or \texttt{-pdflatex}.
 
-% Cleaning up the auxiliary files can be done with `make clean`.
-% If you want to get rid of both auxiliary files and compiled PDFs use `make clean-all`.
+In general I would recommend changing the \texttt{-outdir=samples} in the \texttt{LMKFLAGS} variable to a directory of your choice, for example: \texttt{-outdir=out}.
 
-% For simplicity here is the minimal makefile without install related commands, using only `LuaLaTeX` engine.
-% You can use it in your projects to compile the documents, even if they use different classes.
-% If needed you can change the engine to `XeLaTeX` or `pdfLaTeX` by changing the `-lualatex` option to `-xelatex` or `-pdflatex`.
+If you wish to clean up the auxiliary files, use the \texttt{make clean} target.
+And the remove both auxiliary files and compiled PDFs use the \texttt{make clean-all} target.
 
-% <details>
-%   <summary>Simplified makefile for general use</summary>
+\newthought{In most usecases you can use this} simplified \texttt{makefile}, with only the necessary targets for most use-cases.
+You may use it to compile files using different \hologo{LaTeX} classes too.
+As before you can change \iLuaLaTeX\ for other engines.
 
-% ```make
-% LMKFLAGS = -outdir=out -auxdir=aux -bibtex
+\begin{fullwidth}
+\begin{Verbatim}
+LMKFLAGS = -outdir=out -auxdir=aux -bibtex
 
-% compile-all:
-% 	latexmk $(LMKFLAGS) -lualatex -jobname=%A-lualatex \
-% 	$(shell find . -maxdepth 1 -name '*.tex' -not -path '*/custom-tufte-*')
+compile-all:
+  latexmk $(LMKFLAGS) -lualatex -jobname=%A-lualatex \
+  $(shell find . -maxdepth 1 -name '*.tex' -not -path '*/custom-tufte-*')
 
-% compile-only:
-% 	if [ -z "$(FILE)" ]; then \
-% 		echo "You need to provide a FILE parameter when using this target"; \
-% 		echo "make compile-only FILE=\"<file>.tex\""; \
-% 	else \
-% 		latexmk $(LMKFLAGS) -lualatex -jobname=%A "$(FILE)"; \
-% 	fi
+compile-only:
+  if [ -z "$(FILE)" ]; then \
+    echo "You need to provide a FILE parameter when using this target"; \
+    echo "make compile-only FILE=\"<file>.tex\""; \
+  else \
+    latexmk $(LMKFLAGS) -lualatex -jobname=%A "$(FILE)"; \
+  fi
 
-% clean:
-% 	# Remove folder with auxiliary files
-% 	rm -rfv aux
+clean:
+  rm -rfv aux
 
-% clean-all:
-% 	# Remove folders with auxiliary and output files
-% 	rm -rfv aux out
-% ```
+clean-all:
+  rm -rfv aux out
+\end{Verbatim}
+\end{fullwidth}
 
-% </details>
+\subsection{Compiling manually}\label{ssec:compiling-with-latexmk}
+You may also compile the documents with \texttt{latexmk} directly using the following command:
+Just substitute ``\texttt{<<engine>>}'' with your preferred engine, and ``\texttt{<<source.tex>>}'' with the name of your source file.
+\begin{fullwidth}
+\begin{Verbatim}
+  latexmk -outdir=out -auxdir=aux -bibtex -<<engine>> -jobname=%A-lualatex <<source.tex>>
+\end{Verbatim}
+\end{fullwidth}
 
-% You can also compile the documents with `latexmk`.
-% To use `latexmk`, substituting `ENGINE` with preferred engine, and `SOURCE.tex` with the name of your source file.
-% ```shell
-% latexmk -outdir=out -auxdir=aux -bibtex -ENGINE -jobname=%A-lualatex SOURCE.tex
-% ```
+You may also do things fully manually.
+To compile \doccls{tufte-handout}, you should do something like this:
+\begin{fullwidth}
+\begin{Verbatim}
+lualatex  <<source.tex>> # Replace <<source.tex>> with the name of your source file
+biber     <<source>>     # Note that the file extension is omitted
+lualatex  <<source.tex>>
+lualatex  <<source.tex>>
+\end{Verbatim}
+\end{fullwidth}
 
-% You could also do things manually.
-% For files using the `tufte-handout` class, you should do something like this:
-% ```shell
-% lualatex  SOURCE.tex
-% biber     SOURCE
-% lualatex  SOURCE.tex
-% lualatex  SOURCE.tex
-% ```
+To compile \doccls{tufte-handout}, you should do something like this:
+\begin{fullwidth}
+\begin{Verbatim}
+lualatex  <<source.tex>> # Replace <<source.tex>> with the name of your source file
+biber     <<source>>     # Note that the file extension is omitted
+makeindex <<source.idx>> # If you are using an index
+lualatex  <<source.tex>>
+lualatex  <<source.tex>>
+lualatex  <<source.tex>>
+\end{Verbatim}
+\end{fullwidth}
 
-% For files using the `tufte-book` class, you might do something like:
-% ```shell
-% lualatex  SOURCE.tex
-% biber     SOURCE
-% makeindex SOURCE.idx
-% lualatex  SOURCE.tex
-% lualatex  SOURCE.tex
-% lualatex  SOURCE.tex
-% ```
 
 \chapter{Compatibility Issues}\label{ch:compatibility}
 When switching an existing document from one document class to a \TL\ document class, a few changes to the document may have to be made.

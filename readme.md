@@ -507,11 +507,9 @@ compile-only:
 	fi
 
 clean:
-	# Remove folder with auxiliary files
 	rm -rfv aux
 
 clean-all:
-	# Remove folders with auxiliary and output files
 	rm -rfv aux out
 ```
 
