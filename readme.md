@@ -594,6 +594,10 @@ There are some bugs or quirks that I am aware of:
 - The `\cite` command no longer supports vertical offset.
   - This is because `biblatex` uses its own arguments in `\cite` command.
   - I will not fix this, as `biblatex` arguments are more useful, and you can offset other overlaping elements.
+- When referencing an item placed in sidenote---like a figure or table---using the `\cref` command, the reference will link to section where the sidenote is placed.
+  - I think this has something to do with the way marginal material and its captions/labels are handled.
+  - I don't know how to fix this, I am open for suggestions on possible solutions or ideas as to why it's not working properly.
+  - References to things in main text work just fine.
 - In `tufte-handout` sections must be numbered or the title overlaps with colored box.
   - This is most visible in case of Reference/Bibliography section, as by default it is unnumbered.
   - My simple fix is to make every section numbered, but this might not be ideal for everyone.
