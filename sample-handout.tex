@@ -137,7 +137,8 @@
 % Print title with author and date
 \maketitle
 
-% Add an abstract
+% Add an abstract, utilizes quotation environment under the hood
+% Text will be indented and a bit smaller than the main text
 \begin{abstract}
   \noindent
   This document describes the \TL\ \doccls{tufte-handout} document class style.
@@ -188,12 +189,6 @@ number), you can use the \doccmd{marginnote} command.
 In his books Tufte places margin on the right side of the page, regardless whether it's an even or odd page.
 If you prefer to alternate the placement of margins, so they fall on outer edge you can use the \docclsopt{symmetric} class option.
 
-\newthought{On a personal note}, placing of sidenotes---be it footnote, citation, or other---should follow the following rules:
-\begin{itemize}
-  \item If the sidenote applies to the whole sentence, it should be placed after the period or other punctuation mark.
-  \item If the sidenote applies to a specific word, it should be placed immediately after that word, even if the word is in the middle of the sentence, or followed by a punctuation mark.
-  \item If a sidenote is a complete sentence, or a citation, it should end with a period.
-\end{itemize}
 The specification of the \doccmd{sidenote} command is:
 \begin{docspec}
   \doccmd{sidenote}[\docopt{number}][\docopt{offset}]\{\docarg{Sidenote text.}\}
