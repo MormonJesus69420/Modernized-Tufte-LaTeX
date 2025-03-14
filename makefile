@@ -43,6 +43,7 @@ compile-only:
 		echo "make compile-only FILE=\"<file>.tex\""; \
 	else \
 		latexmk $(LMKFLAGS) -lualatex -jobname=%A-lualatex "$(FILE)"; \
+		xdg-open samples/$(basename $(FILE))-lualatex.pdf; \
 	fi
 
 # Remove folder with auxiliary files
