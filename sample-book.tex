@@ -873,7 +873,7 @@ As an example, the caption to \cref{fig:textfig} above was given in the form:
   \doccmd{caption}[Hilbert curves\ldots][1em]\{Hilbert curves\ldots{}\}
 \end{docspec}
 
-\newthought{Note that caption offset is unavailable} for \docenv{marginfigure} and \docenv{margintable} environments.
+\newthought{Caption offset is unavailable} for \docenv{marginfigure} and \docenv{margintable} environments.
 In these cases you need to offset the whole figure or table.
 Captions in \docenv{marginfigure} and \docenv{margintable} still support short captions.
 
@@ -1029,9 +1029,10 @@ The \docpkg{fontspec} package is not available under \hologo{pdfLaTeX}, so it us
 This package doesn't make it easy to use non-standard fonts, so it's recommended to use \iXeLaTeX\ or \iLuaLaTeX\ for the best results.
 Alternatively install and use font packages that are compatible with \hologo{pdfLaTeX}.
 
-\newthought{In cases where} \docclsopt{nofonts} option is used, the \TL\ classes will not load any fonts.
-It will not load \docpkg{fontspec} or \docpkg{fontenc} packages either.%
-In \hologo{LuaLaTeX} or \hologo{XeLaTeX} both \docclsopt{nofonts} \textbf{and} \docclsopt{nols} must be used to disable loading \docpkg{fontspec}. More info in \nameref{ssec:letterspacing} section.
+In cases where \docclsopt{nofonts} option is used, the \TL\ classes will not load any fonts.
+In \hologo{pdfLaTeX} will not load the \docpkg{fontenc} package.
+In other engines \docclsopt{nols} option must also be used to disable loading of \docpkg{fontspec} package.
+More info in following subsection.
 
 \subsection{Letterspacing}\label{ssec:letterspacing}
 This document class includes two new commands and some improvements on existing commands for letterspacing.
@@ -1237,8 +1238,7 @@ Normally, the justification of the marginal material follows the justification o
 If you specify the \docclsopt{justified} document class option, all of the margin material will be fully justified as well. 
 If you don't specify the \docclsopt{justified} option, then the marginal material will be set ragged right.
 
-You can set the justification of the marginal material separately from the body text using the following document class options: \docclsopt{sidenote}, \docclsopt{marginnote}, \docclsopt{caption}, \docclsopt{citation}, and \docclsopt{marginals}. 
-Each option refers to its obviously corresponding marginal material type. 
+You can set the justification of the marginal material separately from the body text using the following document class options: \docclsopt{sidenote}, \docclsopt{marginnote}, \docclsopt{caption}, \docclsopt{citation}, and \docclsopt{marginals}.
 The \docclsopt{marginals} option simultaneously sets the justification on all four marginal material types.
 
 Each of the document class options takes one of five justification types:
@@ -1252,7 +1252,7 @@ Each of the document class options takes one of five justification types:
   This is the default justification option if one is not explicitly specified.
 \end{description}
 
-\noindent For example, 
+\noindent For example: 
 \begin{docspec}
   \doccmdnoindex{documentclass}[symmetric,justified,marginals=raggedouter]\{tufte-book\}
 \end{docspec}
@@ -1278,9 +1278,8 @@ If, for example, you wanted the captions to be set in italic sans serif, you cou
 
 
 \chapter[New Features in Tufte-LaTeX Classes]{New Features in \TL\ Classes}\label{ch:new-features}
-\section{Custom Colors}\label{sec:custom-colors}
 \begin{multicols}{2} [
-  \subsection{Color Showcase}
+  \section{Custom Colors}\label{sec:custom-colors}
     The new \TL\ document classes define a number of custom colors.
     They use these colors for things like links, citations, links, etc.
     In case of \doccls{tufte-handout} class it also uses them for the section titles.

@@ -87,15 +87,15 @@
 % Shortcut for printing the Tufte-LaTeX class name
 \newcommand{\TL}{Tufte-\hologo{LaTeX}\xspace}
 
-% Shortcuts for printing various TeX logos and adding them into the index
-% Prints formatted XeLaTeX logo and adds it to the index
-\newcommand{\iXeLaTeX}{\hologo{XeLaTeX}\index{XeLaTeX@\protect\hologo{XeLaTeX}}\xspace}
-% Prints formatted LuaLaTeX logo and adds it to the index
-\newcommand{\iLuaLaTeX}{\hologo{LuaLaTeX}\index{LuaLaTeX@\protect\hologo{LuaLaTeX}}\xspace}
-% Prints formatted pdfLaTeX logo and adds it to the index
-\newcommand{\iPdfLaTeX}{\hologo{pdfLaTeX}\index{pdfLaTeX@\protect\hologo{pdfLaTeX}}\xspace}
-% Prints formatted BibLaTeX logo and adds it to the index
-\newcommand{\iBibLaTeX}{Bib\hologo{LaTeX}\index{BibLaTeX@\protect{}Bib\hologo{LaTeX}}\xspace}
+% Shortcuts for printing various TeX logos
+% Prints formatted XeLaTeX logo
+\newcommand{\iXeLaTeX}{\hologo{XeLaTeX}\xspace}
+% Prints formatted LuaLaTeX logo
+\newcommand{\iLuaLaTeX}{\hologo{LuaLaTeX}\xspace}
+% Prints formatted pdfLaTeX logo
+\newcommand{\iPdfLaTeX}{\hologo{pdfLaTeX}\xspace}
+% Prints formatted BibLaTeX logo
+\newcommand{\iBibLaTeX}{Bib\hologo{LaTeX}\xspace}
 
 % Prints a TODO item in bold tufte-red color, followed by the text of the TODO item
 \newcommand{\TODO}[1]{\textcolor{tufte-red}{\textbf{TODO!} #1}\xspace}
@@ -156,13 +156,13 @@ The \TL\ document classes define a style similar to the style Edward Tufte uses 
 Tufte's style is known for its extensive use of sidenotes, tight integration of graphics with text, and well-set typography.
 This document aims to be at once a demonstration of the features of the \TL\ document classes and a style guide to their use.
 
-\subsection{Headings}\label{sec:headings}
+\subsection{Headings}\label{ssec:headings}
 This style provides \textsc{a}- and \textsc{b}-heads (that is, \doccmd{section} and \doccmd{subsection}), demonstrated above.
 \paragraph{Paragraph} The \doccmd{paragraph} headings (as shown here) are introduced by italicized text and separated from the main paragraph by a bit of space.
 
 By default \doccmd{subsubsection} and \doccmd{subparagraph} headings are not defined in the \TL\ classes.
 They will emit an error if you try to use them and any smaller heading.
-For more information about these choices, see the sample book for subsection called \textit{``Headings''} in the \textit{``On the Use of the \texttt{tufte-book} Document Class''} chapter.
+For more information about these choices, see the \textit{``Sample Book''} in subsection called \textit{``Headings''} in the \textit{``On the Use of the \texttt{tufte-book} Document Class''} chapter.
 There is also an informative section called \textit{``Numbered Section Headings''} in the \textit{``Customizing \TL''} chapter.
 
 % Start a new thought which will put text in caps and give it a bit of vertical space
@@ -174,7 +174,7 @@ To accomplish this effect using this style, use the \Verb|\newthought| command:
   \doccmd{newthought\{In his later books\}, Tufte starts\ldots}
 \end{docspec}
 
-\subsection{Sidenotes}\label{sec:sidenotes}
+\subsection{Sidenotes}\label{ssec:sidenotes}
 One of the most prominent and distinctive features of this style is the extensive use of sidenotes.
 The wide margin on the right side provides ample room for sidenotes and small figures.
 Any \doccmd{footnote} will automatically be converted into a \doccmd{sidenote}.%
@@ -198,32 +198,19 @@ Both the \docopt{number} and \docopt{offset} arguments are optional.
 If you provide a \docopt{number} argument, then that number will be used as the sidenote number.
 It will only change the number of the current sidenote, and will not affect the numbering sequence of subsequent sidenotes.
 
-Sometimes a sidenote may run over the top of other text or graphics in the margin space.
-If this happens, you can adjust the vertical position of the sidenote by providing a dimension in the \docopt{offset} argument.
+You can adjust the vertical position of the sidenote by providing a dimension in the \docopt{offset} argument.
 Some examples of valid dimensions are:
 \begin{docspec}
   \ttfamily 1.0in \qquad 2.54cm \qquad 254mm \qquad 6\Verb|\baselineskip|
 \end{docspec}
 If the dimension is positive, it will push the sidenote down the page; if the dimension is negative, it will pull the sidenote up the page.
 
-While both the \docopt{number} and \docopt{offset} arguments are optional, they must be provided in order.
-To adjust the vertical position of the sidenote while leaving the sidenote number alone, use the following syntax:
-\begin{docspec}
-  \doccmd{sidenote}[][\docopt{offset}]\{\docarg{Sidenote text.}\}
-\end{docspec}
-The empty brackets tell the \Verb|\sidenote| command to use the default sidenote number.
-
-If you \emph{only} want to change the sidenote number, however, you may completely omit the \docopt{offset} argument:
-\begin{docspec}
-  \doccmd{sidenote}[\docopt{number}]\{\docarg{Sidenote text.}\}
-\end{docspec}
-
 The \doccmd{marginnote} command has a similar \docarg{offset} argument:
 \begin{docspec}
   \doccmd{marginnote}[\docopt{offset}]\{\docarg{Margin note text.}\}
 \end{docspec}
 
-\subsection{References}
+\subsection{References}\label{ssec:references}
 References are placed alongside their citations as sidenotes, as well.
 This can be accomplished using the normal \doccmd{cite} command or the \doccmd{autocite} command, which functions similarly.%
 \sidenote{%
@@ -241,14 +228,10 @@ To enter multiple citations at one location,\autocite{Tufte2006,Tufte1990} you c
 \end{docspec}
 
 \newthought{In the new version of \TL}, it's impossible to offset citation's position the same way sidenotes can be moved up or down the margin.
-This is caused by the change from \docpkg{natbib} package and \hologo{BibTeX} tool to \docpkg{biblatex} package and \hologo{biber} tool.
-The \docpkg{biblatex} provides it own optional arguments for the \doccmd{cite} commands, which are kept unchanged to avoid confusion.
-I see the possible breakage of old \TL\ documents as a fair tradeoff for the new features and flexibility that \docpkg{biblatex} provides.
-It is worth noting that the \docpkg{natbib} is mostly kept on life support, so it's better to switch now and make \TL\ more maintainable in the future.
-This is one of the reasons why this version of \TL\ classes has a new major version number.
+You can find more information about the reasons for it in the \textit{``Sample Book''}
 
 
-\subsection{Figures and Tables}\label{sec:figures-and-tables}
+\subsection{Figures and Tables}\label{ssec:figures-and-tables}
 Images and graphics play an integral role in Tufte's work.
 In addition to the standard \docenv{figure} and \docenv{tabular} environments, this style provides special figure and table environments for full-width floats.
 
@@ -272,7 +255,7 @@ To place figures or tables in the margin, use the \docenv{marginfigure} or \doce
 \end{Verbatim}
 
 The \docenv{marginfigure} and \docenv{margintable} environments accept an optional parameter \docopt{offset} that adjusts the vertical position of the figure or table. 
-See the ``\nameref{sec:sidenotes}'' section above for examples of how to use offsets.
+See the ``\nameref{ssec:sidenotes}'' section above for examples of how to use offsets.
 The specifications are:
 \noindent
 \begin{Verbatim}[commandchars=+/|]
@@ -281,7 +264,6 @@ The specifications are:
   \end{marginfigure}
 \end{Verbatim}
 
-\pagebreak
 \Cref{fig:fullfig} is an example of the \docenv{figure*} environment and \cref{fig:textfig} is an example of the normal
 \docenv{figure} environment.
 
@@ -319,7 +301,7 @@ As an example, the caption to \cref{fig:textfig} above was given in the form:
   \doccmd{caption}[Hilbert curves\ldots][1em]\{Hilbert curves\ldots{}\}
 \end{docspec}
 
-\newthought{Note that caption offset is unavailable} for \docenv{marginfigure} and \docenv{margintable} environments.
+\newthought{Caption offset is unavailable} for \docenv{marginfigure} and \docenv{margintable} environments.
 In these cases you need to offset the whole figure or table.
 Captions in \docenv{marginfigure} and \docenv{margintable} still support short captions.
 
@@ -330,7 +312,6 @@ Hence Tufte style tables use only horizontal rules.
 In cases where a table has many rows, \docpkg{colortbl} can be used to make rows stand out visually from each other.
 Colors can be used to group related rows, highlight important data, or make one row stand out from the others.
 
-\pagebreak
 \begin{table}[ht]
   \centering
   \fontfamily{ppl}\selectfont
@@ -375,21 +356,9 @@ Calling it a third time will generate an error message:
 \end{docspec}
 This is because allocating more floats may lead \hologo{LaTeX} to run out of memory.
 
-If, after using the \doccmd{morefloats} command twice, you continue to get the \texttt{Too many unprocessed floats} error, there are a couple things you can do:
+See the \textit{``Too Many Floats''} section \textit{``Sample Book''} for more information on how to handle this error.
 
-The \doccmd{FloatBarrier} command will immediately process all the floats before typesetting more material.
-Since \doccmd{FloatBarrier} will start a new paragraph, you should place this command at the beginning or end of a
-paragraph.
-
-The \doccmd{clearpage} command will also process the floats before continuing, but instead of starting a new paragraph, it will start a new page.
-
-You can also try moving your floats around a bit: move a figure or table to the next page, or reduce the number of sidenotes.
-Keep in mind that each sidenote actually uses \emph{two} float slots.
-
-After placing the floats, \hologo{LaTeX} will mark those slots as unused so they are available for the next page to be composed.
-
-
-\subsection{Captions}
+\subsection{Captions}\label{ssec:captions}
 You may notice that the captions are sometimes misaligned.
 Due to the way \hologo{LaTeX}'s floats works, it's hard to know for sure where it decided to put the float.
 Therefore, the \TL\ document classes provide commands to override the caption position.
@@ -434,7 +403,7 @@ For example:
 Conversely, the \doccmd{forcerectofloat} command causes the algorithm to assume the float has been placed on a recto page---that is, a page on the right side of a two-page spread.
 
 
-\subsection{Full-width text blocks}
+\subsection{Full-width text blocks}\label{ssec:fullwidth}
 In addition to the new float types, there is a \docenv{fullwidth} environment.
 This environment stretches across the main text block and the sidenotes area.
 
@@ -448,12 +417,8 @@ This environment stretches across the main text block and the sidenotes area.
 \small\itshape\lipsum[1]
 \end{fullwidth}
 
-
 \subsection{Typography}\label{sec:typography}
-\subsection{Typefaces}\label{ssec:typefaces}%
-% Index typefaces and fonts, refer from fonts to typefaces
-\index{typefaces}\index{fonts|see{typefaces}}
-
+\paragraph{Typefaces}
 When using \iXeLaTeX\ or \iLuaLaTeX, the \TL\ classes will load the \docpkg{fontspec} package.
 This package allows you to set the typeface to any installed font, any local font files, or to any font files you have installed in your \texttt{TEXMF} tree.
 
@@ -475,11 +440,11 @@ The \docpkg{fontspec} package is not available under \hologo{pdfLaTeX}, so it us
 This package doesn't make it easy to use non-standard fonts, so it's recommended to use \iXeLaTeX\ or \iLuaLaTeX\ for the best results.
 Alternatively install and use font packages that are compatible with \hologo{pdfLaTeX}.
 
-\newthought{In cases where} \docclsopt{nofonts} option is used, the \TL\ classes will not load any fonts.
-It will not load \docpkg{fontspec} or \docpkg{fontenc} packages either.%
-In \hologo{LuaLaTeX} or \hologo{XeLaTeX} both \docclsopt{nofonts} \textbf{and} \docclsopt{nols} must be used to disable loading \docpkg{fontspec}. More info in \nameref{ssec:letterspacing} section.
+In cases where \docclsopt{nofonts} option is used, the \TL\ classes will not load any fonts.
+In \hologo{pdfLaTeX} will not load the \docpkg{fontenc} package.
+In other engines \docclsopt{nols} option must also be used to disable loading of \docpkg{fontspec} package.
 
-\subsection{Letterspacing}\label{ssec:letterspacing}
+\paragraph{Letterspacing}
 This document class includes two new commands and some improvements on existing commands for letterspacing.
 
 When setting strings of \allcaps{ALL CAPS} or \smallcaps{small caps} commands, the letter\-spacing---that is, the spacing between the letters---should be increased slightly.\cite{Bringhurst2005}
@@ -493,9 +458,8 @@ This allows one to use both uppercase and lowercase letters:
 \textsc{The Initial Letters Of The Words In This Sentence Are Capitalized.}
 
 
-\subsection{Document Class Options}\label{sec:options}%
-% Second index command opens the class options index span
-\index{options|see{class options}}\index{class options|(}
+\pagebreak
+\section{Document Class Options}\label{sec:options}
 The \doccls{tufte-book} class is based on the \hologo{LaTeX} \doccls{book} document class.
 Conversely the \doccls{tufte-handout} class is based on the \doccls{article} document class.
 Therefore, you can pass any of the typical book or article options to them.
@@ -595,41 +559,37 @@ The \docclsopt{debug} option causes the \TL\ classes to output debug information
 It prints list of options and their values under the \texttt{Tufte-LaTeX settings} section.
 Additionally the \doccls{tufte-handout} will print out a dedicated \texttt{Tufte-LaTeX Handout settings} section.
 It will also cause the graphics to be replaced by outlines.
-When combined with \doccmd[geometry]{geometry}\docopt{showframe} command it will show margins for debugging page layout issues.%
-% This command ends the class options index span which started at the beginning of the section
-\index{class options|)}
+When combined with \doccmd{geometry}\docopt{showframe} command it will show margins for debugging page layout issues.
 
 
+\pagebreak
 \section[Customizing Tufte-LaTeX]{Customizing \TL}\label{ch:customizing}
 The \TL\ document classes are designed to closely emulate Tufte's book design by default.
 However, each document is different and you may encounter situations where the default settings are insufficient.
 This chapter explores many of the ways you can adjust the \TL\ document classes to better fit your needs.
 
-\subsection{File Hooks}\label{sec:filehooks}%
-\index{file hooks|(}
+\subsection{File Hooks}\label{sec:filehooks}
 When creating many documents using the \TL\ classes, it's easier to store common customizations in one file.
 Otherwise they would need to be copied into the preamble of each document.
 The \TL\ classes provide three file hooks: \docfilehook{custom-tufte-common.tex}{common}, \docfilehook{custom-tufte-book.tex}{book}, and \docfilehook{custom-tufte-handout.tex}{handout}.\sloppy
 
 \begin{description}
-  \item[\docfilehook{custom-tufte-common.tex}{common}]
+  \item[\docfilehook{custom-tufte-common.tex}]
     If this file exists, it will be loaded by all of the \TL\ document classes, just prior to any class-specific code. If your customizations or code should be included in both the book and handout classes, use this file hook.
-  \item[\docfilehook{custom-tufte-book.tex}{book}] 
+  \item[\docfilehook{custom-tufte-book.tex}] 
     If this file exists, it will be loaded after all of the common and book-specific code has been read. 
     If your customizations apply only to the book class, use this file hook.
-  \item[\docfilehook{custom-tufte-handout.tex}{handout}] 
+  \item[\docfilehook{custom-tufte-handout.tex}] 
     If this file exists, it will be loaded after all of the common and handout-specific code has been read.
     If your customizations apply only to the handout class, use this file hook.
-\end{description}%
-\index{file hooks|)}
+\end{description}
 
 This project comes with a \docfilehook{custom-tufte-common.tex}{common} file hook that demonstrates how to use the file hooks.
 It shows how to change the monospaced font to \texttt{RecursiveMono}.
 You can use it as a starting point for your own customizations.
 
 
-\subsection{Numbered Section Headings}\label{sec:numbered-sections}%
-\index{headings!numbered}
+\subsection{Numbered Section Headings}\label{sec:numbered-sections}
 While Tufte dispenses with numbered headings in his books, if you require them, they can be enabled by changing the value of the \texttt{secnumdepth} counter. 
 From the table below, select the heading level at which numbering should stop and set the \texttt{secnumdepth} counter to that value.
 For example, if you want parts and chapters numbered, but don't want numbering for sections or subsections, use the command:
@@ -638,7 +598,7 @@ For example, if you want parts and chapters numbered, but don't want numbering f
 \end{docspec}
 
 The default value of \texttt{secnumdepth} for the \doccls{tufte-book} class is \(-1\).
-Note that this makes it impossible to use the \docpkg{cleveref} package's \doccmd[cleveref]{cref} command with sections and subsections.
+Note that this makes it impossible to use the \docpkg{cleveref} package's \doccmd{cref} command with sections and subsections.
 This version of \doccls{tufte-handout} class sets the counter to \(2\) so sections and subsections are numbered.
 This change was made to make the sections stand out more as I found it hard to distinguish them from the body text.
 If you wish to revert to no numbering, set the counter to \(-1\).
@@ -667,11 +627,10 @@ You can also pass the \docclsopt{nomoderntitles} option to the \doccls{tufte-han
 \end{table}
 
 
-\subsection{Changing the Paper Size}%
-\label{sec:paper-size}
+\subsection{Changing the Paper Size}\label{sec:paper-size}
 
 The \TL\ classes currently only provide three paper sizes: \textsc{A4}, \textsc{B5}, and \textsc{US} letter.
-To specify a different paper size (and/or margins), use the \doccmd[geometry]{geometry} command in the preamble of your
+To specify a different paper size (and/or margins), use the \doccmd{geometry} command in the preamble of your
 document (or one of the file hooks).
 The full documentation of the \doccmd{geometry} command may be found in the \docpkg{geometry} package documentation.%
 \cite{pkg-geometry}
@@ -683,22 +642,9 @@ Normally, the justification of the marginal material follows the justification o
 If you specify the \docclsopt{justified} document class option, all of the margin material will be fully justified as well. 
 If you don't specify the \docclsopt{justified} option, then the marginal material will be set ragged right.
 
-You can set the justification of the marginal material separately from the body text using the following document class options: \docclsopt{sidenote}, \docclsopt{marginnote}, \docclsopt{caption}, \docclsopt{citation}, and \docclsopt{marginals}. 
-Each option refers to its obviously corresponding marginal material type. 
+You can set the justification of the marginal material separately from the body text using the following document class options: \docclsopt{sidenote}, \docclsopt{marginnote}, \docclsopt{caption}, \docclsopt{citation}, and \docclsopt{marginals}.
 The \docclsopt{marginals} option simultaneously sets the justification on all four marginal material types.
-
-Each of the document class options takes one of five justification types:
-\begin{description}
-  \item[\docclsopt{justified}] Sets the text to be justified (sets it flush left and right).
-  \item[\docclsopt{raggedleft}] Sets the text to be ragged left, regardless of which page it falls on.
-  \item[\docclsopt{raggedright}] Sets the text to be ragged right, regardless of which page it falls on.
-  \item[\docclsopt{raggedouter}] Sets the text to be ragged left if it falls on the left-hand (verso) page of the spread and otherwise sets it ragged right.
-  This is especially useful when combined with the \docclsopt{symmetric} document class option.
-  \item[\docclsopt{auto}] If the \docclsopt{justified} document class option was specified, then the marginal text will also be justified; otherwise the text is set ragged right. 
-  This is the default justification option if one is not explicitly specified.
-\end{description}
-
-\noindent For example, 
+For example: 
 \begin{docspec}
   \doccmd{documentclass}[symmetric,justified,marginals=raggedouter]\{tufte-book\}
 \end{docspec}
@@ -714,7 +660,6 @@ All of the margin material (sidenotes, margin notes, captions, and citations) to
   \doccmd{setcitationfont}\{\docopt{font commands}\}
 \end{docspec}
 
-The \doccmd{setsidenotefont} sets the font and style for sidenotes, the \doccmd{setcaptionfont} for captions, the \doccmd{setmarginnotefont} for margin notes, and the \doccmd{setcitationfont} for citations. 
 The \docopt{font commands} can contain font size changes (e.g., \doccmd{footnotesize}, \doccmd{Huge}, etc.), font style changes (e.g., \doccmd{sffamily}, \doccmd{ttfamily}, \doccmd{itshape}, etc.), color changes (e.g., \doccmd{color}\texttt{\{tufte-blue\}}), and many other adjustments.
 
 If, for example, you wanted the captions to be set in italic sans serif, you could use:
@@ -723,10 +668,10 @@ If, for example, you wanted the captions to be set in italic sans serif, you cou
 \end{docspec}
 
 
+\pagebreak
 \section[New Features in Tufte-LaTeX Classes]{New Features in \TL\ Classes}\label{ch:new-features}
-\subsection{Custom Colors}\label{sec:custom-colors}
 \begin{multicols}{2} [
-  \subsection{Color Showcase}
+  \subsection{Custom Colors}\label{sec:custom-colors}
     The new \TL\ document classes define a number of custom colors.
     They use these colors for things like links, citations, links, etc.
     In case of \doccls{tufte-handout} class it also uses them for the section titles.
@@ -811,7 +756,7 @@ Both environments use the same counter as they are similar enough so it doesn't 
   In both cases the note text is \textit{italicized}.
 \end{FramedNote}
 
-If you label an note, you can reference it using the \doccmd[cleveref]{cref} command.
+If you label an note, you can reference it using the \doccmd{cref} command.
 For example, \cref{fn:label} showcases the \docenv{FramedNote} environment.
 You can also use the \docopt{continues} option to continue an note:
 
@@ -853,6 +798,7 @@ The following figures shows the difference between the default and the new secti
 \end{figure*}
 
 
+\pagebreak
 \section{Compatibility Issues}\label{ch:compatibility}
 When switching an existing document from one document class to a \TL\ document class, a few changes to the document may have to be made.
 
@@ -869,6 +815,7 @@ The following \doccls{book} class options are unsupported: \docclsopt{10pt}, \do
 The following headings are not supported: \doccmd{subsubsection} and \doccmd{subparagraph}.
 
 
+\pagebreak
 \section{Troubleshooting and Support}\label{ch:troubleshooting}
 \subsection{\TL\ Website}\label{sec:website}
 The original website for the \TL\ packages is located at \url{https://tufte-latex.github.io/tufte-latex/}.
@@ -880,7 +827,6 @@ You can find more help and information on the current development of the \TL\ cl
 \url{https://github.com/MormonJesus69420/Modernized-Tufte-LaTeX}
 
 \TODO{Create a new website for the project and link it here}
-
 
 \subsection{\TL\ Mailing Lists}\label{sec:mailing-lists}
 There is only one surviving mailing list for the \TL\ project:
@@ -905,14 +851,12 @@ In case you want to contribute to the project, you can open a pull request on th
 
 \newthought{I don't plan on using mailing lists} in my project, as I never got used to them, and feel that GitHub provides a more user friendly way to interact with the project.
 
-
 \subsection{Getting Help}\label{sec:getting-help}
 If you've encountered a problem with one of the \TL\ document classes, have a question, or would like to report a bug, please create an issue or start a discussion on the GitHub repository.
 
 To help with troubleshooting the problem more quickly, please try to compile your document using the \docclsopt{debug} class option.
 When asking for help include the generated \texttt{.log} file in the issue, along with a brief description of the problem, and if possible a minimal working example that reproduces the issue.
 You can also upload your whole document if you're not sure what's causing the issue, and you are comfortable with sharing the document.
-
 
 \subsection{Package Dependencies}\label{sec:dependencies}
 The following is a list of packages that the \TL\ document classes rely upon. 
@@ -967,6 +911,7 @@ The website for the Tufte-\LaTeX\ packages is located at
 \url{https://github.com/Tufte-LaTeX/tufte-latex}. On our website, you'll find
 links to our \smallcaps{svn} repository, mailing lists, bug tracker, and documentation.
 
+\pagebreak
 % Print Bibliography
 \printbibliography[heading=bibnumbered]
 
