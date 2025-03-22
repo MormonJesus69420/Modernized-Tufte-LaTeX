@@ -564,11 +564,12 @@ Here is a general roadmap of the project:
 - [x] Document new features
 - [x] Point people to use discussions on GitHub
 - [ ] Create a github.io page for the project
-- [ ] Improve documentation in:
+  - [ ] Link to the page in sample documents
+- [x] Improve documentation in:
   - [x] Readme
-  - [ ] Sample documents
+  - [x] Sample documents
     - [x] Book
-    - [ ] Handout
+    - [x] Handout
   - [x] Class files
   - [x] Common file
 - [x] Rename `tufte-X-local.tex` files to `custom-tufte-X.tex`, making their intent clearer
@@ -578,9 +579,10 @@ Here is a general roadmap of the project:
   - [x] This issue was fixed so it is no longer relevant
 - [ ] Publish changes in a new release
 - [ ] Publish on CTAN *maybe*
-  - [ ] Pipeline to make realease and prep package for CTAN
-  - [ ] Add badge with version to the readme
-- [x] Add feature to disable colored sections and paragraphs with option switch
+  - [ ] Pipeline to build realeases and prep package for CTAN
+  - [ ] Add badge with package version to the readme
+- [x] Add feature to disable colored sections and paragraphs with an option switch
+- [x] Add feature to disable note environments with an option switch
 
 If you have any suggestions or feature requests, please open an issue on the issue tracker.
 I will try to address them as soon as possible.
