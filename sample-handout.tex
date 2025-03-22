@@ -799,6 +799,90 @@ The following figures shows the difference between the default and the new secti
 
 
 \pagebreak
+\section[Installing and Compiling Tufte-LaTeX]{Installing and Compiling \TL}\label{sec:installing-and-compiling}
+\subsection{Local Installation}\label{ssec:local-installation}
+To install the \TL\ classes locally, download the source files from the GitHub repository%
+\sidenote{Repository can be found at \url{https://github.com/MormonJesus69420/Modernized-Tufte-LaTeX}}.
+Then you can place the following class files in the same directory as your \TeX\ document:
+\begin{itemize}
+  \item \texttt{tufte-common.def}
+  \item \texttt{tufte-handout.cls}
+  \item \texttt{tufte-book.cls}
+  \item \texttt{custom-tufte-common.tex} \textit{(optional)}
+\end{itemize}
+
+You can then either compile the document using \texttt{latexmk} or use the provided \texttt{makefile} to compile the document.
+See the \nameref{sec:compiling-your-document} section for more information on compiling the document.
+
+
+\subsection{Global Installation}\label{ssec:global-installation}
+To install the \TL\ classes globally, you can place the class files in your \TeX\ distribution's \texttt{tex/latex/tufte-latex} directory.
+When doing it by hand use the \texttt{kpsewhich -var-value TEXMFHOME} to find the correct directory, and copy the files there.
+After copying the files, you will need to update the \TeX\ distribution's file database.
+To do that run the \texttt{texhash} command in the terminal.
+
+You can also use the \texttt{install} target from provided \texttt{makefile}.
+This will do all these steps for you, installing additional documentation files and more.
+
+
+\subsection{Installing from CTAN}\label{ssec:installing-from-ctan}
+\TODO{Provide installation guide from CTAN when package is published there}
+
+
+\section{Compiling Your Document}\label{sec:compiling-your-document}
+The \TL\ classes can be compiled using \iPdfLaTeX, \iXeLaTeX, or \iLuaLaTeX.
+I personally recommend using \iLuaLaTeX, as it provides the best support for \TL\ functionality without and quirks that \iXeLaTeX\ has.
+
+The \TL\ classes are designed to work with the \docpkg{biblatex} package for bibliographies.
+As such you will need to have \texttt{biber} installed on your system to compile the bibliography files.
+
+\subsection{Compiling with \texttt{makefile}}\label{ssec:compiling-with-makefile}
+As mentioned before you can use the provided \texttt{makefile} to compile the sample documents with either \texttt{make compile-lua}, \texttt{make compile-xe}, or \texttt{make compile-pdf}.
+It is up to you which engine you prefer to use, but from my experience \iLuaLaTeX\ provides the best results and is the most reliable of them all.
+In case of single files use the \texttt{make compile-only FILE="<file>.tex"} target.
+It is set up to use \iLuaLaTeX\ by default, but you can change it to use \iXeLaTeX\ or \iPdfLaTeX\ by changing the \texttt{-lualatex} option to \texttt{-xelatex} or \texttt{-pdflatex}.
+
+In general I would recommend changing the \texttt{-outdir=samples} in the \texttt{LMKFLAGS} variable to a directory of your choice, for example: \texttt{-outdir=out}.
+
+If you wish to clean up the auxiliary files, use the \texttt{make clean} target.
+And the remove both auxiliary files and compiled PDFs use the \texttt{make clean-all} target.
+
+\newthought{The ``Sample Book'' and the project's readme} provide a simplified \texttt{makefile}, with only the necessary targets for most use-cases.
+
+\subsection{Compiling manually}\label{ssec:compiling-with-latexmk}
+You may also compile the documents with \texttt{latexmk} directly using the following command:
+Just substitute ``\texttt{<<engine>>}'' with your preferred engine, and ``\texttt{<<source.tex>>}'' with the name of your source file.
+\begin{fullwidth}
+\begin{Verbatim}
+  latexmk -outdir=out -auxdir=aux -bibtex -<<engine>> -jobname=%A-lualatex <<source.tex>>
+\end{Verbatim}
+\end{fullwidth}
+
+You may also do things fully manually.
+To compile \doccls{tufte-handout}, you should do something like this:
+\begin{fullwidth}
+\begin{Verbatim}
+lualatex  <<source.tex>> # Replace <<source.tex>> with the name of your source file
+biber     <<source>>     # Note that the file extension is omitted
+lualatex  <<source.tex>>
+lualatex  <<source.tex>>
+\end{Verbatim}
+\end{fullwidth}
+
+To compile \doccls{tufte-handout}, you should do something like this:
+\begin{fullwidth}
+\begin{Verbatim}
+lualatex  <<source.tex>> # Replace <<source.tex>> with the name of your source file
+biber     <<source>>     # Note that the file extension is omitted
+makeindex <<source.idx>> # If you are using an index
+lualatex  <<source.tex>>
+lualatex  <<source.tex>>
+lualatex  <<source.tex>>
+\end{Verbatim}
+\end{fullwidth}
+
+
+\pagebreak
 \section{Compatibility Issues}\label{ch:compatibility}
 When switching an existing document from one document class to a \TL\ document class, a few changes to the document may have to be made.
 
