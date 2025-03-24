@@ -447,7 +447,7 @@ under the License.\index{license}
 
 % Recto - 9 Introduction - Empty Verso page
 \cleardoublepage{}
-\chapter*{Introduction}
+\chapter*{Introduction}\label{ch:introduction}
 % Set the page style to fancy to enable page number on this page
 % Emulates Tufte's style from /Beautiful Evidence/ for introduction page
 \thispagestyle{fancy}
@@ -469,7 +469,7 @@ These changes were motivated by my personal needs to make it more accessible to 
 \mainmatter{}
 
 
-\chapter{The Design of Tufte's Books}\label{ch:tufte-design}
+\chapter{The Design of Tufte's Books}\label{ch:design-tuftes-books}
 \newthought{The pages} of a book are usually divided into three major sections:
 the front matter (also called preliminary matter, or prelim),
 the main matter (the core text of the book),
@@ -589,7 +589,8 @@ The main difference is caused by the fact that the fonts used in it are not free
 \\\vspace{\baselineskip}
 \fbox{\includegraphics[width=0.45\linewidth]{graphics/ve-title.pdf}}
 \hfill
-\fbox{\includegraphics[width=0.45\linewidth]{graphics/be-title.pdf}}
+\fbox{\includegraphics[width=0.45\linewidth]{graphics/be-title.pdf}}%
+\label{fig:title-pages}
 \end{figure*}
 
 \begin{figure*}[p]\index{table of contents}
@@ -599,7 +600,8 @@ The main difference is caused by the fact that the fonts used in it are not free
 \\\vspace{\baselineskip}
 \fbox{\includegraphics[width=0.45\linewidth]{graphics/ve-contents.pdf}}
 \hfill
-\fbox{\includegraphics[width=0.45\linewidth]{graphics/be-contents.pdf}}
+\fbox{\includegraphics[width=0.45\linewidth]{graphics/be-contents.pdf}}%
+\label{fig:contents}
 \end{figure*}
 
 
@@ -640,7 +642,8 @@ There seem to be small differences between how the engines typeset text, encode 
       \bottomrule
     \end{tabular}
   \end{center}
-  \caption{A list of \hologo{LaTeX} font sizes as defined by the \TL\ document classes.}\label{tab:font-sizes}
+  \caption{A list of \hologo{LaTeX} font sizes as defined by the \TL\ document classes.}%
+  \label{tab:font-sizes}
 \end{table}
 
 
@@ -666,13 +669,15 @@ By default \doccmd{subsubsection} and \doccmd{subparagraph} headings are not def
       \bottomrule
     \end{tabular}
   \end{center}
-  \caption{Heading styles used in \BE.}\label{tab:heading-styles}
+  \caption{Heading styles used in \BE.}%
+  \label{tab:heading-styles}
 \end{table}
 
-\paragraph{Paragraph} The \doccmd{paragraph} headings (as shown here) are introduced by italicized text and separated from the main paragraph by a bit of space.
+\paragraph{Paragraph}\label{par:paragraph}
+The \doccmd{paragraph} headings (as shown here) are introduced by italicized text and separated from the main paragraph by a bit of space.
 
 
-\section{Environments}
+\section{Environments}\label{sec:environments}
 The following table lists characteristics defined for the various environments:
 
 \begin{table}[h]
@@ -689,13 +694,14 @@ The following table lists characteristics defined for the various environments:
       \bottomrule
     \end{tabular}
   \end{center}
-  \caption{Environment styles used in \BE.}\label{tab:environment-styles}
+  \caption{Environment styles used in \BE.}%
+  \label{tab:environment-styles}
 \end{table}
 
 
 % Optional argument changes how the chapter title appears in the TOC
 \chapter[On the Use of the tufte-book Document Class]
-{On the Use of the \texttt{tufte-book} Document Class}\label{ch:tufte-book}
+{On the Use of the \texttt{tufte-book} Document Class}\label{ch:use-tufte-book-document-class}
 The \TL\ document classes define a style similar to the style Edward Tufte uses in his books and handouts.
 Tufte's style is known for its extensive use of sidenotes, tight integration of graphics with text, and well-set typography.
 This document aims to be at once a demonstration of the features of the \TL\ document classes, and a style guide to their use.
@@ -773,7 +779,7 @@ The \doccmddef{marginnote} command has a similar \docarg{offset} argument:
   \doccmd{marginnote}[\docopt{offset}]\{\docarg{Margin note text.}\}
 \end{docspec}
 
-\section{References}
+\section{References}\label{sec:references}
 References are placed alongside their citations as sidenotes, as well.
 This can be accomplished using the normal \doccmddef{cite} command or the \doccmddef{autocite} command, which functions similarly.%
 \sidenote{%
@@ -798,19 +804,19 @@ It is worth noting that the \docpkg{natbib} is mostly kept on life support, so i
 This is one of the reasons why this version of \TL\ classes has a new major version number.
 
 
-\section{Figures and Tables}\label{sec:figures-and-tables}
+\section{Figures and Tables}\label{sec:figures-tables}
 Images and graphics play an integral role in Tufte's work.
 In addition to the standard \docenvdef{figure} and \docenvdef{tabular} environments, this style provides special figure and table environments for full-width floats.
 
 Full page-width figures and tables may be placed in \docenvdef{figure*} or \docenvdef{table*} environments.
-To place figures or tables in the margin, use the \docenvdef{marginfigure} or \docenvdef{margintable} environments as follows (see \cref{fig:marginfig}):
+To place figures or tables in the margin, use the \docenvdef{marginfigure} or \docenvdef{margintable} environments as follows (see \cref{fig:margin-figure}):
 \begin{marginfigure}%
   \includegraphics[width=\linewidth]{helix}
   \caption[This is an example of a margin figure]{%
     This is a margin figure. 
     The helix is defined by \(x = \cos(2\pi z)\), \(y = \sin(2\pi z)\), and \(z = [0, 2.7]\). 
     The figure was drawn using \href{http://asymptote.sf.net/}{Asymptote} (\url{http://asymptote.sf.net/}).
-  }\label{fig:marginfig}
+  }\label{fig:margin-figure}
 \end{marginfigure}
 \noindent
 \begin{Verbatim}
@@ -836,7 +842,7 @@ The specifications are:
 \end{Verbatim}
 
 \pagebreak
-\Cref{fig:fullfig} is an example of the \docenv{figure*} environment and \cref{fig:textfig} is an example of the normal
+\Cref{fig:full-width-figure} is an example of the \docenv{figure*} environment and \cref{fig:text-figure} is an example of the normal
 \docenv{figure} environment.
 
 \begin{figure*}[h]
@@ -844,7 +850,7 @@ The specifications are:
   \caption[Sine graph showcasing full width figure environment]{%
     This graph shows \(y = \sin x\) from about \(x = [-10, 10]\).
     \emph{Notice that this figure takes up the full page width.}
-  }\label{fig:fullfig}
+  }\label{fig:full-width-figure}
 \end{figure*}
 
 \begin{figure}
@@ -852,7 +858,7 @@ The specifications are:
   \caption[Hilbert curves of various degrees \(n\)][2em]{%
     Hilbert curves of various degrees \(n\).
     \emph{Notice that this figure only takes up the main textblock width.}
-  }\label{fig:textfig}
+  }\label{fig:text-figure}
 \end{figure}
 
 \newthought{As with sidenotes and marginnotes}, a caption may require vertical adjustment. 
@@ -868,7 +874,7 @@ A positive \docopt{offset} will push the caption down the page.
 The short caption, if provided, is what appears in the list of figures/tables, otherwise the ``long'' caption appears there.
 Note that although the arguments \docopt{short caption} and \docopt{offset} are both optional, they must be provided in order. 
 Thus, to specify an \docopt{offset} without specifying a \docopt{short caption}, you must include the first set of empty brackets \Verb|[]|, which tell \doccmd{caption} to use the default ``long'' caption. 
-As an example, the caption to \cref{fig:textfig} above was given in the form:
+As an example, the caption to \cref{fig:text-figure} above was given in the form:
 \begin{docspec}
   \doccmd{caption}[Hilbert curves\ldots][1em]\{Hilbert curves\ldots{}\}
 \end{docspec}
@@ -878,7 +884,7 @@ In these cases you need to offset the whole figure or table.
 Captions in \docenv{marginfigure} and \docenv{margintable} still support short captions.
 
 \newthought{Tufte style tables are simple} and should be styled with the \docpkgdef{booktabs} package.
-\Cref{tab:normaltab} shows table created with the \docpkg{booktabs} package.
+\Cref{tab:normal-table} shows table created with the \docpkg{booktabs} package.
 Notice the lack of vertical rules---they serve only to clutter the table's data.
 Hence Tufte style tables use only horizontal rules.
 In cases where a table has many rows, \docpkgdef{colortbl} can be used to make rows stand out visually from each other.
@@ -901,7 +907,7 @@ Colors can be used to group related rows, highlight important data, or make one 
   \end{tabular}
   \caption[Dimensions of the margins in \doccls{tufte-handout}]{%
   Here are the dimensions of the various margins used in the Tufte-handout class.%
-  }\label{tab:normaltab}
+  }\label{tab:normal-table}
 \end{table}
 
 
@@ -943,7 +949,7 @@ Keep in mind that each sidenote actually uses \emph{two} float slots.
 After placing the floats, \hologo{LaTeX} will mark those slots as unused so they are available for the next page to be composed.
 
 
-\section{Captions}
+\section{Captions}\label{sec:captions}
 You may notice that the captions are sometimes misaligned.
 Due to the way \hologo{LaTeX}'s floats works, it's hard to know for sure where it decided to put the float.
 Therefore, the \TL\ document classes provide commands to override the caption position.
@@ -988,7 +994,7 @@ For example:
 Conversely, the \doccmddef{forcerectofloat} command causes the algorithm to assume the float has been placed on a recto page---that is, a page on the right side of a two-page spread.
 
 
-\section{Full-width text blocks}
+\section{Full-width text blocks}\label{sec:full-width-text-blocks}
 In addition to the new float types, there is a \docenvdef{fullwidth} environment.
 This environment stretches across the main text block and the sidenotes area.
 
@@ -1048,7 +1054,7 @@ This allows one to use both uppercase and lowercase letters:
 \textsc{The Initial Letters Of The Words In This Sentence Are Capitalized.}
 
 
-\section{Document Class Options}\label{sec:options}%
+\section{Document Class Options}\label{sec:document-class-options}%
 % Second index command opens the class options index span
 \index{options|see{class options}}\index{class options|(}
 The \doccls{tufte-book} class is based on the \hologo{LaTeX} \doccls{book} document class.
@@ -1076,7 +1082,7 @@ This option implicitly sets the \docclsopt{twoside} option.
 
 The \docclsopt{landscape}, \docclsopt{onecolumn}, and \docclsopt{twocolumn} options are not available in the \TL\ classes.
 
-\subsection{Font and Text Options}\label{ssec:font-options}
+\subsection{Font and Text Options}\label{ssec:font-text-options}
 The \docclsoptdef{sftitle} option will set the title page or block in a \textsf{sans serif} typeface.
 The \docclsoptdef{nosftitle} option will set the title page or block in a serif typeface.
 In case of \doccls{tufte-handout} these options also affect the abstract while in \doccls{tufte-book} they affect the epigraphs.
@@ -1155,12 +1161,12 @@ When combined with \doccmd[geometry]{geometry}\docopt{showframe} command it will
 \index{class options|)}
 
 
-\chapter[Customizing Tufte-LaTeX]{Customizing \TL}\label{ch:customizing}
+\chapter[Customizing Tufte-LaTeX]{Customizing \TL}\label{ch:customizing-tufte-latex}
 The \TL\ document classes are designed to closely emulate Tufte's book design by default.
 However, each document is different and you may encounter situations where the default settings are insufficient.
 This chapter explores many of the ways you can adjust the \TL\ document classes to better fit your needs.
 
-\section{File Hooks}\label{sec:filehooks}%
+\section{File Hooks}\label{sec:file-hooks}%
 \index{file hooks|(}
 When creating many documents using the \TL\ classes, it's easier to store common customizations in one file.
 Otherwise they would need to be copied into the preamble of each document.
@@ -1183,7 +1189,7 @@ It shows how to change the monospaced font to \texttt{RecursiveMono}.
 You can use it as a starting point for your own customizations.
 
 
-\section{Numbered Section Headings}\label{sec:numbered-sections}%
+\section{Numbered Section Headings}\label{sec:numbered-section-headings}%
 \index{headings!numbered}
 While Tufte dispenses with numbered headings in his books, if you require them, they can be enabled by changing the value of the \doccounter{secnumdepth} counter. 
 From the table below, select the heading level at which numbering should stop and set the \doccounter{secnumdepth} counter to that value.
@@ -1222,9 +1228,7 @@ You can also pass the \docclsopt{nomoderntitles} option to the \doccls{tufte-han
 \end{table}
 
 
-\section{Changing the Paper Size}%
-\label{sec:paper-size}
-
+\section{Changing the Paper Size}\label{sec:changing-paper-size}
 The \TL\ classes currently only provide three paper sizes: \textsc{A4}, \textsc{B5}, and \textsc{US} letter.
 To specify a different paper size (and/or margins), use the \doccmd[geometry]{geometry} command in the preamble of your
 document (or one of the file hooks).
@@ -1277,7 +1281,7 @@ If, for example, you wanted the captions to be set in italic sans serif, you cou
 \end{docspec}
 
 
-\chapter[New Features in Tufte-LaTeX Classes]{New Features in \TL\ Classes}\label{ch:new-features}
+\chapter[New Features in Tufte-LaTeX Classes]{New Features in \TL\ Classes}\label{ch:new-features-tufte-latex-classes}
 \begin{multicols}{2} [
   \section{Custom Colors}\label{sec:custom-colors}
     The new \TL\ document classes define a number of custom colors.
@@ -1357,7 +1361,7 @@ Both environments use the same counter as they are similar enough so it doesn't 
 
 \begin{FramedNote}[
   name={Note Title},
-  label={fn:label}
+  label={fn:framed-note-example}
   ]
   This is an example of the \texttt{FramedNote} environment.
   Frames the note text with to the left of note and is more muted than the \texttt{ShadedNote}.
@@ -1365,10 +1369,10 @@ Both environments use the same counter as they are similar enough so it doesn't 
 \end{FramedNote}
 
 If you label an note, you can reference it using the \doccmd[cleveref]{cref} command.
-For example, \cref{fn:label} showcases the \docenv{FramedNote} environment.
+For example, \cref{fn:framed-note-example} showcases the \docenv{FramedNote} environment.
 You can also use the \docopt{continues} option to continue an note:
 
-\begin{FramedNote}[continues={fn:label}]
+\begin{FramedNote}[continues={fn:framed-note-example}]
   This is a continuation of the previous note. 
   It will be displayed in a new frame, but will have the same label, title, and number.
   Useful if you want to refer to or expand on previous note without having to repeat the information.
@@ -1386,7 +1390,7 @@ You can also use the \docopt{continues} option to continue an note:
 \end{Verbatim}
 
 
-\section{Modified Section Headings}\label{sec:changed-section-headings}
+\section{Modified Section Headings}\label{sec:modified-section-headings}
 The \doccls{tufte-handout} class provides a new section heading style.
 Every section, subsection and paragraph will have their names colored, in addition the the usual styling.
 Additionally section and subsection titles will have a colored box placed to the left of the title.
@@ -1394,7 +1398,7 @@ Section number will be placed inside the box.
 This is done to make the sections stand out more, as I found it hard to distinguish them from the body text.
 If you wish to revert to the default styling, you can pass the \docclsopt{nomoderntitles} option to the \doccls{tufte-handout} class.
 
-The following figures shows the difference between the default and the new section heading style.
+The following figure shows the difference between the default and the new section heading style.
 
 \begin{figure*}
   \includegraphics{section-comparison.png}
@@ -1406,7 +1410,7 @@ The following figures shows the difference between the default and the new secti
 \end{figure*}
 
 
-\chapter[Installing and Compiling Tufte-LaTeX]{Installing and Compiling \TL}\label{ch:installing}
+\chapter[Installing and Compiling Tufte-LaTeX]{Installing and Compiling \TL}\label{ch:installing-compiling-tufte-latex}
 \section{Local Installation}\label{sec:local-installation}
 To install the \TL\ classes locally, download the source files from the GitHub repository%
 \sidenote{Repository can be found at \url{https://github.com/MormonJesus69420/Modernized-Tufte-LaTeX}}.
@@ -1482,7 +1486,7 @@ clean-all:
 \end{Verbatim}
 \end{fullwidth}
 
-\subsection{Compiling manually}\label{ssec:compiling-with-latexmk}
+\subsection{Compiling manually}\label{ssec:compiling-manually}
 You may also compile the documents with \texttt{latexmk} directly using the following command:
 Just substitute ``\texttt{<<engine>>}'' with your preferred engine, and ``\texttt{<<source.tex>>}'' with the name of your source file.
 \begin{fullwidth}
@@ -1517,24 +1521,24 @@ lualatex  <<source.tex>>
 \end{fullwidth}
 
 
-\chapter{Compatibility Issues}\label{ch:compatibility}
+\chapter{Compatibility Issues}\label{ch:compatibility-issues}
 When switching an existing document from one document class to a \TL\ document class, a few changes to the document may have to be made.
 
 
-\section{Converting from \doccls{article} to \doccls{tufte-handout}}\label{sec:article-to-handout}
+\section{Converting from \doccls{article} to \doccls{tufte-handout}}\label{sec:converting-article-tufte-handout}
 The following \doccls{article} class options are unsupported: \docclsopt{10pt}, \docclsopt{11pt}, \docclsopt{12pt}, \docclsopt{a5paper}, \docclsopt{b5paper}, \docclsopt{executivepaper}, \docclsopt{legalpaper}, \docclsopt{landscape}, \docclsopt{onecolumn}, and \doccls{twocolumn}.
 
 The following headings are not supported: \doccmd{subsubsection} and \doccmd{subparagraph}.
 
 
-\section{Converting from \doccls{book} to \doccls{tufte-book}}\label{sec:book-to-tufte-book}
+\section{Converting from \doccls{book} to \doccls{tufte-book}}\label{sec:converting-book-tufte-book}
 The following \doccls{book} class options are unsupported: \docclsopt{10pt}, \docclsopt{11pt}, \docclsopt{12pt}, \docclsopt{a5paper}, \docclsopt{b5paper}, \docclsopt{executivepaper}, \docclsopt{legalpaper}, \docclsopt{landscape}, \docclsopt{onecolumn}, and \doccls{twocolumn}.
 
 The following headings are not supported: \doccmd{subsubsection} and \doccmd{subparagraph}.
 
 
-\chapter{Troubleshooting and Support}\label{ch:troubleshooting}
-\section{\TL\ Website}\label{sec:website}
+\chapter{Troubleshooting and Support}\label{ch:troubleshooting-support}
+\section{\TL\ Website}\label{sec:tufte-latex-website}
 The original website for the \TL\ packages is located at \url{https://tufte-latex.github.io/tufte-latex/}.
 On that website, you'll find links to the \smallcaps{git} repository, mailing lists, bug tracker, and documentation.
 
@@ -1546,15 +1550,15 @@ You can find more help and information on the current development of the \TL\ cl
 \TODO{Create a new website for the project and link it here}
 
 
-\section{\TL\ Mailing Lists}\label{sec:mailing-lists}
+\section{\TL\ Mailing Lists}\label{sec:tufte-latex-mailing-lists}
 There is only one surviving mailing list for the \TL\ project:
 
-\paragraph{Discussion list}
+\paragraph{Discussion list}\label{par:discussion-list}
 The \texttt{tufte-latex} discussion list is for asking questions, getting assistance with problems, and help with troubleshooting. 
 Release announcements were also posted to this list.%
 \marginnote{You can subscribe to the \texttt{tufte-latex} discussion list at \url{http://groups.google.com/group/tufte-latex}}
 
-\paragraph{Commits list}
+\paragraph{Commits list}\label{par:commits-list}
 The \texttt{tufte-latex-commits} list used to exist as well as a read-only mailing list. 
 Messages were sent to the list any time the \TL\ code had been updated.%
 \marginnote{This list was available at \url{http://groups.google.com/group/tufte-latex-commits}}
@@ -1578,7 +1582,7 @@ When asking for help include the generated \texttt{.log} file in the issue, alon
 You can also upload your whole document if you're not sure what's causing the issue, and you are comfortable with sharing the document.
 
 
-\section{Errors, Warnings, and Informational Messages}\label{sec:tl-messages}
+\section{Errors, Warnings, and Informational Messages}\label{sec:errors-warnings-informational-messages}
 The following is a list of all of the known errors, warnings, and other messages generated by the \TL\ classes and a brief description of their meanings.%
 \index{error messages}\index{warning messages}\index{debug messages}
 
@@ -1615,7 +1619,7 @@ This option automatically forces the \docclsopt{twoside} option as well.
 See page~\pageref{clsopt:symmetric} for more information on the \docclsopt{symmetric} class option.}
 
 
-\section{Package Dependencies}\label{sec:dependencies}
+\section{Package Dependencies}\label{sec:package-dependencies}
 The following is a list of packages that the \TL\ document classes rely upon. 
 Packages marked with an asterisk are either optional or only loaded for some class options.
 \begin{multicols}{2}
