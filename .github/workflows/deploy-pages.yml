@@ -1,0 +1,95 @@
+# Name of the workflow and an action title to display in the GitHub UI
+# Based mostly on https://github.com/actions/starter-workflows/blob/main/pages/jekyll.yml
+name: Deploy to pages
+run-name: ${{ github.actor }} is deploying the site
+
+# Decides when the workflow gets triggered, this is a "coarse" definition for whole workflow
+# Jobs can refine it further or use the defaults defined here
+# List of all events that can be used for triggering workflows:
+# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+on:
+  # Run on push to main branch
+  push:
+    branches:
+      - main
+  # Manual trigger in the repo's Actions tab
+  workflow_dispatch:
+
+# Used to make sure that only one workflow in the specified group runs at the same time
+concurrency:
+  # Define concurrency group which is then used to determine duplicate workflow runs
+  # The second property uses fallback values
+  group: ${{ github.workflow }} @ ${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+# Modify access granted to the workflow in the GITHUB_TOKEN
+# Mainly used here to allow publishing the site to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# List of jobs that this workflow executes, each job can run on different runners, have different steps, etc.
+jobs:
+  # Unique identifier for this job, make sure it is unique, you can use "name" property to provide a descriptive name
+  build-site:
+    # This name is displayed in the GitHub UI when the job is running
+    name: Build the Jekyll Website
+    # Defines what runner to run this job on, if you want you can use an array of identifiers to match the runner name
+    # For example this can be written as [self-hosted, linux] and only runner matching all of these values will run it
+    runs-on: ubuntu-latest
+    # List of steps that this job executes in sequential order, any changes done in one step will carry over to others
+    # Be mindful of that when making changes to files
+    steps:
+      # Simple step which merely checks out the repository to the runner, making it available for other steps
+      - name: Checkout
+        # Specifies that this step should run a pre-defined action, either existing elsewhere or done by others
+        # In this case the provided identifier is a reference to a repository in: https://github.com/actions/checkout
+        # Specify action version after the @ symbol, in this case v4
+        uses: actions/checkout@v4
+
+      # This step sets up Ruby environment on the runner
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          # Caches the result from `bundle install` to speed up future runs
+          bundler-cache: true
+          # Allows to redownload gems in case of a corrupted cache, increment the counter to force redownload
+          cache-version: 0
+
+      # Enable GitHub Pages and extract page metadata
+      - name: Setup Pages
+        # Give this step a unique ID for referencing it elsewhere, in this case to get the base url for the site
+        id: pages
+        uses: actions/configure-pages@v5
+
+      # Build the site using Jekyll
+      - name: Build with Jekyll
+        # Uses the default output directory `_site`, sets base url using output from `pages` step
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          # Set the Jekyll environment to production
+          JEKYLL_ENV: production
+
+      # Upload the built site as an artifact
+      - name: Upload artifact
+        # This action automatically uploads the contents of the `_site` directory as an artifact
+        uses: actions/upload-pages-artifact@v3
+
+  # This job deploys the page to GitHub Pages
+  deploy:
+    # Defines what environment this job references, this allows for setting deployment protections in the project
+    # Allows requiring a number of reviewers or specific reviewers, or allow only specific branches or tags
+    # It also permits setting specific secrets and variables
+    environment:
+      # Set the name of the environment
+      name: github-pages
+      # Set deployment URL using the page URL from the `deployment` step
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    # Defines that `build` job must finish successfully first, before this one can run
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
