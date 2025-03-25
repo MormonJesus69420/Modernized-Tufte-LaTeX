@@ -52,6 +52,8 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
+          # Set the Ruby version to use
+          ruby-version: 3.3.7
           # Caches the result from `bundle install` to speed up future runs
           bundler-cache: true
           # Allows to redownload gems in case of a corrupted cache, increment the counter to force redownload
