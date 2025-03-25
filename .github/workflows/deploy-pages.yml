@@ -90,7 +90,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     # Defines that `build` job must finish successfully first, before this one can run
-    needs: build
+    needs: build-site
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
