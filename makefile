@@ -1,14 +1,14 @@
 ################################################################################
-###  This file contains make targets for compiling and managing sample docs  ###
+##  Make targets for compiling sample docs and managing Tufte-LaTeX installs  ##
 #  Written originally by Chris K. Grant, modified by Daniel Aaron Salwerowicz  #
 ################################################################################
 
-# Compile to 'out' dir, store auxiliary files in 'aux' dir, use 'bibtex'
+# Compile to 'samples' dir, store auxiliary files in 'aux' dir, use 'bibtex'
 LMKFLAGS = -outdir=samples -auxdir=aux -bibtex
 # Path to install class files for modern-tufte-latex files in 'TEXMFHOME' dir
-CLASSDIR =  $$(kpsewhich -var-value TEXMFHOME)/tex/latex/modern-tufte-latex
+CLASSDIR = $$(kpsewhich -var-value TEXMFHOME)/tex/latex/modern-tufte-latex
 # Path to install doc files for modern-tufte-latex files in 'TEXMFHOME' dir
-DOCDIR =  $$(kpsewhich -var-value TEXMFHOME)/doc/latex/modern-tufte-latex
+DOCDIR = $$(kpsewhich -var-value TEXMFHOME)/doc/latex/modern-tufte-latex
 
 # Default target, compiles all files with LuaLaTeX, XeLaTeX, and pdfLaTeX
 all: compile-lua compile-xe compile-pdf
@@ -50,7 +50,7 @@ compile-only:
 clean:
 	rm -rfv aux
 
-# Remove folder with auxiliary files and output files
+# Remove folder with auxiliary and sample files
 clean-all:
 	rm -rfv aux samples
 

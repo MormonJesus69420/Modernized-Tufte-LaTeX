@@ -600,23 +600,23 @@
     % This font tries to emulate Edward Tufte's Bembo font
     \IfFileExists{ETbb.sty}{
       \setmainfont{ETbb}[
-        Extension = .otf,
-        UprightFont = *-Regular,
-        BoldFont = *-Bold,
-        ItalicFont = *-Italic,
-        BoldItalicFont = *-BoldItalic,
-        Numbers = {Proportional,OldStyle},
+        Extension=.otf,
+        UprightFont=*-Regular,
+        BoldFont=*-Bold,
+        ItalicFont=*-Italic,
+        BoldItalicFont=*-BoldItalic,
+        Numbers={Proportional,OldStyle},
       ]
     }{% ETbb not installed, so use TeX Gyre Pagella instead
       % These fonts should be installed in any TeX distribution
       % If not, find a better TeX distribution and use it :3
       \setmainfont{texgyrepagella}[
-        Extension = .otf,
-        UprightFont = *-regular,
-        BoldFont = *-bold,
-        ItalicFont = *-italic,
-        BoldItalicFont = *-bolditalic,
-        Numbers = {Proportional,OldStyle},
+        Extension=.otf,
+        UprightFont=*-regular,
+        BoldFont=*-bold,
+        ItalicFont=*-italic,
+        BoldItalicFont=*-bolditalic,
+        Numbers={Proportional,OldStyle},
       ]
     }
     %  
@@ -628,21 +628,21 @@
       % find it, even though LuaTeX seems to find it just fine with only the
       % `Gillius ADF No2'
       \setsansfont{GilliusADFNo2}[
-        Extension = .otf,
-        UprightFont = *-Regular,
-        BoldFont = *-Bold,
-        ItalicFont = *-Italic,
-        BoldItalicFont = *-BoldItalic,
-        Numbers = {Proportional,OldStyle},
+        Extension=.otf,
+        UprightFont=*-Regular,
+        BoldFont=*-Bold,
+        ItalicFont=*-Italic,
+        BoldItalicFont=*-BoldItalic,
+        Numbers={Proportional,OldStyle},
       ]
     }{% Gillius not installed, so use TeX Gyre Heros instead
       % Same reason for using this as fallback as with the main font
       \setsansfont{texgyreheros}[
-        Extension = .otf,
-        UprightFont = *-regular,
-        BoldFont = *-bold,
-        ItalicFont = *-italic,
-        BoldItalicFont = *-bolditalic,
+        Extension=.otf,
+        UprightFont=*-regular,
+        BoldFont=*-bold,
+        ItalicFont=*-italic,
+        BoldItalicFont=*-bolditalic,
       ]
     }
     %
@@ -651,26 +651,26 @@
     % If people don't like it they can load whatever else they want
     \IfFileExists{FiraMono.sty}{
       \setmonofont{FiraMono}[
-        Extension = .otf,
-        UprightFont = *-Regular,
-        BoldFont = *-Bold,
-        ItalicFont = *-Oblique,
-        BoldItalicFont = *-BoldOblique,
-        Scale = MatchLowercase,
-        Ligatures = TeX,
-        Contextuals = Alternate,
+        Extension=.otf,
+        UprightFont=*-Regular,
+        BoldFont=*-Bold,
+        ItalicFont=*-Oblique,
+        BoldItalicFont=*-BoldOblique,
+        Scale=MatchLowercase,
+        Ligatures=TeX,
+        Contextuals=Alternate,
       ]
     }{% Fira not installed, so use TeX Gyre Cursor
       % Same reason for using this as fallback as with the main font
       \setmonofont{texgyrecursor}[
-        Extension = .otf,
-        UprightFont = *-regular,
-        BoldFont = *-bold,
-        ItalicFont = *-italic,
-        BoldItalicFont = *-bolditalic,
-        Scale = MatchLowercase,
-        Ligatures = TeX,
-        Contextuals = Alternate,
+        Extension=.otf,
+        UprightFont=*-regular,
+        BoldFont=*-bold,
+        ItalicFont=*-italic,
+        BoldItalicFont=*-bolditalic,
+        Scale=MatchLowercase,
+        Ligatures=TeX,
+        Contextuals=Alternate,
       ]
     }
   }
@@ -715,9 +715,9 @@
   % Set the default options for the hyperref package
   \hypersetup{%
     % Set border for links (none in this case)
-    pdfborder = {0 0 0},% 
+    pdfborder={0 0 0},% 
     % Include sections and subsections in the PDF bookmarks
-    bookmarksdepth = subsection,%
+    bookmarksdepth=subsection,%
     % True for colored links
     colorlinks=true,breaklinks,%
     % True for table of contents links
