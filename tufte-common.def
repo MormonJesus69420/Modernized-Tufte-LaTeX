@@ -721,7 +721,9 @@
     % Include sections and subsections in the PDF bookmarks
     bookmarksdepth=subsection,%
     % True for colored links
-    colorlinks=true,breaklinks,%
+    colorlinks=true,%
+    % True to allow links to break across lines
+    breaklinks=true,%
     % True for table of contents links
     linktoc=all,%
     % Colour for links
