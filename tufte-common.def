@@ -55,8 +55,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\ProvidesFile{tufte-common.def}
-  [2025-03-01 v4.0.0 Common Tufte definitions]
+% Declare this as a tufte-common definitions file
+% Define needed TeX format and minimum version
+\NeedsTeXFormat{LaTeX2e}[1994-06-01]
+% Define what file this document provides as well as the version
+\ProvidesFile{tufte-common.def}[2025-03-01 v4.0.0 Common Tufte definitions]
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -67,7 +70,6 @@
 % The `xkeyval' package simplifies the user interface for the class options
 \RequirePackage{xkeyval}
 
-%%
 % Use the `xifthen' package to handle the package option switches
 \RequirePackage{xifthen}
 

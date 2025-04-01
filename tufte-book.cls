@@ -10,7 +10,7 @@
 
 
 % Declare this as a tufte-book class
-% Define needed TeX format and version
+% Define needed TeX format and minimum version
 \NeedsTeXFormat{LaTeX2e}[1994-06-01]
 % Define what class this document provides as well as the version
 \ProvidesClass{tufte-book}[2025-03-01 v4.0.0 Tufte-Book Class]
