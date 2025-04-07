@@ -9,7 +9,7 @@
   - All titles are now colored.
   - Section styling resides `tufte-handout.cls`.
   - Section styling can be disabled with the `nomoderntitles` option.
-- Added `ShadedNote` and `FramedNote` environments to the handout class only.
+- Added `shadednote` and `framednote` environments to the both classes.
   - Used to emphasize notes in the documents
   - Note environments are defined and styled in `tufte-common.def`.
   - Note environments can be disabled with the `nonotes` option.

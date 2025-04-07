@@ -31,7 +31,7 @@ The main changes are:
 - Updates the `tufte-handout` class with:
   - Decorated paragraphs and (sub)sections with colors and numbered boxes.
     - This can be disabled with `nomoderntitles` option.
-  - Adds `ShadedNote` and `FramedNote` environments for notes.
+  - Adds `shadednote` and `framednote` environments for notes.
   - Uses `cleveref` package for references.
     - Adds support for referencing note environments with `\cref` command.
     - Additionally loads the `amsmath`, `amssymb`, and `amsxtra` packages to avoid conflicts with `cleveref`.
@@ -218,7 +218,7 @@ These options are:
   - `justified` -- sets main content to fully justified layout, flush left and right, instead of the default ragged right
   - `nofonts` -- doesn't load any fonts
   - `nols` -- doesn't configure letterspacing
-  - `nonotes` -- doesn't configure ShadedNote and FramedNote environments
+  - `nonotes` -- doesn't configure shadednote and framednote environments
   - `bidi` -- loads the `bidi` package for bi-directional text
 - Title Page Options:
   - `notitlepage` -- creates only a title block with \maketitle (*default in handout*)
@@ -278,7 +278,7 @@ In meantime ensure every (sub)section is numbered, also use the `bibnumbered` op
 ## Note Environments
 Matthew Y. He added several theorem environments.
 I found them useful, however I felt like there were too many of them.
-Hence I kept only two and modified them slightly, these are: `ShadedNote` and `FramedNote`.
+Hence I kept only two and modified them slightly, these are: `shadednote` and `framednote`.
 You can use them to emphasize text on the page with important information.
 
 It is especially useful when you wish to refer back to this information later.
@@ -291,13 +291,13 @@ file you can see their definitions, tweak them, add more, or remove them complet
 For example to create a simple shaded note use the following code:
 
 ```latex
-\begin{ShadedNote}[%
+\begin{shadednote}[%
   name={Optional Note Title},%
   label={nt:optional-note-label},%
   continues={nt:optional-preceding-note-label}%
 ]
   Note content goes here.
-\end{ShadedNote}
+\end{shadednote}
 ```
 
 And here is a preview of the note environments:

@@ -2894,23 +2894,23 @@
     title={Note}%
   ]{Note}
   %
-  % Declare the ShadedNote environment
+  % Declare the shadednote environment
   \declaretheorem[%
     % Add a shaded background to the Note
     shaded={bgcolor=tufte-pastel-purple,textwidth=30em},%
     % Set the style to the Note style defined above
     style={Note}%
-  ]{ShadedNote}
+  ]{shadednote}
   %
-  % Declare the FramedNote environment
+  % Declare the framednote environment
   \declaretheorem[%
     % Add a framing box to the left of Note
     thmbox={M},%
-    % Share the numbering counter with the ShadedNote environment
-    sibling={ShadedNote},%
+    % Share the numbering counter with the shadednote environment
+    sibling={shadednote},%
     % Set the style to the Note style defined above
     style={Note}%
-    ]{FramedNote}
+    ]{framednote}
 }{}
 
 

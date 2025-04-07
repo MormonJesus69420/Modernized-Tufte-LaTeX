@@ -1125,7 +1125,7 @@ The \docclsopt{notoc} option will revert to \hologo{LaTeX}'s \textsc{toc} design
 The \docclsoptdef{nohyper} option prevents the \docpkg{hyperref} package from being loaded.
 The default is to load the \docpkg{hyperref} package and use the \doccmd{title} and \doccmd{author} contents as metadata for the generated \textsc{pdf}.
 
-The \docclsoptdef{nonotes} option inhibits loading packages used for \docenv{ShadedNote} and \docenv{FramedNote} environments.
+The \docclsoptdef{nonotes} option inhibits loading packages used for \docenv{shadednote} and \docenv{framednote} environments.
 By default it loads the \docpkg{amsthm}, \docpkg{cleveref}, and \docpkg{thmtools} packages.
 Using those it defines environments for notes that are either shaded or framed.
 
@@ -1348,45 +1348,45 @@ It's useful for making important informations stand out, without risk of being l
 
 Both note environments provide a title, a label, and a continuation option.
 The title and label are optional, the label is used for referencing the note or for continuing a note later in the text.
-The \docenvdef{ShadedNote} environment creates a note with a shaded background. 
-While the \docenvdef{FramedNote} environment places a frame to the left of the note. 
+The \docenvdef{shadednote} environment creates a note with a shaded background. 
+While the \docenvdef{framednote} environment places a frame to the left of the note. 
 Both environments use the same counter as they are similar enough so it doesn't make sense to separate them.
 
-\begin{ShadedNote}
-  This is an example of the \texttt{ShadedNote} environment.
+\begin{shadednote}
+  This is an example of the \texttt{shadednote} environment.
   It provides a shaded background for the note text. 
   The note text can be long or short, although they should be short and to the point.
   Notes should be used to crucial information, not be a substitute for a paragraph
-\end{ShadedNote}
+\end{shadednote}
 
-\begin{FramedNote}[
+\begin{framednote}[
   name={Note Title},
   label={fn:framed-note-example}
   ]
-  This is an example of the \texttt{FramedNote} environment.
-  Frames the note text with to the left of note and is more muted than the \texttt{ShadedNote}.
+  This is an example of the \texttt{framednote} environment.
+  Frames the note text with to the left of note and is more muted than the \texttt{shadednote}.
   In both cases the note text is \textit{italicized}.
-\end{FramedNote}
+\end{framednote}
 
 If you label an note, you can reference it using the \doccmd[cleveref]{cref} command.
-For example, \cref{fn:framed-note-example} showcases the \docenv{FramedNote} environment.
+For example, \cref{fn:framed-note-example} showcases the \docenv{framednote} environment.
 You can also use the \docopt{continues} option to continue an note:
 
-\begin{FramedNote}[continues={fn:framed-note-example}]
+\begin{framednote}[continues={fn:framed-note-example}]
   This is a continuation of the previous note. 
   It will be displayed in a new frame, but will have the same label, title, and number.
   Useful if you want to refer to or expand on previous note without having to repeat the information.
-\end{FramedNote}
+\end{framednote}
 
 \noindent The way to use the note environments is as follows:
 \begin{Verbatim}
-\begin{ShadedNote}[
+\begin{shadednote}[
   title={Optional title}, 
   label={Optional label},
   continues={Optional label}
   ]
   Note text here
-\end{ShadedNote}  
+\end{shadednote}  
 \end{Verbatim}
 
 
